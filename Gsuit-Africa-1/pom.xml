@@ -84,7 +84,6 @@
 			<version>v1beta4-rev69-1.25.0</version>
 		</dependency>
 
-
 		<dependency>
 			<groupId>com.google.apis</groupId>
 			<artifactId>google-api-services-oauth2</artifactId>
@@ -136,6 +135,11 @@
 		    <version>1.0.10-alpha</version>
 		</dependency>
 		
+		<dependency>
+		    <groupId>com.google.gdata</groupId>
+		    <artifactId>core</artifactId>
+		    <version>1.47.1</version>
+		</dependency>
 		
 		
 
