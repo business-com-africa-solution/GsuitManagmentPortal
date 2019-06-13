@@ -52,8 +52,8 @@
 	src="/javax.faces.resource/js/nanoscroller.jsb45c.xhtml?ln=california-layout"></script>
 <script type="text/javascript"
 	src="/javax.faces.resource/js/layout.jsb45c.xhtml?ln=california-layout"></script>
-<script type="text/javascript">
-	//<![CDATA[
+<script th:inline="text/javascript">
+	/*<![CDATA[*/
 	function skinPie() {
 		this.cfg.shadow = false;
 		this.cfg.title = '';
@@ -85,7 +85,7 @@
 		console.log("Yeaaaaaaah" + edw);
 	}
 
-	//]]>
+	/*]]>*/
 </script>
 <style type="text/css">
 .main-content {
@@ -223,16 +223,17 @@
 								href="dashboard.html"><i class="fa fa-fw fa-home"></i><span>DashBoard</span></a></li>
 
 							<li id="menuform:om_customization" role="menuitem"
-								class="ui-menuitem-submenu"><a ><i
+								class="ui-menuitem-submenu"><a><i
 									class="fa fa-fw fa-user fa-1x"></i><span>User Management</span><i
 									class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
 								<ul role="menu">
 									<li id="menuform:custom3" role="menuitem"><a
-										th:href="@{usermanagment}"> <i class="fa fa-fw fa-smile-o fa-1x"></i><span>User Information</span>
+										th:href="@{usermanagment}"> <i
+											class="fa fa-fw fa-smile-o fa-1x"></i><span>User
+												Information</span>
 									</a></li>
 									<li id="menuform:custom3" role="menuitem"><a
-										href="404.html" ><i
-											class="fa fa-fw fa-vcard fa-1x"></i><span>Signature</span></a></li>
+										href="404.html"><i class="fa fa-fw fa-vcard fa-1x"></i><span>Signature</span></a></li>
 									<li id="menuform:custom4" role="menuitem"><a href="#"
 										onclick="onclicked()"><i
 											class="fa fa-fw fa-calendar fa-1x"></i><span>Calendar
@@ -306,7 +307,8 @@
 									<li id="menuform:custom_user_2" role="menuitem"><a
 										href="#"
 										onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:custom_user_2':'menuform:custom_user_2'}).submit('menuform');return false;PrimeFaces.onPost();"><i
-											class="fa fa-fw fa-folder-open-o"></i><span>Financial Reports</span></a></li>
+											class="fa fa-fw fa-folder-open-o"></i><span>Financial
+												Reports</span></a></li>
 								</ul></li>
 
 
@@ -362,7 +364,7 @@
 							<i class="fa fa-calendar"></i>
 					</a></li>
 				</ul>
-				<div class="ui-tabs-panels">			
+				<div class="ui-tabs-panels">
 					<div id="j_idt55:j_idt70"
 						class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-helper-hidden"
 						role="tabpanel" aria-hidden="true" data-index="2">
@@ -495,36 +497,46 @@
 							<div class="overview-box monthly-users">
 
 								<div class="overview-title">Time Date</div>
-								<div id="MyClockDisplay" class="clock" onload="showTime()" style="color: #ffffff; font-family: Orbitron; font-size: 40px; letter-spacing: 2px;"></div>
-								<script type="text/javascript">                  
-                                                showTime();
-                                                function showTime(){
-                                                    var date = new Date();
-                                                    var h = date.getHours(); // 0 - 23
-                                                    var m = date.getMinutes(); // 0 - 59
-                                                    var s = date.getSeconds(); // 0 - 59
-                                                    var session = "AM";
-                                                    
-                                                    if(h == 0){
-                                                        h = 12;
-                                                    }
-                                                    
-                                                    if(h > 12){
-                                                        h = h - 12;
-                                                        session = "PM";
-                                                    }
-                                                    
-                                                    h = (h < 10) ? "0" + h : h;
-                                                    m = (m < 10) ? "0" + m : m;
-                                                    s = (s < 10) ? "0" + s : s;
-                                                    
-                                                    var time = h + ":" + m + ":" + s + " " + session;
-                                                    console.log("time"+time);
-    
-                                                    document.getElementById('MyClockDisplay').innerText = ''+time;
-                                                    document.getElementById('MyClockDisplay').textContent = ''+time;                             
-                                                    setTimeout(showTime, 1000)};                                                       
-                                    </script>
+								<div id="MyClockDisplay" class="clock" onload="showTime()"
+									style="color: #ffffff; font-family: Orbitron; font-size: 40px; letter-spacing: 2px;"></div>
+								<script type="text/javascript">
+									/*<![CDATA[*/
+									showTime();
+									function showTime() {
+										var date = new Date();
+										var h = date.getHours(); // 0 - 23
+										var m = date.getMinutes(); // 0 - 59
+										var s = date.getSeconds(); // 0 - 59
+										var session = "AM";
+
+										if (h == 0) {
+											h = 12;
+										}
+
+										if (h > 12) {
+											h = h - 12;
+											session = "PM";
+										}
+
+										h = (h < 10) ? "0" + h : h;
+										m = (m < 10) ? "0" + m : m;
+										s = (s < 10) ? "0" + s : s;
+
+										var time = h + ":" + m + ":" + s + " "
+												+ session;
+										console.log("time" + time);
+
+										document
+												.getElementById('MyClockDisplay').innerText = ''
+												+ time;
+										document
+												.getElementById('MyClockDisplay').textContent = ''
+												+ time;
+										setTimeout(showTime, 1000)
+									};
+
+									/*]]>*/
+								</script>
 
 							</div>
 						</div>
@@ -607,8 +619,7 @@
 																	id : "pie",
 																	type : "pie",
 																	responsive : true,
-																	data : [ 
-																		[
+																	data : [ [
 																			[
 																					"Lables A",
 																					40 ],
@@ -620,8 +631,7 @@
 																					50 ],
 																			[
 																					"Lables C",
-																					50 ] ] 
-																		],
+																					50 ] ] ],
 																	title : "Simple Pie",
 																	legendPosition : "w",
 																	extender : skinPie,
