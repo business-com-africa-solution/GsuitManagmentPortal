@@ -397,9 +397,8 @@
 		<div class="layout-main">
 			<div class="route-bar">
 				<div class="route-bar-breadcrumb">
-					<i class="fa fa-home"></i> <span>/ </span>USER MANAGMENT
+					<i class="fa fa-home"></i> <span>/ </span>Create User
 				</div>
-
 				<ul class="route-bar-menu">
 					<li class="search-item"><i class="fa fa-search"></i> <input
 						type="text" placeholder="Search..." /></li>
@@ -433,128 +432,59 @@
 
 				<div class="ui-fluid">
 					<div class="ui-g">
-						<div class="ui-g-12 ui-md-12 ui-lg-6">
-							<div id="j_idt209"
-								class="ui-panel ui-widget ui-widget-content ui-corner-all profile-details ui-g-12"
-								data-widget="widget_j_idt209">
-								<div id="j_idt209_content"
-									class="ui-panel-content ui-widget-content">
-									<img id="j_idt119"
-										src="/jMega avax.faces.resource/images/businesscom-logo.png?ln=california-layout"
-										alt="" style="width: 50%; height: 70px%" />
-								</div>
 
-								<div class="card card-w-title">
-									<h1>User Information</h1>
-									<hr>
-									<div id="j_idt90"
-										class="ui-panelgrid ui-widget form-group ui-panelgrid-blank">
-										<div id="j_idt90_content"
-											class="ui-panelgrid-content ui-widget-content ui-grid ui-grid-responsive">
-
-											<div class="ui-g">
-												<form th:action="@{/processUpdateForm}" th:object="${updateuser}" method="post">
-												
-													
-												
-													<div class="ui-panelgrid-cell ui-g-12 ui-md-12">
-													<div class="ui-panelgrid-cell ui-g-12 ui-md-6" style="display: none;">
-															<label id="j_idt91" class="ui-outputlabel ui-widget"
-																for="acSimple_input">Family Name</label> <input
-																id="acSimple_input" name="acSimple_input" type="text"
-																class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all"
-																autocomplete="off" aria-labelledby="j_idt91"
-																th:value="${id}" th:field="*{id}" />
-
-														</div>
-														<div class="ui-panelgrid-cell ui-g-12 ui-md-6">
-															<label id="j_idt91" class="ui-outputlabel ui-widget"
-																for="acSimple_input">Family Name</label> <input
-																id="acSimple_input" name="acSimple_input" type="text"
-																class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all"
-																autocomplete="off" aria-labelledby="j_idt91"
-																th:placeholder="${familyName}" th:field="*{familyname}" />
-
-														</div>
-														<div class="ui-panelgrid-cell ui-g-12 ui-md-6">
-															<label id="j_idt91" class="ui-outputlabel ui-widget"
-																for="acSimple_input">Given Name</label> <input
-																id="acSimple_input" name="acSimple_input" type="text"
-																class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all"
-																autocomplete="off" aria-labelledby="j_idt91"
-																th:placeholder="${givenName}"  th:field="*{givenName}" />
-														</div>
-														
-														<div class="ui-panelgrid-cell ui-g-12 ui-md-6">
-															<label id="j_idt91" class="ui-outputlabel ui-widget"
-																for="acSimple_input">Email Name:</label> <input
-																id="acSimple_input" name="acSimple_input" type="text"
-																class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all"
-																autocomplete="off" aria-labelledby="j_idt91"
-																th:placeholder="${emailName}" th:field="*{emailAdress}" />
-														</div>
-														<div class="ui-panelgrid-cell ui-g-12 ui-md-6">
-															<label id="j_idt91" class="ui-outputlabel ui-widget"
-																for="acSimple_input">Domain:</label> <input
-																id="acSimple_input" name="acSimple_input" type="text"
-																class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all"
-																autocomplete="off" aria-labelledby="j_idt91"
-																th:value="${domain}" readonly="readonly" />
-														</div>
-														<br>
-														<div class="ui-panelgrid-cell ui-g-12 ui-md-6">
-															<button id="j_idt213" name="j_idt213"
-																class="ui-button ui-widget ui-state-default  ui-corner-all ui-c ui-button-text-only blue-btn"
-																style="margin-bottom: 15px;" type="submit">
-																<span class="ui-button-text ui-c">Update</span>
-															</button>
-															
-															<script id="j_idt213_s" type="text/javascript">
-																PrimeFaces
-																		.cw(
-																				"CommandButton",
-																				"widget_j_idt213",
-																				{
-																					id : "j_idt213"
-																				});
-															</script>
-														</div>
-
-													</div>
-												</form>
-											</div>
-
-
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<script id="j_idt209_s" type="text/javascript">
-							PrimeFaces.cw("Panel", "widget_j_idt209", {
-								id : "j_idt209"
-							});
-						</script>
-
-						<div class="ui-g-12 ui-md-12 ui-lg-6">
-
+						<div class="ui-g-12 ui-md-12 ui-lg-12">
 							<div class="card card-w-title">
-								<h1>PROFSSION INFORMATION</h1>
+								<h1>User Information</h1>
 								<hr>
 								<div id="j_idt90"
 									class="ui-panelgrid ui-widget form-group ui-panelgrid-blank">
 									<div id="j_idt90_content"
 										class="ui-panelgrid-content ui-widget-content ui-grid ui-grid-responsive">
 
-										<form action="#">
+										<form th:action="@{/userRegistrations}" th:object="${myUser}"
+											method="post">
+
 											<div class="ui-panelgrid-cell ui-g-12 ui-md-12">
 												<div class="ui-panelgrid-cell ui-g-12 ui-md-6">
 													<label id="j_idt91" class="ui-outputlabel ui-widget"
-														for="acSimple_input">Job Title</label> <input
+														for="acSimple_input">Family Name</label> <input
 														id="acSimple_input" name="acSimple_input" type="text"
 														class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all"
 														autocomplete="off" aria-labelledby="j_idt91"
-														th:placeholder="${jobTitle}" />
+														placeholder="Family Name" th:field="*{familyName}" />
+												</div>
+												<div class="ui-panelgrid-cell ui-g-12 ui-md-6">
+													<label id="j_idt91" class="ui-outputlabel ui-widget"
+														for="acSimple_input">Other Names</label> <input
+														id="acSimple_input" name="acSimple_input" type="text"
+														class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all"
+														autocomplete="off" aria-labelledby="j_idt91"
+														placeholder="Other Names" th:field="*{otherName}" />
+												</div>
+
+												<div class="ui-panelgrid-cell ui-g-12 ui-md-6">
+													<label id="j_idt91" class="ui-outputlabel ui-widget"
+														for="acSimple_input">Email Name</label> <input
+														id="acSimple_input" name="acSimple_input" type="text"
+														class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all"
+														autocomplete="off" aria-labelledby="j_idt91"
+														placeholder="Email Name" th:field="*{emailName}" />
+												</div>
+												<div class="ui-panelgrid-cell ui-g-12 ui-md-6">
+													<label id="j_idt91" class="ui-outputlabel ui-widget"
+														for="acSimple_input">Domain Address</label> <input
+														id="acSimple_input" name="acSimple_input" type="text"
+														class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all"
+														autocomplete="off" aria-labelledby="j_idt91"
+														th:value="${domain}" readonly="readonly" />
+												</div>
+
+												<br /> <br />
+
+												<div class="ui-panelgrid-cell ui-g-12 ui-md-12">
+													<h3>Contact Details</h3>
+													<hr>
 												</div>
 												<div class="ui-panelgrid-cell ui-g-12 ui-md-6">
 													<label id="j_idt91" class="ui-outputlabel ui-widget"
@@ -562,41 +492,65 @@
 														id="acSimple_input" name="acSimple_input" type="text"
 														class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all"
 														autocomplete="off" aria-labelledby="j_idt91"
-														th:placeholder="${phoneNumber}" />
+														placeholder="Phone Number 1" th:field="*{phoneNumberOne}" />
+												</div>
+
+												<div class="ui-panelgrid-cell ui-g-12 ui-md-6">
+													<label id="j_idt91" class="ui-outputlabel ui-widget"
+														for="acSimple_input">Phone Number 2</label> <input
+														id="acSimple_input" name="acSimple_input" type="text"
+														class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all"
+														autocomplete="off" aria-labelledby="j_idt91"
+														placeholder="Phone Number 2" th:field="*{phoneNumberTwo}" />
+												</div>
+
+												<div class="ui-panelgrid-cell ui-g-12 ui-md-6">
+													<label id="j_idt91" class="ui-outputlabel ui-widget"
+														for="acSimple_input">Job Position</label> <input
+														id="acSimple_input" name="acSimple_input" type="text"
+														class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all"
+														autocomplete="off" aria-labelledby="j_idt91"
+														placeholder="Job Title" th:field="*{jobPosition}" />
 												</div>
 
 
 
+
 												<br>
-												<div class="ui-panelgrid-cell ui-g-12 ui-md-6">
-													<button id="j_idt213" name="j_idt213"
-														class="ui-button ui-widget ui-state-default  ui-corner-all ui-c ui-button-text-only blue-btn"
-														style="margin-bottom: 15px;" type="button">
-														<span class="ui-button-text ui-c">Update</span>
-													</button>
-													<script id="j_idt213_s" type="text/javascript">
+
+												<div class="ui-panelgrid-cell ui-g-12 ui-md-12">
+													<label id="j_idt91" class="ui-outputlabel ui-widget"
+														for="acSimple_input">Default Password</label> <input
+														id="acSimple_input" name="acSimple_input" type="text"
+														class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all"
+														autocomplete="off" aria-labelledby="j_idt91"
+														placeholder="Job Title" th:field="*{defaultPassword}" />
+												</div>
+
+														
+
+													<div class="ui-panelgrid-cell ui-g-12 ui-md-12">
+														<button id="j_idt213" name="j_idt213"
+															class="ui-button ui-widget ui-state-default  ui-corner-all ui-c ui-button-text-only blue-btn"
+															style="margin-bottom: 15px;" type="submit">
+															<span class="ui-button-text ui-c">Submit</span>
+														</button>
+														<script id="j_idt213_s" type="text/javascript">
 														PrimeFaces
-																.cw(
-																		"CommandButton",
+																.cw(																		"CommandButton",
 																		"widget_j_idt213",
 																		{
 																			id : "j_idt213"
 																		});
 													</script>
+													</div>
 												</div>
-											</div>
 										</form>
-
-
 									</div>
 								</div>
 							</div>
-
-
 						</div>
-
 					</div>
-
 
 				</div>
 			</div>

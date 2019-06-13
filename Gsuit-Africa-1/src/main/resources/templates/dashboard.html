@@ -47,12 +47,12 @@
 		PrimeFaces.settings.projectStage = 'Development';
 	}
 </script>
-<title>Dashboard</title>
+<title>DashBoard</title>
 <script type="text/javascript"
 	src="/javax.faces.resource/js/nanoscroller.jsb45c.xhtml?ln=california-layout"></script>
 <script type="text/javascript"
 	src="/javax.faces.resource/js/layout.jsb45c.xhtml?ln=california-layout"></script>
-<script th:inline="text/javascript">
+<script type="text/javascript">
 	/*<![CDATA[*/
 	function skinPie() {
 		this.cfg.shadow = false;
@@ -186,7 +186,7 @@
 				style="width: 14 0px; padding: 0px;" alt="" /></a> <a id="menu-button"
 				href="#"> <i class="fa fa-align-left"></i>
 			</a> <a id="layout-megamenu-button" href="#"> <i
-				class="fa fa-angle-down"></i>BusnessCom<span class="mega-menu-title"></span>
+				class="fa fa-angle-down"></i>G.M.S<span class="mega-menu-title"></span>
 			</a> <a id="right-sidebar-button" href="#"> <i
 				class="fa fa-ellipsis-v"></i>
 			</a>
@@ -227,40 +227,35 @@
 									class="fa fa-fw fa-user fa-1x"></i><span>User Management</span><i
 									class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
 								<ul role="menu">
-									<li id="menuform:custom3" role="menuitem"><a
+									<li id="menuform:custom_user_1" role="menuitem"><a
 										th:href="@{usermanagment}"> <i
 											class="fa fa-fw fa-smile-o fa-1x"></i><span>User
 												Information</span>
 									</a></li>
-									<li id="menuform:custom3" role="menuitem"><a
+									<li id="menuform:custom_user_2" role="menuitem"><a
 										href="404.html"><i class="fa fa-fw fa-vcard fa-1x"></i><span>Signature</span></a></li>
-									<li id="menuform:custom4" role="menuitem"><a href="#"
+									<li id="menuform:custom_user_3" role="menuitem"><a href="#"
 										onclick="onclicked()"><i
 											class="fa fa-fw fa-calendar fa-1x"></i><span>Calendar
 												Appointment</span></a></li>
-
-									<li id="menuform:om_sample" role="menuitem"><a
-										href="sample.html"><i class="fa fa-fw fa-user-circle-o"></i><span>Add/Delete
-										</span></a></li>
 
 
 								</ul></li>
 
 							<li id="menuform:om_mega_menu_customization" role="menuitem"
 								class="text-badge ui-menuitem-submenu"><a href="#"><i
-									class="fa fa-fw fa-building-o fa-1x"></i><span>Organization
-										Managment</span> <i
+									class="fa fa-fw fa-building-o fa-1x"></i><span>Organization Managment</span> <i
 									class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
 								<ul role="menu">
-									<li id="menuform:om_sample" role="menuitem"><a
+									<li id="menuform:custom_user_1" role="menuitem"><a
 										href="sample.html"><i class="fa fa-fw fa-building fa-1x"></i><span>Organization
 												Info</span></a></li>
 
-									<li id="menuform:om_sample" role="menuitem"><a
+									<li id="menuform:custom_user_2" role="menuitem"><a
 										href="sample.html"><i class="fa fa-fw fa-vcard fa-1x"></i><span>Signature
 										</span></a></li>
 
-									<li id="menuform:om_sample" role="menuitem"><a
+									<li id="menuform:custom_user_3" role="menuitem"><a
 										href="sample.html"><i class="fa fa-fw fa-calendar fa-1x"></i><span>Calendar
 												Appointment</span></a></li>
 
@@ -272,18 +267,13 @@
 									class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
 								<ul role="menu">
 									<li id="menuform:custom_user_1" role="menuitem"><a
-										href="#"
-										onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:custom_user_1':'menuform:custom_user_1'}).submit('menuform');return false;PrimeFaces.onPost();"><i
-											class="fa fa-fw fa-envelope-o"></i><span>Mail Box</span></a></li>
+										href="#"> <i class="fa fa-fw fa-envelope-o"></i><span>Mail Box</span></a></li>
 									<li id="menuform:custom_user_2" role="menuitem"><a
-										href="#"
-										onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:custom_user_2':'menuform:custom_user_2'}).submit('menuform');return false;PrimeFaces.onPost();"><i
-											class="fa fa-fw fa-hdd-o"></i><span>Google Drive</span></a></li>
+										href="#"><i	class="fa fa-fw fa-hdd-o"></i><span>Google Drive</span></a></li>
 								</ul></li>
 
 
-							<li id="menuform:om_user_menu_customization" role="menuitem"
-								class="ui-menuitem-submenu"><a href="#"><i
+							<li id="menuform:om_user_menu_customization" role="menuitem" class="ui-menuitem-submenu"><a href="#"><i
 									class="fa fa-fw fa-handshake-o"></i><span>Human Resource</span><i
 									class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
 								<ul role="menu">
@@ -292,8 +282,9 @@
 										onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:custom_user_1':'menuform:custom_user_1'}).submit('menuform');return false;PrimeFaces.onPost();"><i
 											class="fa fa-fw fa-file-o"></i><span>Leave Application</span></a></li>
 
-								</ul></li>
-
+								</ul>
+								
+							</li>
 
 							<li id="menuform:om_user_menu_customization" role="menuitem"
 								class="ui-menuitem-submenu"><a href="#"><i
@@ -433,7 +424,7 @@
 		<div class="layout-main">
 			<div class="route-bar">
 				<div class="route-bar-breadcrumb">
-					<i class="fa fa-home"></i> <span>/ </span>Dashboard
+					<i class="fa fa-home"></i> <span>/ </span>DashBoard
 				</div>
 
 				<ul class="route-bar-menu">
