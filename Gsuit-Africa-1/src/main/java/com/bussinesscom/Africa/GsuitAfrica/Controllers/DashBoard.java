@@ -113,17 +113,6 @@ public class DashBoard {
 			
 			
 			
-			myGoogleGmailService = new com.google.api.services.gmail.Gmail.Builder(httpTransport, JSON_FACTORY,
-					credential).setApplicationName(APPLICATION_NAME).build();
-			
-			myGoogleDriveService = new Drive.Builder(httpTransport, JSON_FACTORY, credential)
-					.setApplicationName(APPLICATION_NAME).build();
-			
-			 myGoogleCalendarService = new Calendar.Builder(httpTransport, JSON_FACTORY, credential)
-					.setApplicationName(APPLICATION_NAME).build();
-			
-			contactsService = new ContactsService("MY_PRODUCT_NAME");
-			contactsService.setOAuth2Credentials(credential);
 			
 				
 			return "redirect:/DashBoard";
@@ -150,8 +139,20 @@ public class DashBoard {
 	@RequestMapping("DashBoard")
 	public String loginDashBoard(Model model) throws IOException, ServiceException {
 
+		myGoogleGmailService = new com.google.api.services.gmail.Gmail.Builder(httpTransport, JSON_FACTORY,
+				credential).setApplicationName(APPLICATION_NAME).build();
+		
+		myGoogleDriveService = new Drive.Builder(httpTransport, JSON_FACTORY, credential)
+				.setApplicationName(APPLICATION_NAME).build();
+		
+		 myGoogleCalendarService = new Calendar.Builder(httpTransport, JSON_FACTORY, credential)
+				.setApplicationName(APPLICATION_NAME).build();
+		
+		contactsService = new ContactsService("MY_PRODUCT_NAME");
+		contactsService.setOAuth2Credentials(credential);
+		
 		model.addAttribute("userName", "Edwin Korir");
-		model.addAttribute("image", "/jMega avax.faces.resource/images/profile.jpeg?ln=california-layout");
+		model.addAttribute("image", "/jMega avax.faces.resource/images/hands.png?ln=california-layout");
 
 //		Messages And Profile
 		Profile myProfile = myGoogleGmailService.users().getProfile(userId).execute();

@@ -181,8 +181,8 @@
 		</form>
 
 		<div class="layout-topbar">
-			<a href="dashboard.html" class="logo"><img id="j_idt20"
-				src="jMega avax.faces.resource/images/gsuiteBuscom.png"
+			<a th:href="@{/DashBoard}" class="logo"><img id="j_idt20"
+				src="/jMega avax.faces.resource/images/gsuiteBuscom.png"
 				style="width: 14 0px; padding: 0px;" alt="" /></a> <a id="menu-button"
 				href="#"> <i class="fa fa-align-left"></i>
 			</a> <a id="layout-megamenu-button" href="#"> <i
@@ -220,7 +220,7 @@
 						<input type="hidden" name="menuform" value="menuform" />
 						<ul id="menuform:j_idt52" class="layout-menu">
 							<li id="menuform:om_dashboard" role="menuitem"><a
-								href="dashboard.html"><i class="fa fa-fw fa-home"></i><span>DashBoard</span></a></li>
+								th:href="@{/DashBoard}"><i class="fa fa-fw fa-home"></i><span>DashBoard</span></a></li>
 
 							<li id="menuform:om_customization" role="menuitem"
 								class="ui-menuitem-submenu"><a><i
@@ -234,7 +234,7 @@
 									</a></li>
 									<li id="menuform:custom_user_2" role="menuitem"><a
 										href="404.html"><i class="fa fa-fw fa-vcard fa-1x"></i><span>Signature</span></a></li>
-									<li id="menuform:custom_user_3" role="menuitem"><a href="#"
+									<li id="menuform:custom_user_3" role="menuitem"><a th:href="@{calendersetting}"
 										onclick="onclicked()"><i
 											class="fa fa-fw fa-calendar fa-1x"></i><span>Calendar
 												Appointment</span></a></li>
@@ -256,7 +256,7 @@
 										</span></a></li>
 
 									<li id="menuform:custom_user_3" role="menuitem"><a
-										href="sample.html"><i class="fa fa-fw fa-calendar fa-1x"></i><span>Calendar
+										th:href="@{calendersetting}"><i class="fa fa-fw fa-calendar fa-1x"></i><span>Calendar
 												Appointment</span></a></li>
 
 								</ul></li>
@@ -464,7 +464,7 @@
 								<div class="overview-numbers">
 									<strong style="color: green;">Active</strong>
 								</div>
-								<div class="overview-ratios">Your Account is Licensed</div>
+								<div class="overview-ratios" style="color: green;">Account is Licensed</div>
 								<img id="j_idt81"
 									src="javax.faces.resource/images/icon-sales.pngb45c.png?ln=california-layout"
 									alt="" />
@@ -473,12 +473,12 @@
 						<div class="ui-g-12 ui-md-12 ui-lg-4">
 							<div class="overview-box monthly-views">
 								<div class="overview-title">
-									VIEWS <i class="fa fa-arrow-circle-down"></i>
+									Storage <i class="fa fa-arrow-circle-up"></i>
 								</div>
 								<div class="overview-numbers">
-									<strong>6215</strong>/Day
+									<strong>30GB</strong>
 								</div>
-								<div class="overview-ratios">2% less than previous month</div>
+								<div class="overview-ratios">2% more than previous month</div>
 								<img id="j_idt83"
 									src="javax.faces.resource/images/icon-views.pngb45c.png?ln=california-layout"
 									alt="" />
@@ -596,7 +596,7 @@
 							<div id="j_idt128"
 								class="ui-panel ui-widget ui-widget-content ui-corner-all "
 								data-widget="widget_j_idt128">
-
+								<h4 style="text-align: center;">Storage Statistics</h4>
 								<div id="j_idt128_content"
 									class="ui-panel-content ui-widget-content">
 									<div id="line">
@@ -612,17 +612,18 @@
 																	responsive : true,
 																	data : [ [
 																			[
-																					"Lables A",
-																					40 ],
+																					"Calendr",
+																					2 ],
 																			[
-																					"Lables B",
-																					40 ],
+																					"Gmail",
+																					23 ],
 																			[
-																					"Lables C",
-																					50 ],
+																					"Drive",
+																					55 ],
 																			[
-																					"Lables C",
-																					50 ] ] ],
+																					"Doc's",
+																					20 ] 
+																			] ],
 																	title : "Simple Pie",
 																	legendPosition : "w",
 																	extender : skinPie,

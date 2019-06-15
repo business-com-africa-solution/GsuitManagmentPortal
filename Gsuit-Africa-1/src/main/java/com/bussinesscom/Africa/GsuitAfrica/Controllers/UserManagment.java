@@ -21,6 +21,9 @@ import com.bussinesscom.Africa.GsuitAfrica.Utils.Utilities;
 import com.google.api.services.admin.directory.Directory;
 import com.google.api.services.admin.directory.model.User;
 import com.google.api.services.admin.directory.model.UserName;
+import com.google.api.services.gmail.Gmail;
+import com.google.api.services.gmail.model.Delegate;
+import com.google.api.services.gmail.model.ListDelegatesResponse;
 import com.google.api.services.iam.v1.model.ServiceAccount;
 import com.google.gdata.util.ServiceException;
 
@@ -31,6 +34,7 @@ import com.google.gdata.util.ServiceException;
 public class UserManagment {
 
 	Directory serviceDirect;
+	Gmail serviceGmail;
 	List<User> users;
 	
 	@RequestMapping("usermanagment")
@@ -52,10 +56,10 @@ public class UserManagment {
 	}
 	
 	@RequestMapping(value="viewProfile/{userId}", method=RequestMethod.GET)
-	public String getUserProfile(@PathVariable("userId") String userId,Model model) throws IOException 
+	public String getUserProfile(@PathVariable("userId") String userId,Model model) throws IOException, GeneralSecurityException, URISyntaxException 
 	{
 		
-		model.addAttribute("image", "/jMega avax.faces.resource/images/profile.jpeg?ln=california-layout");
+		model.addAttribute("image", "/jMega avax.faces.resource/images/hands.png?ln=california-layout");
 		model.addAttribute("domain","dk.businesscom.com");	
 		
 		for(int a=0;a<users.size();a++) {
@@ -68,16 +72,25 @@ public class UserManagment {
 				model.addAttribute("givenName",users.get(a).getName().getGivenName());
 				model.addAttribute("emailName",email[0]);
 				model.addAttribute("id", userId);
+							
+				model.addAttribute("aliaseslist", users.get(a).getAliases());
+				
 				UpdateDirectory dataUpdate=new UpdateDirectory();
 				dataUpdate.setId(userId);
+				serviceGmail=SercicesAccounts.getGmailService(""+users.get(a).getPrimaryEmail());	
+				com.google.api.services.gmail.model.SendAs sendAss=serviceGmail.users().settings().sendAs().get(users.get(a).getPrimaryEmail(), users.get(a).getPrimaryEmail()).execute();
+				
+				ListDelegatesResponse deligateData=serviceGmail.users().settings().delegates().list(users.get(a).getPrimaryEmail()).execute();
+				List<Delegate> deligateList=deligateData.getDelegates();
+				
+				model.addAttribute("deligateList",deligateList);
+				
+				model.addAttribute("users",users);
+				model.addAttribute("signateure", sendAss.getSignature());
 				model.addAttribute("updateuser",dataUpdate);
 				
 			}	
 		}
-		
-		
-		
-		
 		
 		return "userprofile.html";
 		
@@ -87,7 +100,7 @@ public class UserManagment {
 	public String getdelete(@PathVariable("userId") String userId,Model model) throws IOException, GeneralSecurityException, URISyntaxException 
 	{
 		
-		model.addAttribute("image", "/jMega avax.faces.resource/images/profile.jpeg?ln=california-layout");
+		model.addAttribute("image", "/jMega avax.faces.resource/images/hands.png?ln=california-layout");
 		model.addAttribute("domain","dk.businesscom.com");
 		
 		for(int a=0;a<users.size();a++) {
@@ -106,7 +119,7 @@ public class UserManagment {
 	public String getCreateUser(Model model) throws IOException, GeneralSecurityException, URISyntaxException 
 	{
 		
-		model.addAttribute("image", "/jMega avax.faces.resource/images/profile.jpeg?ln=california-layout");
+		model.addAttribute("image", "/jMega avax.faces.resource/images/hands.png?ln=california-layout");
 		model.addAttribute("domain","dk.businesscom.com");	
 		myUser user = new myUser();  
 		model.addAttribute("myUser", user);
@@ -118,7 +131,7 @@ public class UserManagment {
 	public String getSubmitUser(@ModelAttribute(value="myUser") myUser myuser,Model model) throws IOException, GeneralSecurityException, URISyntaxException 
 	{
 		
-		model.addAttribute("image", "/jMega avax.faces.resource/images/profile.jpeg?ln=california-layout");
+		model.addAttribute("image", "/jMega avax.faces.resource/images/hands.png?ln=california-layout");
 		model.addAttribute("domain","dk.businesscom.com");	
 
 		

@@ -109,8 +109,8 @@
 							alt="" />
 
 						<div class="img-megamenu">
-							<span class="ui-g-12 img-header">California</span> <span
-								class="ui-g-12 img-subheader">Application Template</span>
+							<span class="ui-g-12 img-header">Powered By</span> <span
+								class="ui-g-12 img-subheader">BusnessComAfrica</span>
 						</div>
 						<button id="j_idt11:j_idt15" name="j_idt11:j_idt15"
 							class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only alt-btn"
@@ -127,10 +127,10 @@
 		</form>
 
 		<div class="layout-topbar">
-			<a th:href="@{/login/BussnesComAfrica}" class="logo"><img
+			<a th:href="@{/DashBoard}" class="logo"><img
 				id="j_idt20" src="jMega avax.faces.resource/images/gsuiteBuscom.png"
 				style="width: 14 0px; padding: 0px;" alt="" /></a> <a id="menu-button"
-				href="#"> <i class="fa fa-align-left"></i>
+				th:href="@{/DashBoard}"> <i class="fa fa-align-left"></i>
 			</a> <a id="layout-megamenu-button" href="#"> <i
 				class="fa fa-angle-down"></i>BusnessCom <span
 				class="mega-menu-title">Africa</span>
@@ -145,7 +145,7 @@
 				<div class="nano-content sidebar-scroll-content">
 					<div class="user-profile">
 						<a id="sidebar-profile-button" href="#"><img id="j_idt40"
-							src="jMega avax.faces.resource/images/profile.jpeg?ln=california-layout"
+							src="jMega avax.faces.resource/images/hands.png?ln=california-layout"
 							style="height: 92px; width: 92px; border-radius: 100px; -webkit-border-radius: 100px; -moz-border-radius: 100px;"
 							alt="" /> <span class="sidebar-profile-name">Pauline
 								Harrell</span> <span class="sidebar-profile-role">Administrator</span>
@@ -168,56 +168,43 @@
 						<input type="hidden" name="menuform" value="menuform" />
 						<ul id="menuform:j_idt52" class="layout-menu">
 							<li id="menuform:om_dashboard" role="menuitem"><a
-								href="dashboard.html"><i class="fa fa-fw fa-home"></i><span>Dashboard</span></a></li>
+								th:href="@{/DashBoard}"><i class="fa fa-fw fa-home"></i><span>Dashboard</span></a></li>
 
 							<li id="menuform:om_customization" role="menuitem"
 								class="ui-menuitem-submenu"><a href="#"><i
 									class="fa fa-fw fa-user fa-1x"></i><span>User Managment</span><i
 									class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
 								<ul role="menu">
-									<li id="menuform:custom3" role="menuitem"><a
+									<li id="menuform:custom_user_1" role="menuitem"><a
 										href="error.html"> <i class="fa fa-fw fa-smile-o fa-1x"></i><span>User
 												Information</span>
 									</a></li>
-									<li id="menuform:custom3" role="menuitem"><a
+									<li id="menuform:custom_user_2" role="menuitem"><a
 										href="404.html"
 										onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:custom3':'menuform:custom3'}).submit('menuform');return false;PrimeFaces.onPost();"><i
 											class="fa fa-fw fa-vcard fa-1x"></i><span>Signature</span></a></li>
-									<li id="menuform:custom4" role="menuitem"><a href="#"
-										onclick="onclicked()"><i
-											class="fa fa-fw fa-calendar fa-1x"></i><span>Calender
-												Appointment</span></a></li>
-
-									<li id="menuform:om_sample" role="menuitem"><a
-										href="sample.html"><i class="fa fa-fw fa-user-circle-o"></i><span>Add/Delet
-										</span></a></li>
-
-
+									
 								</ul></li>
 
 							<li id="menuform:om_mega_menu_customization" role="menuitem"
 								class="text-badge ui-menuitem-submenu"><a href="#"><i
-									class="fa fa-fw fa-building-o fa-1x"></i><span>Organization
-										Managment</span> <i
+									class="fa fa-fw fa-building-o fa-1x"></i><span>Organization Managment</span> <i
 									class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
 								<ul role="menu">
 									<li id="menuform:om_sample" role="menuitem"><a
-										href="sample.html"><i class="fa fa-fw fa-building fa-1x"></i><span>Organization
-												Info</span></a></li>
+										href="#"><i class="fa fa-fw fa-building fa-1x"></i><span>Organization Info</span></a></li>
 
 									<li id="menuform:om_sample" role="menuitem"><a
-										href="sample.html"><i class="fa fa-fw fa-vcard fa-1x"></i><span>Signature
+										href="#"><i class="fa fa-fw fa-vcard fa-1x"></i><span>Signature
 										</span></a></li>
 
 									<li id="menuform:om_sample" role="menuitem"><a
-										href="sample.html"><i class="fa fa-fw fa-calendar fa-1x"></i><span>Calender
-												Appointmnt</span></a></li>
+										href="sample.html"><i class="fa fa-fw fa-calendar fa-1x"></i><span>Calendar Appointment</span></a></li>
 
 								</ul></li>
 							<li id="menuform:om_user_menu_customization" role="menuitem"
 								class="ui-menuitem-submenu"><a href="#"><i
-									class="fa fa-fw fa-line-chart"></i><span>Accounts
-										Analysis</span><i
+									class="fa fa-fw fa-line-chart"></i><span>Accounts Analysis</span><i
 									class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
 								<ul role="menu">
 									<li id="menuform:custom_user_1" role="menuitem"><a
@@ -228,8 +215,8 @@
 										href="#"
 										onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:custom_user_2':'menuform:custom_user_2'}).submit('menuform');return false;PrimeFaces.onPost();"><i
 											class="fa fa-fw fa-hdd-o"></i><span>Google Drive</span></a></li>
-								</ul></li>
-
+								</ul>
+							</li>
 
 							<li id="menuform:om_user_menu_customization" role="menuitem"
 								class="ui-menuitem-submenu"><a href="#"><i
@@ -439,11 +426,21 @@
 														<td role="gridcell" th:text="${User.name.getFullName()}"
 															style="width: 100px;"></td>
 														<td role="gridcell" th:text="${User.getIsAdmin()}"></td>
-														<td role="gridcell"><a
-															class="fa fa-fw fa-folder-open-o"
-															th:href="@{/viewProfile/} + ${User.getId()}">Profile</a>
-															<hr /> <a class="fa fa-fw fa-folder-open-o"
-															th:href="@{/deleteUser/} + ${User.getId()}">Delete</a></td>
+														<td role="gridcell">
+														<div class="ui-g-12 ui-md-4" >
+														<a  class="fa fa-fw fa-user-circle fa-1x"
+															th:href="@{/viewProfile/} + ${User.getId()}" style="color: green;" aria-hidden="true"> <span style="color: black;">Profile</span></a>
+														</div>
+														<div class="ui-g-12 ui-md-4" >
+													    <a class="fa fa-fw fa-user-times fa-1x"
+															th:href="@{/deleteUser/} + ${User.getId()}" style="color: red;"> <span style="color: black;">Delete</span></a>		
+														</div>			
+														<div class="ui-g-12 ui-md-4">
+													    <a class="fa fa-fw fa-user-secret fa-1x" style="color: orange;"
+															th:href="@{/delegate/} + ${User.getId()}"> <span style="color: black;">Delegate</span></a>
+														</div>
+														</td>
+													
 													</tr>
 
 

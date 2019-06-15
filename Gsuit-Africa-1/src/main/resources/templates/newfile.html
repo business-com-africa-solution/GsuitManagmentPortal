@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+
+
+<!-- Mirrored from wrappixel.com/demos/admin-templates/material-pro/minisidebar/index4.html by HTTrack Website Copier/3.x [XRandCO'2014], Sat, 13 Apr 2019 18:37:09 GMT -->
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="https://wrappixel.com/demos/admin-templates/material-pro/assets/images/favicon.png"/>
+    <title>Material Pro Admin Template - The Most Complete and Trusted Bootstrap 4 Admin Template</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="https://wrappixel.com/demos/admin-templates/material-pro/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://wrappixel.com/demos/admin-templates/material-pro/assets/plugins/jquery/jquery.min.js"></script>
+   
+    <link href="https://wrappixel.com/demos/admin-templates/material-pro/assets/plugins/chartist-js/dist/chartist.min.css" rel="stylesheet"/>
+    <link href="https://wrappixel.com/demos/admin-templates/material-pro/assets/plugins/chartist-js/dist/chartist-init.css" rel="stylesheet"/>
+    <link href="https://wrappixel.com/demos/admin-templates/material-pro/assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet"/>
+    <link href="https://wrappixel.com/demos/admin-templates/material-pro/assets/plugins/css-chart/css-chart.css" rel="stylesheet"/>
+    <!-- Vector CSS -->
+    <link href="https://wrappixel.com/demos/admin-templates/material-pro/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
+    <!-- Calendar CSS -->
+    <link href="https://wrappixel.com/demos/admin-templates/material-pro/assets/plugins/calendar/dist/fullcalendar.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="/css/style.css" rel="stylesheet"/>
+    <!-- You can change the theme colors from here -->
+    <link href="/css/colors/default-dark.css" id="theme" rel="stylesheet"/>
+    <!-- <script src="/js/getrequest.js"></script> -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+ 
+</head>
+
+<body class="fix-header fix-sidebar">
+
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar" style="height: 1px">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <!-- ============================================================== -->
+                <!-- Logo -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse">
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav my-lg-0">
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Profile -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Language -->
+                        <!-- ============================================================== -->
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="card container-fluid">
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                     <!-- Column -->
+                  
+                    <!-- Column -->
+                    <!-- Column -->
+                <!-- Row -->
+                <div class="row">
+                
+                <div class="card col-md-4" style="color: black;">
+                 	
+             			<div class="col-lg-12">
+             				<h3 class="card-title m-t-30" ><span style="color:#3090C7">BOOK AN APPOINTMENT WITH ME</span></h3>
+             				<hr/>
+             				<hr/>
+             				
+             	            <div class="card-body">
+                             
+                                 <img src="/jMega avax.faces.resource/images/gsuiteBuscom1.png"  width="100%" />
+                                 <br/>
+                                    <h4 class="card-title m-t-10" th:inline="text">[[${user_name}]]</h4>
+                                    <h6 class="card-subtitle" th:inline="text">[[${user_company_name}]]</h6>
+                            </div>
+                            <div>
+                                <hr/> </div>
+                            <div class="card-body"> <small class="text-muted">Email address </small>
+                                <h6 th:inline="text">[[${user_email}]]</h6> <small class="text-muted p-t-30 db">Phone</small>
+                                <h6 th:inline="text">[[${user_phone_number}]]</h6> <small class="text-muted p-t-30 db">Address</small>
+                                <h6 th:inline="text">[[${user_company_location}]]</h6>
+                                 <small class="text-muted p-t-30 db">Social Profile</small>
+                            </div>
+                      
+                    </div>
+
+               </div>
+               	<div class="card col-md-8" style="color: black;">
+                         <div class="card-body">
+                             <div id="calendar" style="margin-left: 30px;margin-bottom: 50px;"></div>
+                             <!-- BEGIN MODAL -->
+                             <div class="modal fade none-border" id="my-event" style="pointer-events: none;">
+                                 <div class="modal-dialog">
+                                     <div class="modal-content">
+                                         <div class="modal-header">
+                                             <h4 class="modal-title"><strong>Add Event</strong></h4>
+                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                         </div>
+                                         <div class="modal-body"></div>
+                                         <div class="modal-footer">
+                                             <button type="button" class="btn btn-white waves-effect" data-dismiss="modal">Close</button>
+                                             <button type="button" class="btn btn-success save-event waves-effect waves-light">Create event</button>
+                                             <!-- <button type="button" class="btn btn-danger delete-event waves-effect waves-light" data-dismiss="modal">Delete</button> -->
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                             <!-- Modal Add Category -->
+                             <div class="modal fade none-border" id="add-new-event">
+                                 <div class="modal-dialog">
+                                     <div class="modal-content">
+                                         <div class="modal-header">
+                                             <h4 class="modal-title"><strong>Add</strong> a category</h4>
+                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">andtimes;</button>
+                                         </div>
+                                         <div class="modal-body">
+                                             <form>
+                                                 <div class="row">
+                                                     <div class="col-md-6">
+                                                         <label class="control-label">Category Name</label>
+                                                         <input class="form-control form-white" placeholder="Enter name" type="text" name="category-name" />
+                                                     </div>
+                                                     <div class="col-md-6">
+                                                         <label class="control-label">Choose Category Color</label>
+                                                         <select class="form-control form-white" data-placeholder="Choose a color..." name="category-color">
+                                                             <option value="success">Success</option>
+                                                             <option value="danger">Danger</option>
+                                                             <option value="info">Info</option>
+                                                             <option value="primary">Primary</option>
+                                                             <option value="warning">Warning</option>
+                                                             <option value="inverse">Inverse</option>
+                                                         </select>
+                                                     </div>
+                                                 </div>
+                                             </form>
+                                         </div>
+                                         <div class="modal-footer">
+                                             <!-- <button type="button" class="btn btn-danger waves-effect waves-light save-category" data-dismiss="modal">Save</button> -->
+                                             <button type="button" class="btn btn-white waves-effect" data-dismiss="modal">Close</button>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                             <!-- END MODAL -->
+                         </div>
+                     </div>
+               
+                </div>
+                <!-- Row -->
+                <!-- Row -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+              
+                <!-- ============================================================== -->
+          
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+   
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="https://wrappixel.com/demos/admin-templates/material-pro/assets/plugins/popper/popper.min.js"></script>
+    <script src="https://wrappixel.com/demos/admin-templates/material-pro/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="/js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="/js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="https://wrappixel.com/demos/admin-templates/material-pro/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <script src="https://wrappixel.com/demos/admin-templates/material-pro/assets/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <!--Custom JavaScript -->
+    <script src="/js/custom.min.js"></script>
+    <!-- ============================================================== -->
+    <!-- This page plugins -->
+    <!-- ============================================================== -->
+    <!-- Calendar JavaScript -->
+    <script src="https://wrappixel.com/demos/admin-templates/material-pro/assets/plugins/moment/moment.js"></script>
+    <script src='https://wrappixel.com/demos/admin-templates/material-pro/assets/plugins/calendar/dist/fullcalendar.min.js'></script>
+   
+    <script src="https://wrappixel.com/demos/admin-templates/material-pro/assets/plugins/sparkline/jquery.sparkline.min.js"></script>
+   <!--  <script src="/js/dashboard4.js"></script> -->
+    <script src="/js/fullcalender.js"></script>
+    <script  th:inline="javascript">
+    /*<![CDATA[*/
+			!function($) {
+			    "use strict";
+			
+			    var CalendarApp = function() {
+			        this.$body = $("body")
+			        this.$calendar = $('#calendar'),
+			        this.$event = ('#calendar-events div.calendar-events'),
+			        this.$categoryForm = $('#add-new-event form'),
+			        this.$extEvents = $('#calendar-events'),
+			        this.$modal = $('#my-event'),
+			        this.$saveCategoryBtn = $('.save-category'),
+			        this.$calendarObj = null
+			    };
+			
+			
+			    /* on drop */
+			    CalendarApp.prototype.onDrop = function (eventObj, date) { 
+			        var $this = this;
+			            // retrieve the dropped element's stored Event Object
+			            var originalEventObject = eventObj.data('eventObject');
+			            var $categoryClass = eventObj.attr('data-class');
+			            // we need to copy it, so that multiple events don't have a reference to the same object
+			            var copiedEventObject = $.extend({}, originalEventObject);
+			            // assign it the date that was reported
+			            copiedEventObject.start = date;
+			            if ($categoryClass)
+			                copiedEventObject['className'] = [$categoryClass];
+			            // render the event on the calendar
+			            $this.$calendar.fullCalendar('renderEvent', copiedEventObject, true);
+			            // is the "remove after drop" checkbox checked?
+			            if ($('#drop-remove').is(':checked')) {
+			                // if so, remove the element from the "Draggable Events" list
+			                eventObj.remove();
+			            }
+			    },
+			    /* on click on event */
+			    CalendarApp.prototype.onEventClick =  function (calEvent, jsEvent, view) {
+			        var $this = this;
+			            var form = $("<form></form>");
+			            form.append("<label>Kindly Pick Another Time</label>");
+			            // form.append("<div class='input-group'><input class='form-control' type=text value='" + calEvent.title + "' /><span class='input-group-btn'><button type='submit' class='btn btn-success waves-effect waves-light'><i class='fa'></i> </button></span></div>");
+			            $this.$modal.modal({
+			                backdrop: 'static'
+			            });
+			            $this.$modal.find('.delete-event').show().end().find('.save-event').hide().end().find('.modal-body').empty().prepend(form).end().find('.delete-event').unbind('click').click(function () {
+			                $this.$calendarObj.fullCalendar('removeEvents', function (ev) {
+			                    return (ev._id == calEvent._id);
+			                });
+			                $this.$modal.modal('hide');
+			            });
+			            $this.$modal.find('form').on('submit', function () {
+			                calEvent.title = form.find("input[type=text]").val();
+			                $this.$calendarObj.fullCalendar('updateEvent', calEvent);
+			                $this.$modal.modal('hide');
+			                return false;
+			            });
+			    },
+			    /* on select */
+			    CalendarApp.prototype.onSelect = function (start, end, allDay) {
+			    	
+			        const diffTime=Math.abs(end-start);
+			        const diffHours = Math.ceil(diffTime / (1000 * 60 * 60));  
+			        if(diffHours==24){
+			        	
+			        }
+			        else{
+			        
+						        var statingDate=start;
+						        var endingDate=end;
+						        
+						        var $this = this;
+						            $this.$modal.modal({
+						                backdrop: 'static'
+						            });
+						            var form = $("<form></form>");
+						            form.append("<div class='row'></div>");
+						            form.find(".row")
+						                .append("<div class='col-md-12'><div class='form-group'><label class='control-label'>Event Name</label><input class='form-control' placeholder='Meeting Title' type='text' name='title'/></div></div>")
+						                .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>First Name</label><input class='form-control' placeholder='First Name' type='text' name='firstname'/></div></div>")
+						                .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Last Name</label><input class='form-control' placeholder='Last Name' type='text' name='lastname'/></div></div>")
+						               	.append("<hr/>")
+						                .append("<div class='col-md-12'><div class='form-group'><label class='control-label'>Company Name</label><input class='form-control' placeholder='Company Name' type='text' name='company'/></div></div>")
+						                .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Email </label><input class='form-control' placeholder='Email' type='text' name='email'/></div></div>")
+						                .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Phone Number </label><input class='form-control' placeholder='phone Number' type='text' name='phone_number'/></div></div>")
+						               
+						                .append("<div class='col-md-12'><div class='form-group'><label class='control-label'>Meeting Category</label><select class='form-control' name='category'></select></div></div>")
+						                .find("select[name='category']")
+						                .append("<option value='bg-danger'>Problem Solving</option>")
+						                .append("<option value='bg-success'>Team Building</option>")
+						                .append("<option value='bg-purple'>Innovation</option>")
+						                .append("<option value='bg-primary'>Decision Making</option>")
+						                .append("<option value='bg-pink'>Status Update</option>")
+						                .append("<option value='bg-info'>Information Sharing</option>")
+						                .append("</div></div>");
+						            $this.$modal.find('.delete-event').hide().end().find('.save-event').show().end().find('.modal-body').empty().prepend(form).end().find('.save-event').unbind('click').click(function () {
+						                form.submit();
+						            });
+						            $this.$modal.find('form').on('submit', function () {
+						            	
+						            	var statingDate=start;
+					                	var endingDate=end
+					                	
+						            	console.log("Stsrting date "+start+"\n");
+						            	console.log("Ending date  "+end);
+						            	
+						            	
+						            	
+						                var title = form.find("input[name='title']").val();
+						                var beginning = form.find("input[name='beginning']").val();
+						                var ending = form.find("input[name='ending']").val();
+						                var categoryClass = form.find("select[name='category'] option:checked").val();
+						                var firstname = form.find("input[name='firstname']").val();
+						                var lastname = form.find("input[name='lastname']").val();
+						                var company = form.find("input[name='company']").val();
+						                var emails = form.find("input[name='email']").val();
+						                var phoneNumber = form.find("input[name='phone_number']").val();
+						                var myEmail=/*[${user_name}]*/'';
+						                
+						                 
+						                if (title !== null && title.length != 0) {
+						                    $this.$calendarObj.fullCalendar('renderEvent', {
+						                        title: title,
+						                        start:start,
+						                        end: end,
+						                        allDay: false,
+						                        className: categoryClass
+						                    }, true);  
+						                    $this.$modal.modal('hide');
+			 					        	
+						        				// PREPARE FORM DATA
+						        					var formData = {
+						        							myEmail:/*[${user_name}]*/'',
+						        							title:title,
+						        							fromDate:start,
+						        							todate:end,
+						        							firstName:firstname,
+						        							lastName:lastname,
+						        							company:company,
+						        							email:emails,
+						        							phonenumber:phoneNumber,
+						        							
+						        							allDay:false
+						        					}
+						        				
+						        					console.log("Title ---------------- "+title);
+						        				// DO POST
+						        				$.ajax({
+						        					type : "POST",
+						        					contentType : "application/json",
+						        					url : "createAppointment/edwin",
+						        					data : JSON.stringify(formData),
+						        					dataType : 'json',
+						        					success : function(result) {
+						        						
+						        						
+						        					console.log("Results: "+result);
+						        						
+						        						/* if (result.status == "success") {
+						        							$("#postResultDiv").html(
+						        									"" + result.data.title
+						        											+ "Post Successfully! <br>"
+						        											+ "---> Congrats !!" + "</p>");
+						        						} else {
+						        							$("#postResultDiv").html("<strong>Error</strong>"+result.data);
+						        						} */
+						        						console.log(result);
+						        					},
+						        					error : function(e) {
+						        						
+						        						
+						        						alert("Error!")
+						        						console.log("ERROR: ", e);
+						        					}
+						        				});
+						        				
+						                }
+						                else{
+						                    alert('You have to give a title to your event');
+						                }
+						                return false;
+						                
+						            });
+						            $this.$calendarObj.fullCalendar('unselect');
+						    }
+   						 },
+			    CalendarApp.prototype.enableDrag = function() {
+			        //init events
+			        $(this.$event).each(function () {
+			            // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+			            // it doesn't need to have a start or end
+			            var eventObject = {
+			                title: $.trim($(this).text()) // use the element's text as the event title
+			            };
+			            // store the Event Object in the DOM element so we can get to it later
+			            $(this).data('eventObject', eventObject);
+			            // make the event draggable using jQuery UI
+			            $(this).draggable({
+			                zIndex: 999,
+			                revert: true,      // will cause the event to go back to its
+			                revertDuration: 0  //  original position after the drag
+			            });
+			        });
+			    }
+			    /* Initializing */
+			    CalendarApp.prototype.init = function() {
+			        this.enableDrag();
+			        /*  Initialize the calendar  */
+			        var date = new Date();
+			        var d = date.getDate();
+			        var m = date.getMonth();
+			        var y = date.getFullYear();
+			        var form = '';
+			        var today = new Date($.now());
+			
+			        console.log("Default events--");
+			          var defaultEvents =/*[[${element}]]*/[]; 
+			          var myJSON = JSON.stringify(defaultEvents);
+			        console.log("Default events "+myJSON);
+			       
+			        var $this = this;
+			        $this.$calendarObj = $this.$calendar.fullCalendar({
+			            slotDuration: '00:30:00', /* If we want to split day time each 15minutes */
+			            minTime: '08:30:00',
+			            maxTime: '17:30:00',  
+			            defaultView: 'month',  
+			            handleWindowResize: true,   
+			             
+			            header: {
+			                left: 'prev,next today',
+			                center: 'title',
+			                right: 'month,agendaWeek,agendaDay'
+			            },
+			            events: defaultEvents,
+			            editable: true,
+			            droppable: false, // this allows things to be dropped onto the calendar !!!
+			            eventLimit: true, // allow "more" link when too many events
+			            selectable: true,
+			            drop: function(date) { $this.onDrop($(this), date); },
+			            select: function (start, end, allDay) { $this.onSelect(start, end, allDay); },
+			            eventClick: function(calEvent, jsEvent, view) { $this.onEventClick(calEvent, jsEvent, view); }
+			
+			        });
+			
+			        //on new event
+			        this.$saveCategoryBtn.on('click', function(){
+			            var categoryName = $this.$categoryForm.find("input[name='category-name']").val();
+			            var categoryColor = $this.$categoryForm.find("select[name='category-color']").val();
+			            if (categoryName !== null && categoryName.length != 0) {
+			                $this.$extEvents.append('<div class="calendar-events" data-class="bg-' + categoryColor + '" style="position: relative;"><i class="fa fa-circle text-' + categoryColor + '"></i>' + categoryName + '</div>');
+			                $this.enableDrag();
+			            }
+			
+			        });
+			    },
+			
+			   //init CalendarApp
+			    $.CalendarApp = new CalendarApp, $.CalendarApp.Constructor = CalendarApp
+			    
+			}(window.jQuery),
+			
+			//initializing CalendarApp
+			function($) {
+			    "use strict";
+			    $.CalendarApp.init()
+			}(window.jQuery);
+    	
+    /*]]>*/
+    </script>
+    <!-- ============================================================== -->
+    <!-- Style switcher -->
+    <!-- ============================================================== -->
+    <script src="https://wrappixel.com/demos/admin-templates/material-pro/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+    
+
+
+
+</body>
+
+</html>
