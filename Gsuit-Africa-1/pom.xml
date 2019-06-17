@@ -136,6 +136,12 @@
 			<artifactId>core</artifactId>
 			<version>1.47.1</version>
 			<scope>compile</scope>
+			<exclusions>
+				<exclusion>  <!-- declare the exclusion here -->
+					<groupId>org.mortbay.jetty</groupId>
+					<artifactId>servlet-api</artifactId>					
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 
