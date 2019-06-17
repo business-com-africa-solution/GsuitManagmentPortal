@@ -135,9 +135,8 @@
 			<groupId>com.google.gdata</groupId>
 			<artifactId>core</artifactId>
 			<version>1.47.1</version>
+			<scope>compile</scope>
 		</dependency>
-
-
 
 
 	</dependencies>
