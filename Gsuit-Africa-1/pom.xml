@@ -17,7 +17,6 @@
 
 	<properties>
 		<java.version>1.8</java.version>
-		 <tomcat.version>9.0.19</tomcat.version>
 	</properties>
 
 	<dependencies>
@@ -54,23 +53,13 @@
 			<artifactId>google-api-client</artifactId>
 			<version>1.25.0</version>
 		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
-			<dependency>
-			    <groupId>javax.servlet</groupId>
-			    <artifactId>servlet-api</artifactId>
-			    <version>2.4</version>
-			    <scope>provided</scope>
-			</dependency>
+
 
 		<dependency>
 			<groupId>com.google.apis</groupId>
 			<artifactId>google-api-services-admin-directory</artifactId>
 			<version>directory_v1-rev53-1.20.0</version>
 		</dependency>
-
-		<!-- <dependency> <groupId>org.webjars</groupId> <artifactId>jquery-ui</artifactId> 
-			<version>1.11.4</version> </dependency> -->
 
 		<dependency>
 			<groupId>com.google.apis</groupId>
@@ -121,34 +110,34 @@
 			<artifactId>google-api-services-iam</artifactId>
 			<version>v1-rev281-1.25.0</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/com.google.apis/google-api-services-drive -->
 		<dependency>
-		    <groupId>com.google.apis</groupId>
-		    <artifactId>google-api-services-drive</artifactId>
-		    <version>v3-rev110-1.23.0</version>
+			<groupId>com.google.apis</groupId>
+			<artifactId>google-api-services-drive</artifactId>
+			<version>v3-rev110-1.23.0</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/com.google.apis/google-api-services-people -->
 		<dependency>
-		    <groupId>com.google.apis</groupId>
-		    <artifactId>google-api-services-people</artifactId>
-		    <version>v1-rev277-1.23.0</version>
+			<groupId>com.google.apis</groupId>
+			<artifactId>google-api-services-people</artifactId>
+			<version>v1-rev277-1.23.0</version>
 		</dependency>
-		
+
 		<dependency>
-		    <groupId>com.google.api.client</groupId>
-		    <artifactId>google-api-data-contacts-v3</artifactId>
-		    <version>1.0.10-alpha</version>
+			<groupId>com.google.api.client</groupId>
+			<artifactId>google-api-data-contacts-v3</artifactId>
+			<version>1.0.10-alpha</version>
 		</dependency>
-		
+
 		<dependency>
-		    <groupId>com.google.gdata</groupId>
-		    <artifactId>core</artifactId>
-		    <version>1.47.1</version>
+			<groupId>com.google.gdata</groupId>
+			<artifactId>core</artifactId>
+			<version>1.47.1</version>
 		</dependency>
-		
-		
+
+
 
 
 	</dependencies>
