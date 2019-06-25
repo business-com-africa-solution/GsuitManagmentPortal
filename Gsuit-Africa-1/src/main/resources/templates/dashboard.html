@@ -20,7 +20,7 @@
 <link type="text/css" rel="stylesheet"
 	href="/javax.faces.resource/components.css408e.css?ln=primefaces&amp;v=6.2" />
 <script type="text/javascript"
-	src="/javax.faces.resource/jquery/jquery.js408e.xhtml?ln=primefaces&amp;v=6.2"></script>
+	src="javax.faces.resource/jquery/jquery.js408e.xhtml?ln=primefaces&amp;v=6.2"></script>
 <script type="text/javascript"
 	src="/javax.faces.resource/jquery/jquery-plugins.js408e.xhtml?ln=primefaces&amp;v=6.2"></script>
 <script type="text/javascript"
@@ -28,7 +28,7 @@
 <script type="text/javascript"
 	src="/javax.faces.resource/components.js408e.xhtml?ln=primefaces&amp;v=6.2"></script>
 <link type="text/css" rel="stylesheet"
-	href="/javax.faces.resource/charts/charts.css408e.css?ln=primefaces&amp;v=6.2" />
+	href="javax.faces.resource/charts/charts.css408e.css?ln=primefaces&amp;v=6.2" />
 <script type="text/javascript"
 	src="/javax.faces.resource/charts/charts.js408e.xhtml?ln=primefaces&amp;v=6.2"></script>
 <link type="text/css" rel="stylesheet"
@@ -49,9 +49,9 @@
 </script>
 <title>DashBoard</title>
 <script type="text/javascript"
-	src="/javax.faces.resource/js/nanoscroller.jsb45c.xhtml?ln=california-layout"></script>
+	src="/javax.faces.resource/js/nanoscrollerjsb45c.js"></script>
 <script type="text/javascript"
-	src="/javax.faces.resource/js/layout.jsb45c.xhtml?ln=california-layout"></script>
+	src="/javax.faces.resource/js/layoutjsb45c.js"></script>
 <script type="text/javascript">
 	/*<![CDATA[*/
 	function skinPie() {
@@ -97,98 +97,15 @@
 <body class="main-body">
 
 	<div class="layout-wrapper ">
-		<form id="j_idt12" name="j_idt12" method="post"
-			action="https://www.primefaces.org/california/dashboard.xhtml"
-			enctype="application/x-www-form-urlencoded">
-			<input type="hidden" name="j_idt12" value="j_idt12" />
-
-			<div id="layout-megamenu"
-				class="ui-g-12 layout-megamenu layout-megamenu-dark">
-				<div class="ui-g-12 ui-md-6 ui-lg-3 layout-megamenu-submenu">
-					<h4>System Reports</h4>
-					<ul>
-						<li><a href="#"> <i class="fa fa-fw fa-th-list"></i> <span>System
-									Logs</span>
-						</a></li>
-						<li><a href="#"> <i class="fa fa-fw fa-server"></i> <span>Back-up
-									Server</span>
-						</a></li>
-						<li><a href="#"> <i class="fa fa-fw fa-users"></i> <span>Conversions</span>
-						</a></li>
-						<li><a href="#"> <i class="fa fa-fw fa-database"></i> <span>Storage
-									Logs</span>
-						</a></li>
-					</ul>
-				</div>
-				<div class="ui-g-12 ui-md-6 ui-lg-3 layout-megamenu-submenu">
-					<h4>Finance Reports</h4>
-					<ul>
-						<li><a href="#"> <i class="fa fa-fw fa-file-text-o"></i>
-								<span>Annual Reports</span>
-						</a></li>
-						<li><a href="#"> <i class="fa fa-fw fa-dollar"></i> <span>Revenue
-									Reports</span>
-						</a></li>
-						<li><a href="#"> <i class="fa fa-fw fa-user-o"></i> <span>HR
-									Reports</span>
-						</a></li>
-						<li><a href="#"> <i class="fa fa-fw fa-bar-chart"></i> <span>Finance
-									Margin</span>
-						</a></li>
-					</ul>
-				</div>
-				<div class="ui-g-12 ui-md-6 ui-lg-3 layout-megamenu-submenu">
-					<h4>Settings</h4>
-					<ul>
-						<li><a href="#"> <i class="fa fa-fw fa-envelope-o"></i> <span>E-mail
-									Notifications</span>
-						</a></li>
-						<li><a href="#"> <i class="fa fa-fw fa-mobile"></i> <span>Sms
-									Alerts</span>
-						</a></li>
-						<li><a href="#"> <i class="fa fa-fw fa-globe"></i> <span>Site
-									Tracking</span>
-						</a></li>
-					</ul>
-				</div>
-				<div class="ui-g-12 ui-md-6 ui-lg-3 layout-megamenu-submenu">
-					<div class="content-img">
-						<img id="j_idt12:j_idt14"
-							src="javax.faces.resource/images/image-mega.pngb45c.png?ln=california-layout"
-							alt="" />
-
-						<div class="img-megamenu">
-							<span class="ui-g-12 img-header">California</span> <span
-								class="ui-g-12 img-subheader">Application Template</span>
-						</div>
-						<button id="j_idt12:j_idt16" name="j_idt12:j_idt16"
-							class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only alt-btn"
-							type="button">
-							<span class="ui-button-text ui-c">Buy Now</span>
-						</button>
-						<script id="j_idt12:j_idt16_s" type="text/javascript">
-							PrimeFaces.cw("CommandButton",
-									"widget_j_idt12_j_idt16", {
-										id : "j_idt12:j_idt16"
-									});
-						</script>
-					</div>
-				</div>
-			</div>
-			<input type="hidden" name="javax.faces.ViewState"
-				id="j_id1:javax.faces.ViewState:0"
-				value="-1530536480978579937:5643789647651973515" autocomplete="off" />
-		</form>
 
 		<div class="layout-topbar">
-			<a th:href="@{/DashBoard}" class="logo"><img id="j_idt20"
+			<a th:href="@{/DashBoard/}+${userId}" class="logo"><img
+				id="j_idt20"
 				src="/jMega avax.faces.resource/images/gsuiteBuscom.png"
-				style="width: 14 0px; padding: 0px;" alt="" /></a> <a id="menu-button"
-				href="#"> <i class="fa fa-align-left"></i>
-			</a> <a id="layout-megamenu-button" href="#"> <i
-				class="fa fa-angle-down"></i>G.M.S<span class="mega-menu-title"></span>
-			</a> <a id="right-sidebar-button" href="#"> <i
-				class="fa fa-ellipsis-v"></i>
+				style="width: 14 0px; padding: 0px;" alt="" /> </a> <a id="menu-button"><i
+				class="fa fa-align-left"> </i> </a> <a id="layout-megamenu-button">
+				<i class="fa fa-angle-down"></i>G.M.S<span class="mega-menu-title"></span>
+			</a> <a id="right-sidebar-button"> <i class="fa fa-ellipsis-v"></i>
 			</a>
 		</div>
 
@@ -202,109 +119,64 @@
 							alt="" /> <span class="sidebar-profile-name" th:inline="text">[[${userName}]]</span>
 							<span class="sidebar-profile-role" th:inline="text">[[${userEmail}]]</span>
 						</a>
-						<ul id="sidebar-usermenu" class="usermenu">
-							<li><a href="#"> <i class="fa fa-fw fa-user"></i> <span
-									class="topbar-item-name">Profile</span>
-							</a></li>
 
 
-							<li><a href="#"> <i class="fa fa-fw fa-bell-o"></i> <span
-									class="topbar-item-name">Notifications</span> <i
-									class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i>
-							</a></li>
-						</ul>
 					</div>
-					<form id="menuform" name="menuform" method="post"
-						action="https://www.primefaces.org/california/dashboard.xhtml"
-						enctype="application/x-www-form-urlencoded">
+					<form id="menuform" name="menuform" method="post">
 						<input type="hidden" name="menuform" value="menuform" />
-						<ul id="menuform:j_idt52" class="layout-menu">
+
+						<ul id="menuform:j_idt52" class="layout-menu"
+							th:each="Services : ${servicesAcess}">
+
+
+
+							<li th:if="${Services.getUserManegment()}" id="menuform:om_doc"
+								role="menuitem" style="list-style-type: none;"><a
+								th:href="@{/usermanagment}+${userId}"> <i
+									class="fa fa-cogs fa-1x"></i><span>User Management </span></a></li>
+
+
+							<li th:if="${Services.getSignature()}" id="menuform:om_doc"
+								role="menuitem" style="list-style-type: none;"><a href="#">
+									<i class="fa fa-address-card-o fa-1x"></i><span>Signature
+										settings</span>
+							</a></li>
+
 							<li id="menuform:om_dashboard" role="menuitem"><a
-								th:href="@{/DashBoard}"><i class="fa fa-fw fa-home"></i><span>DashBoard</span></a></li>
+								th:href="@{/Delegation/}+${userId}"><i
+									class="fa fa-handshake-o"></i><span>Account Delegation</span></a></li>
 
-							<li id="menuform:om_customization" role="menuitem"
-								class="ui-menuitem-submenu"><a><i
-									class="fa fa-fw fa-user fa-1x"></i><span>User Management</span><i
-									class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
-								<ul role="menu">
-									<li id="menuform:custom_user_1" role="menuitem"><a
-										th:href="@{usermanagment}"> <i
-											class="fa fa-fw fa-smile-o fa-1x"></i><span>User
-												Information</span>
-									</a></li>
-									<li id="menuform:custom_user_2" role="menuitem"><a
-										href="404.html"><i class="fa fa-fw fa-vcard fa-1x"></i><span>Signature</span></a></li>
-									<li id="menuform:custom_user_3" role="menuitem"><a th:href="@{calendersetting}"
-										onclick="onclicked()"><i
-											class="fa fa-fw fa-calendar fa-1x"></i><span>Calendar
-												Appointment</span></a></li>
+								<li id="menuform:om_doc" role="menuitem"
+								style="list-style-type: none;"><a
+								th:href="@{calendersetting}"> <i
+									class="fa fa-fw fa-calendar fa-1x"></i><span>Calendar
+										settings</span></a></li>
+
+							<li th:if="${Services.getEmailAnalysis()}" id="menuform:om_doc"
+								role="menuitem" style="list-style-type: none;"><a
+								th:href="@{/GmailAnalysis/}+${userId}"> <i
+									class="fa fa-fw fa-envelope-o"></i><span>Mail Analysis</span>
 
 
-								</ul></li>
+							</a></li>
 
-							<li id="menuform:om_mega_menu_customization" role="menuitem"
-								class="text-badge ui-menuitem-submenu"><a href="#"><i
-									class="fa fa-fw fa-building-o fa-1x"></i><span>Organization Managment</span> <i
-									class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
-								<ul role="menu">
-									<li id="menuform:custom_user_1" role="menuitem"><a
-										href="sample.html"><i class="fa fa-fw fa-building fa-1x"></i><span>Organization
-												Info</span></a></li>
-
-									<li id="menuform:custom_user_2" role="menuitem"><a
-										href="sample.html"><i class="fa fa-fw fa-vcard fa-1x"></i><span>Signature
-										</span></a></li>
-
-									<li id="menuform:custom_user_3" role="menuitem"><a
-										th:href="@{calendersetting}"><i class="fa fa-fw fa-calendar fa-1x"></i><span>Calendar
-												Appointment</span></a></li>
-
-								</ul></li>
-							<li id="menuform:om_user_menu_customization" role="menuitem"
-								class="ui-menuitem-submenu"><a href="#"><i
-									class="fa fa-fw fa-line-chart"></i><span>Accounts
-										Analysis</span><i
-									class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
-								<ul role="menu">
-									<li id="menuform:custom_user_1" role="menuitem"><a
-										href="#"> <i class="fa fa-fw fa-envelope-o"></i><span>Mail Box</span></a></li>
-									<li id="menuform:custom_user_2" role="menuitem"><a
-										href="#"><i	class="fa fa-fw fa-hdd-o"></i><span>Google Drive</span></a></li>
-								</ul></li>
+							<li th:if="${Services.getUserManegment()}" id="menuform:om_doc"
+								role="menuitem"><a href="docs.html"><i
+									class="fa fa-fw fa-hdd-o"></i><span>Drive Analysis</span></a></li>
 
 
-							<li id="menuform:om_user_menu_customization" role="menuitem" class="ui-menuitem-submenu"><a href="#"><i
-									class="fa fa-fw fa-handshake-o"></i><span>Human Resource</span><i
-									class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
-								<ul role="menu">
-									<li id="menuform:custom_user_1" role="menuitem"><a
-										href="#"
-										onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:custom_user_1':'menuform:custom_user_1'}).submit('menuform');return false;PrimeFaces.onPost();"><i
-											class="fa fa-fw fa-file-o"></i><span>Leave Application</span></a></li>
+							<li id="menuform:om_doc" role="menuitem"><a href="docs.html"><i>
+										Other Services </i><span></span></a></li>
 
-								</ul>
-								
-							</li>
+							<li th:if="${Services.getHr()}" id="menuform:om_doc"
+								role="menuitem"><a href="docs.html"><i
+									class="fa fa-fw fa-folder-open-o"></i><span>HR Reports</span></a></li>
 
-							<li id="menuform:om_user_menu_customization" role="menuitem"
-								class="ui-menuitem-submenu"><a href="#"><i
-									class="fa fa-fw fa-line-chart"></i><span>Reports</span><i
-									class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
-								<ul role="menu">
-									<li id="menuform:custom_user_1" role="menuitem"><a
-										href="#"
-										onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:custom_user_1':'menuform:custom_user_1'}).submit('menuform');return false;PrimeFaces.onPost();"><i
-											class="fa fa-fw fa-folder-open-o"></i><span>HR Reports</span></a></li>
-									<li id="menuform:custom_user_2" role="menuitem"><a
-										href="#"
-										onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:custom_user_2':'menuform:custom_user_2'}).submit('menuform');return false;PrimeFaces.onPost();"><i
-											class="fa fa-fw fa-folder-open-o"></i><span>Financial
-												Reports</span></a></li>
-								</ul></li>
+							<li th:if="${Services.getHr()}" id="menuform:om_doc"
+								role="menuitem"><a href="docs.html"><i
+									class="fa fa-fw fa-folder-open-o"></i><span>Billing
+										Reports</span></a></li>
 
-
-							<li id="menuform:om_doc" role="menuitem"><a href="docs.html"><i
-									class="fa fa-fw fa-lock"></i><span>Security</span></a></li>
 
 							<li id="menuform:om_doc" role="menuitem"><a href="docs.html"><i
 									class="fa fa-fw fa-book"></i><span>Help and Support</span></a></li>
@@ -315,6 +187,7 @@
 
 
 						</ul>
+
 						<script id="menuform:j_idt52_s" type="text/javascript">
 							PrimeFaces.cw("California", "me", {
 								id : "menuform:j_idt52"
@@ -421,6 +294,8 @@
 			</script>
 		</div>
 
+
+
 		<div class="layout-main">
 			<div class="route-bar">
 				<div class="route-bar-breadcrumb">
@@ -437,7 +312,7 @@
 							class="fa fa-calendar"></i>
 					</a></li>
 					<li><a href="#" data-tooltip="Help"> <i
-							class="fa fa-life-saver"></i>
+							class="fa fa-life-saver">GMS 1.0</i>
 					</a></li>
 				</ul>
 				<script id="j_idt78_s" type="text/javascript">
@@ -459,14 +334,16 @@
 					<div class="ui-g">
 						<div class="ui-g-12 ui-md-12 ui-lg-4">
 							<div class="overview-box monthly-views">
-								<div class="overview-title">Account State</div>
+								<div class="overview-title">Account Plan</div>
 								<i class="fa fa-arrow-circle-up"></i>
 								<div class="overview-numbers">
-									<strong style="color: green;">Active</strong>
+									<strong style="color: green;" th:inline="text">[[${package}]]
+									</strong>
 								</div>
-								<div class="overview-ratios" style="color: green;">Account is Licensed</div>
+								<div class="overview-ratios" style="color: green;">Account
+									is Licensed</div>
 								<img id="j_idt81"
-									src="javax.faces.resource/images/icon-sales.pngb45c.png?ln=california-layout"
+									src="/javax.faces.resource/images/icon-sales.pngb45c.png?ln=california-layout"
 									alt="" />
 							</div>
 						</div>
@@ -480,7 +357,7 @@
 								</div>
 								<div class="overview-ratios">2% more than previous month</div>
 								<img id="j_idt83"
-									src="javax.faces.resource/images/icon-views.pngb45c.png?ln=california-layout"
+									src="/javax.faces.resource/images/icon-views.pngb45c.png?ln=california-layout"
 									alt="" />
 							</div>
 						</div>
@@ -489,7 +366,8 @@
 
 								<div class="overview-title">Time Date</div>
 								<div id="MyClockDisplay" class="clock" onload="showTime()"
-									style="color: #ffffff; font-family: Orbitron; font-size: 40px; letter-spacing: 2px;"></div>
+									style="color: #ffffff; font-family: Orbitron; font-size: 40px; letter-spacing: 2px;">
+								</div>
 								<script type="text/javascript">
 									/*<![CDATA[*/
 									showTime();
@@ -515,7 +393,6 @@
 
 										var time = h + ":" + m + ":" + s + " "
 												+ session;
-										console.log("time" + time);
 
 										document
 												.getElementById('MyClockDisplay').innerText = ''
@@ -531,12 +408,11 @@
 
 							</div>
 						</div>
-
 						<div class="ui-g-12 ui-md-6 ui-lg-3">
 							<div class="stats">
 								<div class="stats-icon">
 									<img id="j_idt87"
-										src="javax.faces.resource/images/icon-message.pngb45c.png?ln=california-layout"
+										src="/javax.faces.resource/images/icon-message.pngb45c.png?ln=california-layout"
 										alt="" class="message-icon" />
 								</div>
 								<div class="stats-numbers" th:inline="text">[[${totalInbox}]]</div>
@@ -551,7 +427,7 @@
 							<div class="stats">
 								<div class="stats-icon">
 									<img id="j_idt89"
-										src="javax.faces.resource/images/icon-doc.pngb45c.png?ln=california-layout"
+										src="/javax.faces.resource/images/icon-doc.pngb45c.png?ln=california-layout"
 										alt="" class="doc-icon" />
 								</div>
 								<div class="stats-numbers" th:inline="text">[[${totalDrive}]]</div>
@@ -565,7 +441,7 @@
 							<div class="stats">
 								<div class="stats-icon">
 									<img id="j_idt91"
-										src="javax.faces.resource/images/icon-mark.pngb45c.png?ln=california-layout"
+										src="/javax.faces.resource/images/icon-mark.pngb45c.png?ln=california-layout"
 										alt="" class="mark-icon" />
 								</div>
 								<div class="stats-numbers" th:inline="text">[[${calendarEvents}]]</div>
@@ -580,94 +456,40 @@
 							<div class="stats">
 								<div class="stats-icon">
 									<img id="j_idt93"
-										src="javax.faces.resource/images/icon-profile.pngb45c.png?ln=california-layout"
+										src="/javax.faces.resource/images/icon-profile.pngb45c.png?ln=california-layout"
 										alt="" class="profile-icon" />
 								</div>
 								<div class="stats-numbers" th:inline="text">[[${myContacts}]]</div>
 								<div class="stats-title">My ContactList</div>
+
 								<div class="stats-subtitle">
 									<span th:inline="text">[[${myContacts}]]</span> Contact List
 									size
 								</div>
 							</div>
 						</div>
-
-						<div class="ui-g-12 ui-md-12 ui-lg-6">
-							<div id="j_idt128"
-								class="ui-panel ui-widget ui-widget-content ui-corner-all "
-								data-widget="widget_j_idt128">
-								<h4 style="text-align: center;">Storage Statistics</h4>
-								<div id="j_idt128_content"
-									class="ui-panel-content ui-widget-content">
-									<div id="line">
-										<script id="pie_s" type="text/javascript">
-											$(function() {
-												PrimeFaces
-														.cw(
-																"Chart",
-																"widget_pie",
-																{
-																	id : "pie",
-																	type : "pie",
-																	responsive : true,
-																	data : [ [
-																			[
-																					"Calendr",
-																					2 ],
-																			[
-																					"Gmail",
-																					23 ],
-																			[
-																					"Drive",
-																					55 ],
-																			[
-																					"Doc's",
-																					20 ] 
-																			] ],
-																	title : "Simple Pie",
-																	legendPosition : "w",
-																	extender : skinPie,
-																	dataRenderMode : "value",
-																	datatip : true,
-																	datatipFormat : "%s - %d"
-																});
-											});
-										</script>
-										<div id="pie"></div>
-										<div class="card"></div>
-									</div>
-
-								</div>
-							</div>
-							<script id="j_idt128_s" type="text/javascript">
-								PrimeFaces.cw("Panel", "widget_j_idt128", {
-									id : "j_idt128"
-								});
-							</script>
-							<div id="j_idt129"
-								class="ui-panel ui-widget ui-widget-content ui-corner-all chat"
-								data-widget="widget_j_idt129"></div>
-						</div>
-
-
-						<div class="ui-g-12 ui-md-12 ui-lg-6">
+						<div class="ui-g-12 ui-md-12 ui-lg-8">
 							<div id="j_idt117"
 								class="ui-panel ui-widget ui-widget-content ui-corner-all team"
 								data-widget="widget_j_idt117">
 								<div id="j_idt117_header"
 									class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
-									<span class="ui-panel-title">Frequent Contact</span>
+									<span class="ui-panel-title">Notifications</span>
 								</div>
 								<div id="j_idt117_content"
 									class="ui-panel-content ui-widget-content">
-									<ul th:each="myContact : ${frequentcontactslist}">
+									<ul th:each="Notifications : ${notifications}">
 										<li><img id="j_idt119"
-											src="javax.faces.resource/images/avatar-john.pngb45c.png?ln=california-layout"
+											src="/javax.faces.resource/images/avatar-john.pngb45c.png?ln=california-layout"
 											alt="" />
 											<div class="team-box">
-												<span class="team-member" th:inline="text">[[${myContact.getEmailAddress()}]]</span>
-												<span class="team-member-role" th:inline="text">[[${myContact.getDisplayName()}]]</span>
-											</div> <a href="#"> <i class="fa fa-slack"></i></a></li>
+												<span class="team-member" th:inline="text">[[${Notifications.getTitle()}]]</span>
+												<span class="team-member-role" th:inline="text">[[${Notifications.getFromUser()}]]</span>
+
+												<span class="team-member-role" style="font-style: italic"
+													th:inline="text">[[${Notifications.getMessage()}]]</span>
+
+											</div> <a href="#"> <i class="fa fa-bell"></i></a></li>
 
 
 									</ul>
@@ -679,38 +501,63 @@
 								});
 							</script>
 						</div>
+						<div class="ui-g-12 ui-md-12 ui-lg-4">
+							<div id="j_idt117"
+								class="ui-panel ui-widget ui-widget-content ui-corner-all team"
+								data-widget="widget_j_idt117">
+								<div id="j_idt117_header"
+									class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+									<span class="ui-panel-title">Frequent Contact</span>
+								</div>
+								<div id="j_idt117_content"
+									class="ui-panel-content ui-widget-content">
+									<ul th:each="myContact : ${frequentcontactslist}">
+										<li><img id="j_idt119"
+											src="/javax.faces.resource/images/avatar-john.pngb45c.png?ln=california-layout"
+											alt="" />
+											<div class="team-box">
+												<span class="team-member" th:inline="text">[[${myContact.getEmailAddress()}]]</span>
+												<span class="team-member-role" th:inline="text">[[${myContact.getDisplayName()}]]</span>
+											</div> <a href="#"> <i class="fa fa-book"></i></a></li>
 
-
-					</div>
-
-					<div class="layout-footer ui-g-12">
-						<div class="ui-g">
-							<div class="ui-g-3 ui-md-12 footer-left">
-								<p
-									style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
-									<span style="color: black">Powered By</span> BusnessComAfrica
-								</p>
+									</ul>
+								</div>
 							</div>
+							<script id="j_idt117_s" type="text/javascript">
+								PrimeFaces.cw("Panel", "widget_j_idt117", {
+									id : "j_idt117"
+								});
+							</script>
+						</div>
+						<div class="layout-footer ui-g-12">
+							<div class="ui-g">
+								<div class="ui-g-3 ui-md-12 footer-left">
+									<p
+										style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+										<span style="color: black">Powered By</span> BusnessComAfrica
+									</p>
+								</div>
 
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div id="j_idt219"
-				style="width: 32px; height: 32px; position: fixed; right: 7px; bottom: 7px">
-				<div id="j_idt219_start" style="display: none">
-					<i class="fa fa-circle-o-notch fa-spin ajax-loader"
-						aria-hidden="true"></i>
+				<div id="j_idt219"
+					style="width: 32px; height: 32px; position: fixed; right: 7px; bottom: 7px">
+					<div id="j_idt219_start" style="display: none">
+						<i class="fa fa-circle-o-notch fa-spin ajax-loader"
+							aria-hidden="true"></i>
+					</div>
+					<div id="j_idt219_complete" style="display: none"></div>
 				</div>
-				<div id="j_idt219_complete" style="display: none"></div>
-			</div>
-			<script id="j_idt219_s" type="text/javascript">
-				$(function() {
-					PrimeFaces.cw("AjaxStatus", "widget_j_idt219", {
-						id : "j_idt219"
+				<script id="j_idt219_s" type="text/javascript">
+					$(function() {
+						PrimeFaces.cw("AjaxStatus", "widget_j_idt219", {
+							id : "j_idt219"
+						});
 					});
-				});
-			</script>
+				</script>
+			</div>
 		</div>
 	</div>
 </body>

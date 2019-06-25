@@ -4,30 +4,64 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.security.GeneralSecurityException;
+import java.security.Principal;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
+import javax.inject.Inject;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.constraints.NotNull;
+import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+//import org.springframework.security.authentication.AuthenticationManager;
+//import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.GrantedAuthority;
+//import org.springframework.security.core.authority.SimpleGrantedAuthority;
+//import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.core.userdetails.UserDetailsService;
+//import org.springframework.security.core.context.SecurityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.bussinesscom.Africa.GsuitAfrica.Entity.Company;
+import com.bussinesscom.Africa.GsuitAfrica.Entity.Domain;
+import com.bussinesscom.Africa.GsuitAfrica.Entity.Notification;
+import com.bussinesscom.Africa.GsuitAfrica.Entity.UserApp;
 import com.bussinesscom.Africa.GsuitAfrica.Model.myContact;
+import com.bussinesscom.Africa.GsuitAfrica.Repository.DomainRepository;
+import com.bussinesscom.Africa.GsuitAfrica.Repository.NotificationRepository;
+import com.bussinesscom.Africa.GsuitAfrica.Repository.UserAppRepositiry;
+//import com.bussinesscom.Africa.GsuitAfrica.Security.AuthenticationManagers;
+import com.bussinesscom.Africa.GsuitAfrica.ServiceAccount.SercicesAccounts;
 import com.google.api.client.auth.oauth2.AuthorizationCodeRequestUrl;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.auth.oauth2.TokenResponse;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets.Details;
+import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.HttpTransport;
+import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.DateTime;
@@ -41,6 +75,8 @@ import com.google.api.services.drive.model.FileList;
 import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.GmailScopes;
 import com.google.api.services.gmail.model.Profile;
+import com.google.api.services.oauth2.Oauth2;
+import com.google.api.services.oauth2.model.Userinfoplus;
 import com.google.api.services.people.v1.PeopleService;
 import com.google.api.services.people.v1.PeopleServiceScopes;
 import com.google.api.services.people.v1.model.ListConnectionsResponse;
@@ -56,26 +92,19 @@ import com.google.gdata.util.ServiceException;
 @Controller
 public class DashBoard {
 
-	private static final String APPLICATION_NAME = "GmailAlexa";
-	private static HttpTransport httpTransport;
-	private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
+	private final String APPLICATION_NAME = "GmailAlexa";
+	HttpTransport httpTransport;
+	JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 
-	
-	public Gmail myGoogleGmailService;
-	public Drive myGoogleDriveService;
-	public Calendar myGoogleCalendarService;
-	public ContactsService contactsService;
-	
-	
-	private static String userId = "me";
-	public GoogleClientSecrets clientSecrets;
-	public static GoogleAuthorizationCodeFlow flow;
-	public static Credential credential;
-	public static TokenResponse response;
-	public static String token = null;
+	String userId = "me";
+	GoogleClientSecrets clientSecrets;
+	GoogleAuthorizationCodeFlow flow;
+	Credential credential;
+	TokenResponse response;
+	String token = null;
 
-	public String userEmail;
-	public String userName;
+	String userEmail;
+	String userName;
 
 	@Value("${gmail.client.clientId}")
 	private String clientId;
@@ -91,75 +120,181 @@ public class DashBoard {
 
 	Boolean staticLogin = false;
 
+//	UserDetailsService detailsService;
+	
+
+//	@Autowired
+//	AuthenticationManagers authenticationManagers;
+//	
+	@Autowired 
+	UserAppRepositiry userRepository;
+	
+	@Autowired
+	DomainRepository domainRepositry;
+	
+	@Autowired
+	NotificationRepository notificationRepositry;
+	
+	
+
+
 	@RequestMapping(value = "/login/gmail", method = RequestMethod.GET)
-	public RedirectView googleConnectionStatus(HttpServletRequest request) throws Exception {
+	public RedirectView googleConnectionStatus(HttpServletRequest request) throws Exception {	
+		
+//		System.out.println("Principals==================="+auth.getPrincipal().toString());
+			
 		return new RedirectView(authorize());
 	}
 
-	@RequestMapping(value = "/login/BussnesComAfrica", method = RequestMethod.GET, params = "code")
-	public String oauth2Callback(@RequestParam(value = "code") String code, Model model, HttpSession httpsession) {
+	@RequestMapping(value = "/login/BussnesComAfrica", method = RequestMethod.GET,params = "code")
+	public String oauth2Callback( @RequestParam(value = "code") String code,HttpServletRequest request, Model model) {
 
+		
+//		@RequestParam(value = "code") String code,
+		
+		
+		
 		// String message;
 		try {
-			if (staticLogin) {
-				System.out.println("Token Refreshed" + credential.refreshToken());
+//			if (staticLogin) {
+//				System.out.println("Token Refreshed" + credential.refreshToken());
+//
+////			} else {
+			response = flow.newTokenRequest(code).setRedirectUri(redirectUri).execute();
+			credential = flow.createAndStoreCredential(response, userId);
 
-			} else {
-				response = flow.newTokenRequest(code).setRedirectUri(redirectUri).execute();
-				credential = flow.createAndStoreCredential(response, userId);
-				staticLogin = true;
-			}
+//				staticLogin = true;
+//			}
 
+//				request.getUserPrincipal().getName();
+
+			System.out.println("profile Refreshed-------------------------" + profile);
+			
+			
+			 Date date= new Date();
+			 long time = date.getTime();
+			 Timestamp ts = new Timestamp(time);
+			 
+			 System.out.println("Current Time Stamp---------: " + ts);
+			 
+			Oauth2 oauth2 = new Oauth2.Builder(new NetHttpTransport(), new JacksonFactory(), credential).setApplicationName(
+			          "Oauth2").build();
+			 Userinfoplus userinfo = oauth2.userinfo().get().execute();
+			 userinfo.toPrettyString();
+			
+			 
+			Gmail myGoogleGmail = new Gmail.Builder(httpTransport, JSON_FACTORY, credential)
+					.setApplicationName(APPLICATION_NAME).build();
+			String email = myGoogleGmail.users().getProfile("me").execute().getEmailAddress();
+
+			UserApp user=new UserApp();
+						
+			user.setId(userinfo.getId());
+			
+			user.setEmail(email);
+			user.setFirstName(userinfo.getFamilyName());
+			user.setLastName(userinfo.getGivenName());
+			user.setUsername(userinfo.getFamilyName()+" "+userinfo.getGivenName());
+			user.setImageUrl(userinfo.getPicture());
+			user.setPassword(userinfo.getId());
+			user.setUpdatedAt(ts);
+			userRepository.saveAndFlush(user);
 			
 			
 			
 			
-				
-			return "redirect:/DashBoard";
+			//			
+			
+//			UsernamePasswordAuthenticationToken authReq = new UsernamePasswordAuthenticationToken(email, "");
+//			Authentication auth = authenticationManagers.authenticate(email,authReq);
+//			SecurityContext securityContext = SecurityContextHolder.getContext();
+//			securityContext.setAuthentication(auth);
+//		
+			
+			
+			return "redirect:/DashBoard/" + userinfo.getId() + "/";
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			try {
-				credential.refreshToken();
+//				credential.refreshToken();
 				String tokens = authorize();
-				return "redirect:/login/gmailCallback/" + tokens;
+				return "redirect:/login/gmail" + tokens;
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
+				return "redirect:/login/gmail";
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
+				return "redirect:/login/gmail";
 			}
 
 			// TODO: handle exception
 		}
-		return null;
 	}
 
-	@RequestMapping("DashBoard")
-	public String loginDashBoard(Model model) throws IOException, ServiceException {
+//	public Collection<? extends GrantedAuthority> getAuthorities() {
+//		List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
+//
+//		list.add(new SimpleGrantedAuthority("ADMIN"));
+//
+//		return list;
+//	}
 
-		myGoogleGmailService = new com.google.api.services.gmail.Gmail.Builder(httpTransport, JSON_FACTORY,
-				credential).setApplicationName(APPLICATION_NAME).build();
+	@RequestMapping("DashBoard/{loginId}")
+	public String loginDashBoard(@PathVariable("loginId") String loginId, Model model,final HttpServletRequest request)
+			throws IOException, ServiceException, GeneralSecurityException, URISyntaxException {
 		
-		myGoogleDriveService = new Drive.Builder(httpTransport, JSON_FACTORY, credential)
-				.setApplicationName(APPLICATION_NAME).build();
+		Optional<UserApp> user=userRepository.findById(loginId);	
+		List<Notification> notifications=notificationRepositry.findByUserApp(user);
+				
+		String loginEmail=user.get().getEmail();
+		String[] domain=loginEmail.split("@");
+		Domain userDomain= domainRepositry.findByDomainName(domain[1]);
+		Company comp=userDomain.getCompany();
+		comp.getPackages();
 		
-		 myGoogleCalendarService = new Calendar.Builder(httpTransport, JSON_FACTORY, credential)
-				.setApplicationName(APPLICATION_NAME).build();
+		System.out.println("Comapany"+comp.getName());
+		System.out.println("Domain"+userDomain.getDomainName());
+		System.out.println("Package"+comp.getPackages().getName());
+		System.out.println("Package"+comp.getPackages().getServices().toString());
+		System.out.println("notifications--------"+notifications.size());
+			
+		model.addAttribute("notifications",notifications );
+		model.addAttribute("servicesAcess",comp.getPackages().getServices());
+		model.addAttribute("package",comp.getPackages().getName());
 		
-		contactsService = new ContactsService("MY_PRODUCT_NAME");
-		contactsService.setOAuth2Credentials(credential);
 		
-		model.addAttribute("userName", "Edwin Korir");
-		model.addAttribute("image", "/jMega avax.faces.resource/images/hands.png?ln=california-layout");
+		
+		
 
+		
+//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			 
+		 model.addAttribute("userName", ""+user.get().getLastName()+" "+user.get().getFirstName());		
+		 model.addAttribute("image", ""+user.get().getImageUrl()+"?ln=california-layout");
+		 model.addAttribute("userId", loginId);
+		 
+	
+		Gmail myGoogleGmailService;
+		Drive myGoogleDriveService;
+		Calendar myGoogleCalendarService;
+		ContactsService contactsService;
+
+		myGoogleGmailService = SercicesAccounts.getGmailService(loginEmail);
+		myGoogleDriveService = SercicesAccounts.getDriveService(loginEmail);
+		myGoogleCalendarService = SercicesAccounts.getCalenderService(loginEmail);
+		contactsService = SercicesAccounts.getconnect(loginEmail);
+
+		
 //		Messages And Profile
 		Profile myProfile = myGoogleGmailService.users().getProfile(userId).execute();
 		List<String> labelIds = new ArrayList<String>();
 		labelIds.add("UNREAD");
 		labelIds.add("INBOX");
-		int unReadMessages = myGoogleGmailService.users().messages().list(userId).setLabelIds(labelIds).execute().size();
+		int unReadMessages = myGoogleGmailService.users().messages().list(userId).setLabelIds(labelIds).execute()
+				.size();
 
 		model.addAttribute("unreadInbox", unReadMessages);
 		model.addAttribute("userEmail", myProfile.getEmailAddress());
@@ -171,14 +306,13 @@ public class DashBoard {
 		System.out.println("Google Drive Files---" + files.size());
 		model.addAttribute("totalDrive", files.size());
 
-		
 //	Contacts List	
 		URL feedUrl = new URL("https://www.google.com/m8/feeds/contacts/default/full");
 		Query myQuery = new Query(feedUrl);
 		myQuery.setMaxResults(1000);
 		ContactFeed resultFeed = contactsService.query(myQuery, ContactFeed.class);
 		Integer contactsSize = resultFeed.getEntries().size();
-		List<myContact> myContactList = new ArrayList<>();	
+		List<myContact> myContactList = new ArrayList<>();
 		for (int i = 0; i < resultFeed.getEntries().size(); i++) {
 			System.out.println(" *********Start*********** " + i);
 			for (com.google.gdata.data.extensions.Email email : resultFeed.getEntries().get(i).getEmailAddresses()) {
@@ -204,48 +338,37 @@ public class DashBoard {
 				.execute();
 		List<Event> items = events1.getItems();
 		model.addAttribute("calendarEvents", items.size());
-		
 
 		return "dashboard";
 	}
 
 	private String authorize() throws Exception {
 		AuthorizationCodeRequestUrl authorizationUrl;
+//		credential.getRefreshToken();
+
 		if (flow == null) {
 			Details web = new Details();
 			web.setClientId(clientId);
 			web.setClientSecret(clientSecret);
-
 			clientSecrets = new GoogleClientSecrets().setWeb(web);
 			httpTransport = GoogleNetHttpTransport.newTrustedTransport();
 			flow = new GoogleAuthorizationCodeFlow.Builder(httpTransport, JSON_FACTORY, clientSecrets, permissions())
 					.build();
 		}
 		authorizationUrl = flow.newAuthorizationUrl().setRedirectUri(redirectUri);
-		System.out.println("Gmail authorization Url ->" + authorizationUrl);
 		return authorizationUrl.build();
 	}
 
 	public static List<String> permissions() {
 
 		List<String> permisions = new ArrayList<>();
-		/* permisions.add(GmailScopes.MAIL_GOOGLE_COM); */
-		permisions.add(GmailScopes.GMAIL_SETTINGS_SHARING);
-		permisions.add(GmailScopes.MAIL_GOOGLE_COM);
-		permisions.add(PeopleServiceScopes.CONTACTS_READONLY);
-
-		permisions.add(GmailScopes.GMAIL_LABELS);
-		permisions.add(GmailScopes.GMAIL_SETTINGS_BASIC);
-		permisions.add(CalendarScopes.CALENDAR);
-		permisions.add(CalendarScopes.CALENDAR_READONLY);
-		permisions.add("https://www.googleapis.com/auth/drive");
-		permisions.add("https://www.google.com/m8/feeds/");
-		permisions.add("https://www.googleapis.com/auth/contacts.readonly");
-		permisions.add("https://www.googleapis.com/auth/cloud-platform");
-		permisions.add("https://www.googleapis.com/auth/iam");
-
+		 permisions.add(GmailScopes.GMAIL_READONLY); 
+		permisions.add("profile");
+		permisions.add("https://www.googleapis.com/auth/plus.login");
+		
 		return permisions;
 
 	}
 
+	
 }

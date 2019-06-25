@@ -105,7 +105,7 @@
 				<div class="ui-g-12 ui-md-6 ui-lg-3 layout-megamenu-submenu">
 					<div class="content-img">
 						<img id="j_idt11:j_idt13"
-							src="javax.faces.resource/images/image-mega.pngb45c.png?ln=california-layout"
+							src="/javax.faces.resource/images/image-mega.pngb45c.png?ln=california-layout"
 							alt="" />
 
 						<div class="img-megamenu">
@@ -127,7 +127,7 @@
 		</form>
 
 		<div class="layout-topbar">
-			<a th:href="@{/DashBoard}" class="logo"><img
+			<a th:href="@{/DashBoard/}+${userId}" class="logo"><img
 				id="j_idt20" src="jMega avax.faces.resource/images/gsuiteBuscom.png"
 				style="width: 14 0px; padding: 0px;" alt="" /></a> <a id="menu-button"
 				th:href="@{/DashBoard}"> <i class="fa fa-align-left"></i>
@@ -168,7 +168,7 @@
 						<input type="hidden" name="menuform" value="menuform" />
 						<ul id="menuform:j_idt52" class="layout-menu">
 							<li id="menuform:om_dashboard" role="menuitem"><a
-								th:href="@{/DashBoard}"><i class="fa fa-fw fa-home"></i><span>Dashboard</span></a></li>
+								th:href="@{/DashBoard/}+${userId}"><i class="fa fa-fw fa-home"></i><span>Dashboard</span></a></li>
 
 							<li id="menuform:om_customization" role="menuitem"
 								class="ui-menuitem-submenu"><a href="#"><i

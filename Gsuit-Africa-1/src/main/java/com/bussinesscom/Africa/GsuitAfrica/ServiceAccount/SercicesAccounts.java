@@ -39,6 +39,7 @@ import com.google.api.services.admin.directory.model.User;
 import com.google.api.services.admin.directory.model.Users;
 import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.CalendarScopes;
+import com.google.api.services.drive.Drive;
 import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.Gmail.Users.Settings.Delegates.Delete;
 import com.google.api.services.gmail.Gmail.Users.Settings.SendAs.Get;
@@ -160,6 +161,23 @@ public class SercicesAccounts {
 				.setApplicationName("Gsuit").build();
 		return service;
 	}
+	
+	public static Drive getDriveService(String userEmail)
+			throws GeneralSecurityException, IOException, URISyntaxException {
+
+		HttpTransport httpTransport = new NetHttpTransport();
+		JacksonFactory jsonFactory = new JacksonFactory();
+		GoogleCredential credential = new GoogleCredential.Builder().setTransport(httpTransport)
+				.setJsonFactory(JSON_FACTORY).setServiceAccountId(SERVICE_ACCOUNT_EMAIL_FROM_DEV_CONSOLE)
+				.setServiceAccountPrivateKeyFromP12File(new File(getDataFromPath()))
+				.setServiceAccountScopes(permisonsAllDrive()).setServiceAccountUser(userEmail).build();
+		credential.getRefreshToken();
+		Drive service = new Drive.Builder(httpTransport, jsonFactory, null).setHttpRequestInitializer(credential)
+				.setApplicationName("Gsuit").build();
+		return service;
+	}
+	
+	
 
 	public static PeopleService getPeopleService(String userEmail)
 			throws GeneralSecurityException, IOException, URISyntaxException {
@@ -265,12 +283,27 @@ public class SercicesAccounts {
 	public static List<String> permisonsAll2() {
 
 		List<String> permisions = new ArrayList<String>();
-
 		permisions.add(GmailScopes.GMAIL_SETTINGS_SHARING);
 		permisions.add(GmailScopes.GMAIL_SETTINGS_BASIC);
+		permisions.add(GmailScopes.MAIL_GOOGLE_COM);
+		permisions.add(GmailScopes.GMAIL_LABELS);
 		return permisions;
+	}
+	
+	public static List<String> permisonsAllDrive() {
+
+		List<String> permisionsdrive = new ArrayList<String>();
+
+		permisionsdrive.add("https://www.googleapis.com/auth/drive");
+		
+		return permisionsdrive;
 
 	}
+	
+	
+	
+	
+	
 
 	public static List<String> permisonsAll() {
 

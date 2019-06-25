@@ -1,39 +1,97 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <!-- Mirrored from www.primefaces.org/california/login.xhtml by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 03 Apr 2019 13:07:27 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
 <head id="j_idt2">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-        <meta name="apple-mobile-web-app-capable" content="yes" /><link type="text/css" rel="stylesheet" href="javax.faces.resource/theme.css9e5e.css?ln=primefaces-california-blue" /><link type="text/css" rel="stylesheet" href="javax.faces.resource/fa/font-awesome.css408e.css?ln=primefaces&amp;v=6.2" /><link type="text/css" rel="stylesheet" href="javax.faces.resource/components.css408e.css?ln=primefaces&amp;v=6.2" /><script type="text/javascript" src="javax.faces.resource/jquery/jquery.js408e.xhtml?ln=primefaces&amp;v=6.2"></script><script type="text/javascript" src="javax.faces.resource/core.js408e.xhtml?ln=primefaces&amp;v=6.2"></script><script type="text/javascript" src="javax.faces.resource/components.js408e.xhtml?ln=primefaces&amp;v=6.2"></script><script type="text/javascript" src="javax.faces.resource/jquery/jquery-plugins.js408e.xhtml?ln=primefaces&amp;v=6.2"></script><link type="text/css" rel="stylesheet" href="javax.faces.resource/css/layout-blue.cssb45c.css?ln=california-layout" /><script type="text/javascript">if(window.PrimeFaces){PrimeFaces.settings.locale='en_US';PrimeFaces.settings.projectStage='Development';}</script>
-    <title>PrimeFaces California</title></head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="google-signin-client_id" content="807072385809-5c00iu5f3peu334hs4t7gjbarfm4truo.apps.googleusercontent.com">
+	<link type="text/css" rel="stylesheet"
+		href="/javax.faces.resource/theme.css9e5e.css?ln=primefaces-california-blue" />
+	<link type="text/css" rel="stylesheet"
+		href="/javax.faces.resource/fa/font-awesome.css408e.css?ln=primefaces&amp;v=6.2" />
+	<link type="text/css" rel="stylesheet" href="javax.faces.resource/components.css408e.css?ln=primefaces&amp;v=6.2" />
+	<script type="text/javascript"
+		src="/javax.faces.resource/jquery/jquery.js408e.xhtml?ln=primefaces&amp;v=6.2"></script>
+	<script type="text/javascript" src="/javax.faces.resource/core.js408e.xhtml?ln=primefaces&amp;v=6.2"></script>
+	<script type="text/javascript" src="/javax.faces.resource/components.js408e.xhtml?ln=primefaces&amp;v=6.2"></script>
+	<script type="text/javascript"
+		src="/javax.faces.resource/jquery/jquery-plugins.js408e.xhtml?ln=primefaces&amp;v=6.2"></script>
+	<link type="text/css" rel="stylesheet"
+		href="/javax.faces.resource/css/layout-blue.cssb45c.css?ln=california-layout" />
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-scope" content="profile email">	
+<script
+		type="text/javascript">if (window.PrimeFaces) { PrimeFaces.settings.locale = 'en_US'; PrimeFaces.settings.projectStage = 'Development'; }</script>
+	<title>GsuitManagmentSystem</title>
+</head>
 
-<div class="login-topbar"><a href="dashboard.html" class="logo"><img id="j_idt7" src="javax.faces.resource/images/logo.pngb45c.png?ln=california-layout" alt="" /></a>
-</div><img id="j_idt9" src="javax.faces.resource/images/image-login.pngb45c.png?ln=california-layout" alt="" class="login-image" /><body class="login-body">
-    <div class="login-panel ui-fluid">
-        <div class="ui-g">
-            <div class="ui-g-12 login-icon-container"><img id="j_idt12" src="javax.faces.resource/images/icon-login.pngb45c.png?ln=california-layout" alt="" class="login-icon" />
-            </div>
-            <div class="ui-g-12 ui-lg-12 ui-md-12 logo-container">
-                <span class="login-summary">Sign in to California</span>
-                <div class="login-detail">
-                    <span>Welcome, please use the form to sign-in network.</span>
-                </div>
-            </div>
-            <div class="ui-g-12 ui-lg-12 ui-md-12">E-mail address<input id="j_idt15" name="j_idt15" type="text" placeholder="Email" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" /><script id="j_idt15_s" type="text/javascript">PrimeFaces.cw("InputText","widget_j_idt15",{id:"j_idt15"});</script>
-            </div>
-            <div class="ui-g-12 ui-lg-12 ui-md-12">Password<input id="j_idt18" name="j_idt18" type="password" class="ui-inputfield ui-password ui-widget ui-state-default ui-corner-all" placeholder="Password" /><script id="j_idt18_s" type="text/javascript">$(function(){PrimeFaces.cw("Password","widget_j_idt18",{id:"j_idt18"});});</script>
-            </div>
-            <div class="ui-g-12 ui-lg-12 ui-md-12 chkbox-container"><div id="remember-me" class="ui-selectbooleancheckbox ui-chkbox ui-widget"><div class="ui-helper-hidden-accessible"><input id="remember-me_input" name="remember-me_input" type="checkbox" autocomplete="off" aria-hidden="true" aria-checked="false" /></div><div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default"><span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c"></span></div></div><script id="remember-me_s" type="text/javascript">PrimeFaces.cw("SelectBooleanCheckbox","widget_remember_me",{id:"remember-me"});</script><label id="j_idt20" class="ui-outputlabel ui-widget" for="remember-me_input">Remember Me</label>
-                <a href="#">Reset Password</a>
-            </div>
-            <div class="ui-g-12 ui-lg-12 ui-md-12 button-container"><button id="j_idt22" name="j_idt22" type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only turquoise-btn" onclick="window.open('\/california\/dashboard.xhtml','_self')"><span class="ui-button-text ui-c">Sign in</span></button><script id="j_idt22_s" type="text/javascript">PrimeFaces.cw("Button","widget_j_idt22",{id:"j_idt22"});</script>
+<div class="login-topbar" backg style="background-color: #4285F4;"><a class="logo">
+	</a>
+	
+</div>
 
-            </div>
-        </div>
-    </div></body>
+<body class="ui-g login-body card" style="width: 100%">
+			
+		<div class="login-panel ui-fluid card">
+			<div class="ui-g-10 ui-lg-12 ui-md-12">
+
+				
+				<img src="/jMega avax.faces.resource/images/GSuiteMenagerie.png?ln=california-layout"
+					alt="" style="width: 350px;height: 200px;" />
+					<hr>				
+
+			</div>
+		</div>
+		<div class="login-panel ui-fluid card" style="float: right;">
+
+			<div class="ui-g-2 ui-lg-12 ui-md-12">	
+				<div class="ui-g-12 ui-lg-12 ui-md-12">E-mail address<input id="j_idt15" name="j_idt15" type="text"
+						placeholder="Email"
+						class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" />
+					<script id="j_idt15_s"
+						type="text/javascript">PrimeFaces.cw("InputText", "widget_j_idt15", { id: "j_idt15" });</script>
+				</div>
+				<div class="ui-g-12 ui-lg-12 ui-md-12">Password<input id="j_idt18" name="j_idt18" type="password"
+						class="ui-inputfield ui-password ui-widget ui-state-default ui-corner-all"
+						placeholder="Password" />
+					<script id="j_idt18_s"
+						type="text/javascript">$(function () { PrimeFaces.cw("Password", "widget_j_idt18", { id: "j_idt18" }); });</script>
+				</div>
+				
+				<Bu class="ui-g-12 ui-lg-12 ui-md-12 button-container">
+				
+
+					<form method="POST">
+					<button class="g-signin2" data-onsuccess="onSignIn"  data-accesstype="offline" data-redirecturi="http://localhost:8080/login/BussnesComAfrica" type="submit" ></button>
+					</form>
+					
+					
+					<script >
+						function onSignIn(googleUser) {
+								// var profile = googleUser.getBasicProfile();
+								 var id_token = googleUser.getAuthResponse().id_token;								 
+								 var xhr = new XMLHttpRequest();
+								 xhr.open('POST', 'https://yourbackend.example.com/tokensignin');
+								 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+								 xhr.onload = function() {
+								   console.log('Signed in as: ' + xhr.responseText);
+								 };
+								 xhr.send('idtoken=' + id_token);
+							}
+
+						</script>
+
+				</div>
+			</div>
+		</div>
+</body>
 
 
 <!-- Mirrored from www.primefaces.org/california/login.xhtml by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 03 Apr 2019 13:07:27 GMT -->
+
 </html>

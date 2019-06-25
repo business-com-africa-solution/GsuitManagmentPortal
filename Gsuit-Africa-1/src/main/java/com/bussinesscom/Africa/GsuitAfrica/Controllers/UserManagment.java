@@ -5,7 +5,11 @@ import java.net.URISyntaxException;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,8 +17,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.bussinesscom.Africa.GsuitAfrica.Entity.Company;
+import com.bussinesscom.Africa.GsuitAfrica.Entity.Domain;
+import com.bussinesscom.Africa.GsuitAfrica.Entity.UserApp;
 import com.bussinesscom.Africa.GsuitAfrica.Model.UpdateDirectory;
 import com.bussinesscom.Africa.GsuitAfrica.Model.myUser;
+import com.bussinesscom.Africa.GsuitAfrica.Repository.DomainRepository;
+import com.bussinesscom.Africa.GsuitAfrica.Repository.UserAppRepositiry;
 import com.bussinesscom.Africa.GsuitAfrica.ServiceAccount.ContactApiService;
 import com.bussinesscom.Africa.GsuitAfrica.ServiceAccount.SercicesAccounts;
 import com.bussinesscom.Africa.GsuitAfrica.Utils.Utilities;
@@ -37,9 +46,41 @@ public class UserManagment {
 	Gmail serviceGmail;
 	List<User> users;
 	
-	@RequestMapping("usermanagment")
-	public String getUserManagmentPage(Model model) throws IOException, GeneralSecurityException, URISyntaxException 
+	@Autowired
+	UserAppRepositiry userrepo;
+	
+	@Autowired
+	DomainRepository domainRepositry;
+	
+	@Autowired 
+	UserAppRepositiry userRepository;
+	
+	
+	
+	@RequestMapping("Gsuit/login")
+	public String getUserLogin(Model model) throws IOException, GeneralSecurityException, URISyntaxException 
 	{
+		return "login";
+		
+	}
+	
+	
+	@RequestMapping("usermanagment/{userId}")
+	public String getUserManagmentPage(@PathVariable("userId") String userId,Model model) throws IOException, GeneralSecurityException, URISyntaxException 
+	{
+
+		Optional<UserApp> user=userrepo.findById(userId);
+		String loginEmail=user.get().getEmail();
+		String[] domain=loginEmail.split("@");
+		Domain userDomain= domainRepositry.findByDomainName(domain[1]);
+		Company comp=userDomain.getCompany();
+		comp.getPackages();	
+		model.addAttribute("servicesAcess",comp.getPackages().getServices());
+		model.addAttribute("package",comp.getPackages().getName());
+		 model.addAttribute("userName", ""+user.get().getLastName()+" "+user.get().getFirstName());		
+		 model.addAttribute("image", ""+user.get().getImageUrl()+"?ln=california-layout");
+		 
+		
 		serviceDirect=SercicesAccounts.getDirectoryServices("edwin@dev.businesscom.dk");	
 		
 		com.google.api.services.admin.directory.model.Users result = serviceDirect.users().list()

@@ -7,6 +7,7 @@ public class UpdateDirectory {
 	private String fullname;
 	private String familyname;
 	private String emailAdress;
+	private String imageUrl;
 	
 	public String getGivenName() {
 		return givenName;
@@ -38,5 +39,18 @@ public class UpdateDirectory {
 	public void setFamilyname(String familyname) {
 		this.familyname = familyname;
 	}
+	public String getImageUrl() {
+		return imageUrl;
+	}
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+	@Override
+	public String toString() {
+		return "UpdateDirectory [id=" + id + ", givenName=" + givenName + ", fullname=" + fullname + ", familyname="
+				+ familyname + ", emailAdress=" + emailAdress + ", imageUrl=" + imageUrl + "]";
+	}
+	
+	
 
 }
