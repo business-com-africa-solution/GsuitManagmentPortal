@@ -2,18 +2,18 @@ package com.bussinesscom.Africa.GsuitAfrica.AutoComplet;
 
 public class DataTest {
   private String value;
-  private Integer data;
+  private Double data;
 
-  public DataTest(String name,Integer data) {
+  public DataTest(String name,Double data) {
     this.value = name;
     this.data = data;
   }
 
-  public Integer getData() {
+  public Double getData() {
     return data;
   }
 
-  public void setData(Integer data) {
+  public void setData(Double data) {
     this.data = data;
   }
 

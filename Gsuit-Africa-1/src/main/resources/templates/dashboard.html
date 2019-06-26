@@ -161,7 +161,7 @@
 							</a></li>
 
 							<li th:if="${Services.getUserManegment()}" id="menuform:om_doc"
-								role="menuitem"><a href="docs.html"><i
+								role="menuitem"><a th:href="@{/DriveAnalysis/}+${userId}"><i
 									class="fa fa-fw fa-hdd-o"></i><span>Drive Analysis</span></a></li>
 
 

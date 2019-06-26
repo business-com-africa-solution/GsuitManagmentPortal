@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<!-- Mirrored from www.primefaces.org/california/data.xhtml by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 03 Apr 2019 13:07:24 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
+<head id="j_idt2">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link type="text/css" rel="stylesheet"
+		href="/javax.faces.resource/theme.css9e5e.css?ln=primefaces-california-blue" />
+	<link type="text/css" rel="stylesheet"
+		href="/javax.faces.resource/fa/font-awesome.css408e.css?ln=primefaces&amp;v=6.2" />
+	<link type="text/css" rel="stylesheet"
+		href="/javax.faces.resource/components.css408e.css?ln=primefaces&amp;v=6.2" />
+	<link type="text/css" rel="stylesheet"
+		href="/javax.faces.resource/css/nanoscroller.cssb45c.css?ln=california-layout" />
+	<link type="text/css" rel="stylesheet"
+		href="/javax.faces.resource/css/layout-blue.cssb45c.css?ln=california-layout" />
+	<title>Data</title>
+
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript" th:inline="javascript">
+		google.charts.load('current', { 'packages': ['corechart'] });
+		google.charts.setOnLoadCallback(drawVisualization);
+
+		function drawVisualization() {
+			// Some raw data (not necessarily accurate)
+			var data = google.visualization.arrayToDataTable([
+				['Month', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua', 'Rwanda', 'Average'],
+				['2004/05', 165, 938, 522, 998, 450, 614.6],
+				['2005/06', 135, 1120, 599, 1268, 288, 482],
+				['2006/07', 157, 1167, 587, 807, 397, 623],
+				['2007/08', 139, 1110, 615, 968, 215, 609.4],
+				['2008/09', 136, 691, 629, 1026, 366, 769.6],
+				['2008/09', 136, 691, 629, 1026, 366, 569.6],
+				['2008/09', 136, 691, 629, 1026, 366, 369.6],
+				['2008/09', 136, 691, 629, 1026, 366, 169.6],
+				['2008/09', 136, 691, 629, 1026, 366, 69.6]
+
+			]);
+
+			var options = {
+				title: 'Monthly Coffee Production by Country',
+				vAxis: { title: 'Cups' },
+				hAxis: { title: 'Month' },
+				seriesType: 'bars',
+				series: { 5: { type: 'line' } }
+			};
+
+			var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+			chart.draw(data, options);
+		}
+
+		google.charts.load("current", { packages: ["corechart"] });
+		google.charts.setOnLoadCallback(drawChart);
+		function drawChart() {
+
+			var storageQuota =/*[[${StorageQuota}]]*/[];
+
+			console.log("OUT data-------" + storageQuota);
+
+			var data = new google.visualization.DataTable();
+			// assumes "word" is a string and "count" is a number
+			data.addColumn('string', 'value');
+			data.addColumn('number', 'data');
+
+			for (var i = 0; i < storageQuota.length; i++) {
+
+				data.addRow([storageQuota[i].value, storageQuota[i].data]);
+			}
+
+
+			var options = {
+				title: 'DRIVE STORAGE ANALYSIS',
+				is3D: true
+			};
+			var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+			chart.draw(data, options);
+
+
+		}
+
+		// third
+
+// 		google.charts.load("current", {packages:["corechart"]});
+//     google.charts.setOnLoadCallback(drawChart);
+//     function drawChart() {
+//       var data = google.visualization.arrayToDataTable([
+//         ["Element", "Density", { role: "style" } ],
+//         ["Copper", 8.94, "#b87333"],
+//         ["Silver", 10.49, "silver"],
+//         ["Gold", 19.30, "gold"],
+//         ["Platinum", 21.45, "color: #e5e4e2"]
+//       ]);
+
+//       var view = new google.visualization.DataView(data);
+//       view.setColumns([0, 1,
+//                        { calc: "stringify",
+//                          sourceColumn: 1,
+//                          type: "string",
+//                          role: "annotation" },
+//                        2]);
+
+//       var options = {
+//         title: "Density of Precious Metals, in g/cm^3",
+//         width: 600,
+//         height: 400,
+//         bar: {groupWidth: "95%"},
+//         legend: { position: "none" },
+//       };
+//       var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
+//       chart.draw(view, options);
+//   }
+
+	</script>
+
+</head>
+
+<body class="main-body">
+
+
+	<div class="layout-main">
+		<div class="ui-fluid">
+			<div class="ui-g">
+				<div class="ui-g-12 ui-md-12">
+					<div id="chart_div" style="height: 300px;"></div>
+				</div>
+				<div class="ui-g-12 ui-md-4">
+					<div id="donutchart" style="height: 300px;"></div>
+				</div>
+				<div class="ui-g-12 ui-md-6">
+					<!-- <div id="barchart_values" style="height: 500px;"></div> -->
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+
+
+</body>
+
+
+<!-- Mirrored from www.primefaces.org/california/data.xhtml by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 03 Apr 2019 13:07:26 GMT -->
+
+</html>

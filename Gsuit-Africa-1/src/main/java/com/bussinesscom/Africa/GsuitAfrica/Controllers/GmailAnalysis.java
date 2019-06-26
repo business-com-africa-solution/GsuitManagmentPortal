@@ -20,10 +20,13 @@ public class GmailAnalysis {
 	@RequestMapping("GmailAnalysis/{userId}")
 	public String getGmailAnalysis(@PathVariable("userId") String userId, Model model,final HttpServletRequest request) {
 		
-		List<DataTest> data=new ArrayList<DataTest>();
-		data.add(new DataTest("",1));
+//		List<DataTest> data=new ArrayList<DataTest>();
+//		data.add(new DataTest("",1));
+//		data.add(new DataTest("",32));
+//		data.add(new DataTest("",43));
+//		data.add(new DataTest("",46));
 		
-		model.addAttribute("data", data);
+//		model.addAttribute("data", data);
 		return "data";
 		
 	}
