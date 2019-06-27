@@ -116,8 +116,7 @@ public class DriveAnalysis {
 				            .setCustomer("my_customer")
 				            .setMaxResults(10)
 				            .setOrderBy("email")
-				            .execute();
-							
+				            .execute();		
 				   List<User> users = result.getUsers(); 
 				    
 				   for (int i = 0; i < users.size(); i++) {
