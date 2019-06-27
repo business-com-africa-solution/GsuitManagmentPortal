@@ -110,7 +110,6 @@ public class DriveAnalysis {
 	@RequestMapping("DriveAnalysis/{userId}")
 	public String EntireOrganization(@PathVariable("userId") String userId, Model model)
 			throws GeneralSecurityException, IOException, URISyntaxException {
-		
 					Directory serviceDirect=SercicesAccounts.getDirectoryServices("edwin@dev.businesscom.dk");	
 					
 					com.google.api.services.admin.directory.model.Users result = serviceDirect.users().list()
