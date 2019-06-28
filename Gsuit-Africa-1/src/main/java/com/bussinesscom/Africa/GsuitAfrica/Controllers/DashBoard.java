@@ -87,6 +87,10 @@ import com.google.api.services.people.v1.PeopleService;
 import com.google.api.services.people.v1.PeopleServiceScopes;
 import com.google.api.services.people.v1.model.ListConnectionsResponse;
 import com.google.api.services.people.v1.model.Person;
+import com.google.api.services.reseller.Reseller;
+import com.google.api.services.reseller.ResellerScopes;
+import com.google.api.services.reseller.model.Subscription;
+import com.google.api.services.reseller.model.Subscriptions;
 import com.google.gdata.client.Query;
 import com.google.gdata.client.contacts.ContactsService;
 import com.google.gdata.data.Link;
@@ -178,6 +182,28 @@ public class DashBoard {
 
 //				request.getUserPrincipal().getName();
 
+			
+//			Reseller service = new Reseller.Builder(httpTransport, JSON_FACTORY, null).setHttpRequestInitializer(credential)
+//					.setApplicationName("Gsuit").build();
+//			
+//			Subscriptions result = service.subscriptions().list()
+//	                
+//	                .execute();
+//			
+//	        List<Subscription> subscriptions = result.getSubscriptions();
+//	        if (subscriptions == null || subscriptions.size() == 0) {
+//	            System.out.println("No subscriptions found.");
+//	        } else {
+//	            System.out.println("Subscriptions:");
+//	            for (Subscription sub : subscriptions) {
+//	                System.out.printf("%s (%s, %s)\n",
+//	                        sub.getCustomerId(),
+//	                        sub.getSkuId(),
+//	                        sub.getPlan().getPlanName());
+//	            }
+//	        }
+	        
+			  
 			System.out.println("profile Refreshed-------------------------" + profile);
 			
 			
@@ -398,6 +424,7 @@ public class DashBoard {
 		permisions.add(GmailScopes.GMAIL_READONLY); 
 		permisions.add("profile");
 		permisions.add("https://www.googleapis.com/auth/plus.login");
+		permisions.add(ResellerScopes.APPS_ORDER);
 		
 		return permisions;
 

@@ -86,13 +86,18 @@
 			<version>v1-rev151-1.25.0</version>
 		</dependency>
 
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.google.cloud</groupId>
 			<artifactId>google-cloud-bigquery</artifactId>
 			<version>1.65.0</version>
-		</dependency>
+		</dependency> -->
 
-		<dependency>
+		<!-- <dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-gcp-starter-sql-postgresql</artifactId>
+		</dependency> -->
+
+		<!-- <dependency>
 			<groupId>com.google.cloud</groupId>
 			<artifactId>google-cloud-storage</artifactId>
 			<version>1.65.0</version>
@@ -102,7 +107,7 @@
 			<groupId>com.google.auth</groupId>
 			<artifactId>google-auth-library-oauth2-http</artifactId>
 			<version>0.13.0</version>
-		</dependency>
+		</dependency> -->
 
 
 		<dependency>
@@ -153,6 +158,7 @@
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -166,10 +172,8 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
-		</dependency> 
-		
-		<!-- https://mvnrepository.com/artifact/org.springframework.webflow/spring-webflow -->
-		
+		</dependency>
+
 
 		<!-- https://mvnrepository.com/artifact/javax.inject/javax.inject -->
 		<dependency>
@@ -178,6 +182,23 @@
 			<version>1</version>
 		</dependency>
 
+	<!-- 	<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-gcp-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-gcp-starter-storage</artifactId>
+		</dependency> -->
+		
+		<!-- https://mvnrepository.com/artifact/com.google.apis/google-api-services-reseller -->
+		<dependency>
+		    <groupId>com.google.apis</groupId>
+		    <artifactId>google-api-services-reseller</artifactId>
+		    <version>v1-rev68-1.18.0-rc</version>
+		</dependency>
+				
+				
 	</dependencies>
 
 	<build>
@@ -189,4 +210,15 @@
 		</plugins>
 	</build>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Greenwich.SR1</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>
