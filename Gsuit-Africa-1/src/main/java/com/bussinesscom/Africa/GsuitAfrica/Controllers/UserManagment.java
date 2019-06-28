@@ -19,11 +19,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bussinesscom.Africa.GsuitAfrica.Entity.Company;
 import com.bussinesscom.Africa.GsuitAfrica.Entity.Domain;
+import com.bussinesscom.Africa.GsuitAfrica.Entity.RoleAccess;
 import com.bussinesscom.Africa.GsuitAfrica.Entity.UserApp;
+import com.bussinesscom.Africa.GsuitAfrica.Entity.UserRole;
 import com.bussinesscom.Africa.GsuitAfrica.Model.UpdateDirectory;
 import com.bussinesscom.Africa.GsuitAfrica.Model.myUser;
 import com.bussinesscom.Africa.GsuitAfrica.Repository.DomainRepository;
 import com.bussinesscom.Africa.GsuitAfrica.Repository.UserAppRepositiry;
+import com.bussinesscom.Africa.GsuitAfrica.Repository.UserRoleRepository;
 import com.bussinesscom.Africa.GsuitAfrica.ServiceAccount.ContactApiService;
 import com.bussinesscom.Africa.GsuitAfrica.ServiceAccount.SercicesAccounts;
 import com.bussinesscom.Africa.GsuitAfrica.Utils.Utilities;
@@ -55,6 +58,10 @@ public class UserManagment {
 	@Autowired 
 	UserAppRepositiry userRepository;
 	
+	@Autowired
+	UserRoleRepository userRoleRepository;
+	
+	
 	
 	
 	@RequestMapping("Gsuit/login")
@@ -70,6 +77,24 @@ public class UserManagment {
 	{
 
 		Optional<UserApp> user=userrepo.findById(userId);
+		
+		List<UserRole> role=userRoleRepository.findByUserApp(user);	
+		RoleAccess displayRoleAccessService=role.get(0).getRole().getRoleAcess();
+		role.get(0).getRole().getRoleAcess().getCreateUserManagment();
+		role.get(0).getRole().getRoleAcess().getUpdateUserManagment();
+		role.get(0).getRole().getRoleAcess().getDeleteUserManagment();
+		
+		model.addAttribute("update",displayRoleAccessService.getUpdateUserManagment());
+		model.addAttribute("delete",displayRoleAccessService.getDeleteUserManagment());
+		System.out.println("DENIED---------"+Boolean.valueOf(displayRoleAccessService.getDeleteUserManagment().equals(false)&&displayRoleAccessService.getUpdateUserManagment().equals(false)));
+		if (Boolean.valueOf(displayRoleAccessService.getDeleteUserManagment().equals(false)&&displayRoleAccessService.getUpdateUserManagment().equals(false))) {
+			model.addAttribute("acessdenied",false);		
+		}
+		else {
+			model.addAttribute("acessdenied",true);
+		}
+		
+		
 		String loginEmail=user.get().getEmail();
 		String[] domain=loginEmail.split("@");
 		Domain userDomain= domainRepositry.findByDomainName(domain[1]);

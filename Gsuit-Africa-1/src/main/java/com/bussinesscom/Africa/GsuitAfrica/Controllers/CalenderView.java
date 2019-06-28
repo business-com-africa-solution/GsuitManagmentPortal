@@ -6,14 +6,21 @@ import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.bussinesscom.Africa.GsuitAfrica.Entity.CalenderAppointmentSlot;
+import com.bussinesscom.Africa.GsuitAfrica.Entity.UserApp;
+import com.bussinesscom.Africa.GsuitAfrica.Model.Appointments;
 import com.bussinesscom.Africa.GsuitAfrica.Model.Clients;
 import com.bussinesscom.Africa.GsuitAfrica.Model.MyEvents;
+import com.bussinesscom.Africa.GsuitAfrica.Model.UpdateDirectory;
+import com.bussinesscom.Africa.GsuitAfrica.Repository.CalenderAppointmentSlotRepository;
+import com.bussinesscom.Africa.GsuitAfrica.Repository.UserAppRepositiry;
 import com.bussinesscom.Africa.GsuitAfrica.ServiceAccount.SercicesAccounts;
 import com.bussinesscom.Africa.GsuitAfrica.Utils.Utilities;
 import com.google.api.client.util.DateTime;
@@ -28,6 +35,29 @@ import com.google.api.services.gmail.Gmail;
 @Controller
 public class CalenderView {
 
+	
+	@Autowired
+	UserAppRepositiry userRepository;
+	@Autowired
+	CalenderAppointmentSlotRepository calenderAppointmentRepository;
+	
+	String URL="http://businesscomtest.ddns.net/";
+	
+
+	@RequestMapping("calendersettings/{email}")
+	public String CalenderSettings(@PathVariable("email") String email, Model model)
+			throws IOException, GeneralSecurityException, URISyntaxException {
+		UpdateDirectory dataUpdate=new UpdateDirectory();
+		model.addAttribute("updateuser",dataUpdate);
+		
+		Appointments appintments=new Appointments();
+		userRepository.findAll();
+		
+		
+		return "calendersettings";
+	}
+	
+	
 	@RequestMapping("calenderppointment/{email}")
 	public String postTesting(@PathVariable("email") String email, Model model)
 			throws IOException, GeneralSecurityException, URISyntaxException {
@@ -51,9 +81,7 @@ public class CalenderView {
 		System.out.println("comming ---------------" + email);
 
 		email = "" + user.getPrimaryEmail();
-
 		Calendar service = SercicesAccounts.getCalenderService("" + email + "");
-
 		DateTime now = new DateTime(System.currentTimeMillis());
 		
 		
@@ -93,7 +121,7 @@ public class CalenderView {
 	}
 	
 	
-	@PostMapping("updateCalenderSignature")
+	@RequestMapping("updateCalenderSignature")
 	public String createLinksForAll(Model model) throws GeneralSecurityException, IOException, URISyntaxException
 	{
 		Directory direct = SercicesAccounts.getDirectoryServices("edwin@dev.businesscom.dk");
@@ -117,16 +145,22 @@ public class CalenderView {
             	Gmail gmail=SercicesAccounts.getGmailService(user.getId());
             	com.google.api.services.gmail.model.SendAs sendAs=gmail.users().settings().sendAs().get(user.getPrimaryEmail(), user.getPrimaryEmail()).execute();
             	
-            	String link="http://localhost:8080/calenderppointment/"+user.getPrimaryEmail()+"/";
-        		
-            	if(user.getPrimaryEmail().equals("edwin@dev.businesscom.dk")) 
-        		{
-        			String signature=sendAs.getSignature();
-        			System.out.println("signature:--- : \n"+signature);
-
-        		}
+            	String link=URL+"/calenderppointment/"+user.getPrimaryEmail()+"/";
+            	UserApp userxx =new UserApp();
+            	CalenderAppointmentSlot calenderAppointment=new CalenderAppointmentSlot();
+            	
+            	userxx.setId(user.getId());
         		
         		System.out.println(" \n"+link+"\n");
+        		
+        		String calenderAppointmentHtml="        <div style=\"margin-top:5px\">\n" + 
+        				"            <hr>\n" + 
+        				"            <p ><span style=\"color: blue;margin-left: 20px;font-family: initial\">Click to Request For An Appoint</span></p>\n" + 
+        				"            <a href=\""+link+"\"height=\"50px\" width=\"180px\" target=\"_blank\">\n" + 
+        				"            <img  alt=\"W3Schools\" src=\"http://www.purebridaliowa.com/wp-content/uploads/2019/02/appointment-request-icon.57110256_std.png\" width=\"250px\" height=\"70px\"></a>\n" + 
+        				"        </div>";
+        		
+        		
         		String sig="<div dir=\"ltr\"><div>                    <div dir=\"ltr\">\n" + 
         				"                <div style=\"display:inline-block;float:left;margin-right:30px\">\n" + 
         				"                        <a href=\"#SignatureSanitizer_SafeHtmlFilter_\"><img src=\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfvoNQxfykTAf2ZsAPVn0HRZALNxDJOh2CDUgesL1R7XZ-iH4O\" width=\"200\" height=\"100\"></a>\n" + 
@@ -158,21 +192,25 @@ public class CalenderView {
         				"      </div>   \n" + 
         				"</div></div>\n" + 
         				"";
-            	
-
-            	
+          
             	
             	com.google.api.services.gmail.model.SendAs sendc=new com.google.api.services.gmail.model.SendAs();
 //            	sendc.setSignature("<div>"+signature+"<div/>"+""+"<div>"+myCalender+"<div/>");
-            	sendc.setSignature(sig);
+            	sendc.setSignature(calenderAppointmentHtml);
             			
             	gmail.users().settings().sendAs().update(user.getId(), user.getPrimaryEmail(), sendc).execute();
+  
+            	calenderAppointment.setAppointmentActive(false);
+            	calenderAppointment.setId(user.getId());
+            	calenderAppointment.setCompanyId(1);
+            	calenderAppointmentRepository.saveAndFlush(calenderAppointment);
+            	
             	
             }
         }
         
 	
-		return "calendersetting";
+		return "calendersettings";
 		
 	}
 

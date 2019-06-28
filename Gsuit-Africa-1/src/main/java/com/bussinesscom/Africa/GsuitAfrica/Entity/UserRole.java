@@ -19,5 +19,24 @@ public class UserRole {
 	private UserApp userApp;
 	@ManyToOne
 	private Role role;
+	public Integer getId() {
+		return Id;
+	}
+	public void setId(Integer id) {
+		Id = id;
+	}
+	public UserApp getUserApp() {
+		return userApp;
+	}
+	public void setUserApp(UserApp userApp) {
+		this.userApp = userApp;
+	}
+	public Role getRole() {
+		return role;
+	}
+	public void setRole(Role role) {
+		this.role = role;
+	}
 
+	
 }

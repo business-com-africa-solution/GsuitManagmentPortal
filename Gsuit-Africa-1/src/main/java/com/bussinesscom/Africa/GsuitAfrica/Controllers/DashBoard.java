@@ -45,11 +45,17 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.bussinesscom.Africa.GsuitAfrica.Entity.Company;
 import com.bussinesscom.Africa.GsuitAfrica.Entity.Domain;
 import com.bussinesscom.Africa.GsuitAfrica.Entity.Notification;
+import com.bussinesscom.Africa.GsuitAfrica.Entity.Role;
+import com.bussinesscom.Africa.GsuitAfrica.Entity.RoleAccess;
+import com.bussinesscom.Africa.GsuitAfrica.Entity.Services;
 import com.bussinesscom.Africa.GsuitAfrica.Entity.UserApp;
+import com.bussinesscom.Africa.GsuitAfrica.Entity.UserRole;
 import com.bussinesscom.Africa.GsuitAfrica.Model.myContact;
 import com.bussinesscom.Africa.GsuitAfrica.Repository.DomainRepository;
 import com.bussinesscom.Africa.GsuitAfrica.Repository.NotificationRepository;
 import com.bussinesscom.Africa.GsuitAfrica.Repository.UserAppRepositiry;
+import com.bussinesscom.Africa.GsuitAfrica.Repository.UserRoleRepository;
+import com.bussinesscom.Africa.GsuitAfrica.Repository.roleRepository;
 //import com.bussinesscom.Africa.GsuitAfrica.Security.AuthenticationManagers;
 import com.bussinesscom.Africa.GsuitAfrica.ServiceAccount.SercicesAccounts;
 import com.google.api.client.auth.oauth2.AuthorizationCodeRequestUrl;
@@ -128,6 +134,10 @@ public class DashBoard {
 //	
 	@Autowired 
 	UserAppRepositiry userRepository;
+	
+	
+	@Autowired
+	UserRoleRepository userRoleRepository;
 	
 	@Autowired
 	DomainRepository domainRepositry;
@@ -246,14 +256,46 @@ public class DashBoard {
 	public String loginDashBoard(@PathVariable("loginId") String loginId, Model model,final HttpServletRequest request)
 			throws IOException, ServiceException, GeneralSecurityException, URISyntaxException {
 		
-		Optional<UserApp> user=userRepository.findById(loginId);	
+		Optional<UserApp> user=userRepository.findById(loginId);
+		List<UserRole> role=userRoleRepository.findByUserApp(user);
 		List<Notification> notifications=notificationRepositry.findByUserApp(user);
-				
+	
 		String loginEmail=user.get().getEmail();
 		String[] domain=loginEmail.split("@");
 		Domain userDomain= domainRepositry.findByDomainName(domain[1]);
 		Company comp=userDomain.getCompany();
 		comp.getPackages();
+		
+		RoleAccess rolesAcesses=role.get(0).getRole().getRoleAcess();
+		Services DisplayRoleAccessService=new Services();
+		
+		
+		Boolean billing=rolesAcesses.getBilling().equals(comp.getPackages().getServices().getBilling());
+		DisplayRoleAccessService.setBilling(billing);
+		
+		Boolean signature=  rolesAcesses.getSignature().equals(comp.getPackages().getServices().getSignature());
+		DisplayRoleAccessService.setSignature(signature);
+		
+		Boolean  emailAnalysis=rolesAcesses.getEmailAnalysis().equals(comp.getPackages().getServices().getEmailAnalysis());
+		DisplayRoleAccessService.setEmailAnalysis(emailAnalysis);
+		
+		Boolean  driveAnalysis =rolesAcesses.getDriveAnalysis().equals(comp.getPackages().getServices().getDriveAnalysis());
+		DisplayRoleAccessService.setDriveAnalysis(driveAnalysis);
+		
+		Boolean  calenderApointment=rolesAcesses.getCalenderApointment().equals(comp.getPackages().getServices().getCalenderApointment());
+		DisplayRoleAccessService.setCalenderApointment(calenderApointment);
+		
+		Boolean  hr=rolesAcesses.getHr().equals(comp.getPackages().getServices().getHr());
+		DisplayRoleAccessService.setHr(hr);
+		
+		Boolean  maildelegation=rolesAcesses.getMaildelegation().equals(comp.getPackages().getServices().getMaildelegation());
+		DisplayRoleAccessService.setMaildelegation(maildelegation); 
+		
+		Boolean userManegment=  rolesAcesses.getUserManegment().equals(comp.getPackages().getServices().getUserManegment());
+		DisplayRoleAccessService.setUserManegment(userManegment);
+		
+	
+		
 		
 		System.out.println("Comapany"+comp.getName());
 		System.out.println("Domain"+userDomain.getDomainName());
@@ -262,20 +304,14 @@ public class DashBoard {
 		System.out.println("notifications--------"+notifications.size());
 			
 		model.addAttribute("notifications",notifications );
-		model.addAttribute("servicesAcess",comp.getPackages().getServices());
+		model.addAttribute("servicesAcess",DisplayRoleAccessService);
 		model.addAttribute("package",comp.getPackages().getName());
-		
-		
-		
-		
 
-		
 //		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			 
 		 model.addAttribute("userName", ""+user.get().getLastName()+" "+user.get().getFirstName());		
 		 model.addAttribute("image", ""+user.get().getImageUrl()+"?ln=california-layout");
 		 model.addAttribute("userId", loginId);
-		 
 	
 		Gmail myGoogleGmailService;
 		Drive myGoogleDriveService;
@@ -286,15 +322,13 @@ public class DashBoard {
 		myGoogleDriveService = SercicesAccounts.getDriveService(loginEmail);
 		myGoogleCalendarService = SercicesAccounts.getCalenderService(loginEmail);
 		contactsService = SercicesAccounts.getconnect(loginEmail);
-
 		
 //		Messages And Profile
 		Profile myProfile = myGoogleGmailService.users().getProfile(userId).execute();
 		List<String> labelIds = new ArrayList<String>();
 		labelIds.add("UNREAD");
 		labelIds.add("INBOX");
-		int unReadMessages = myGoogleGmailService.users().messages().list(userId).setLabelIds(labelIds).execute()
-				.size();
+		int unReadMessages = myGoogleGmailService.users().messages().list(userId).setLabelIds(labelIds).execute().size();
 
 		model.addAttribute("unreadInbox", unReadMessages);
 		model.addAttribute("userEmail", myProfile.getEmailAddress());
@@ -322,7 +356,6 @@ public class DashBoard {
 
 				System.out.print("\n");
 			}
-
 		}
 		model.addAttribute("myContacts", contactsSize);
 		model.addAttribute("frequentcontactslist", myContactList);
@@ -362,7 +395,7 @@ public class DashBoard {
 	public static List<String> permissions() {
 
 		List<String> permisions = new ArrayList<>();
-		 permisions.add(GmailScopes.GMAIL_READONLY); 
+		permisions.add(GmailScopes.GMAIL_READONLY); 
 		permisions.add("profile");
 		permisions.add("https://www.googleapis.com/auth/plus.login");
 		

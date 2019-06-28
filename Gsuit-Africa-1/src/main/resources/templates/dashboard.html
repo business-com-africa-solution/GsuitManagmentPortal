@@ -129,10 +129,9 @@
 							th:each="Services : ${servicesAcess}">
 
 
-
 							<li th:if="${Services.getUserManegment()}" id="menuform:om_doc"
 								role="menuitem" style="list-style-type: none;"><a
-								th:href="@{/usermanagment}+${userId}"> <i
+								th:href="@{/usermanagment/}+${userId}"> <i
 									class="fa fa-cogs fa-1x"></i><span>User Management </span></a></li>
 
 
@@ -142,13 +141,13 @@
 										settings</span>
 							</a></li>
 
-							<li id="menuform:om_dashboard" role="menuitem"><a
+							<li th:if="${Services.getMaildelegation()}" id="menuform:om_dashboard" role="menuitem"><a
 								th:href="@{/Delegation/}+${userId}"><i
 									class="fa fa-handshake-o"></i><span>Account Delegation</span></a></li>
 
-								<li id="menuform:om_doc" role="menuitem"
+								<li th:if="${Services.getCalenderApointment()}" id="menuform:om_doc" role="menuitem"
 								style="list-style-type: none;"><a
-								th:href="@{calendersetting}"> <i
+								th:href="@{/calendersettings/}+${userId}"> <i
 									class="fa fa-fw fa-calendar fa-1x"></i><span>Calendar
 										settings</span></a></li>
 
@@ -160,7 +159,7 @@
 
 							</a></li>
 
-							<li th:if="${Services.getUserManegment()}" id="menuform:om_doc"
+							<li th:if="${Services.getDriveAnalysis()}" id="menuform:om_doc"
 								role="menuitem"><a th:href="@{/DriveAnalysis/}+${userId}"><i
 									class="fa fa-fw fa-hdd-o"></i><span>Drive Analysis</span></a></li>
 
@@ -172,7 +171,7 @@
 								role="menuitem"><a href="docs.html"><i
 									class="fa fa-fw fa-folder-open-o"></i><span>HR Reports</span></a></li>
 
-							<li th:if="${Services.getHr()}" id="menuform:om_doc"
+							<li th:if="${Services.getBilling()}" id="menuform:om_doc"
 								role="menuitem"><a href="docs.html"><i
 									class="fa fa-fw fa-folder-open-o"></i><span>Billing
 										Reports</span></a></li>

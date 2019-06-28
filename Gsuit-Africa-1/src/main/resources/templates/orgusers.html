@@ -43,7 +43,25 @@
 	src="/javax.faces.resource/js/nanoscroller.jsb45c.xhtml?ln=california-layout"></script>
 <script type="text/javascript"
 	src="/javax.faces.resource/js/layout.jsb45c.xhtml?ln=california-layout"></script>
+
+<script>
+function validate(form) {
+
+    // validation code here ...
+
+
+    if(!valid) {
+        alert('Please correct the errors in the form!');
+        return false;
+    }
+    else {
+        return confirm('Do you really want to submit the form?');
+    }
+}
+</script>
+
 </head>
+
 
 <body class="main-body">
 
@@ -412,7 +430,7 @@
 															class="ui-state-default ui-sortable-column"
 															role="columnheader" aria-label="Brand" scope="col"><span
 															class="ui-column-title">Role</span></th>
-														<th id="j_idt79:j_idt131:j_idt139"
+														<th th:if="${acessdenied}" id="j_idt79:j_idt131:j_idt139"
 															class="ui-state-default ui-sortable-column"
 															role="columnheader" aria-label="Color" scope="col"><span
 															class="ui-column-title">Update</span></th>
@@ -426,19 +444,20 @@
 														<td role="gridcell" th:text="${User.name.getFullName()}"
 															style="width: 100px;"></td>
 														<td role="gridcell" th:text="${User.getIsAdmin()}"></td>
-														<td role="gridcell">
-														<div class="ui-g-12 ui-md-4" >
-														<a  class="fa fa-fw fa-user-circle fa-1x"
-															th:href="@{/viewProfile/} + ${User.getId()}" style="color: green;" aria-hidden="true"> <span style="color: black;">Profile</span></a>
+														<td th:if="${acessdenied}" role="gridcell">
+														<div th:if="${update}" class="ui-g-12 ui-md-6" style="background-color: green;" >
+														<!-- <a  class="fa fa-fw fa-user-circle fa-1x"
+															th:href="@{/viewProfile/} + ${User.getId()}" style="color: green;" type="button" aria-hidden="true"> <span style="color: black;">Profile</span></a>
+															 -->
+															<form onSubmit="return confirm('Are you sure you wish to delete?');" action="@{/viewProfile/} + ${User.getId()}">
+																<button type="submit">submit</button>
+															</form>
 														</div>
-														<div class="ui-g-12 ui-md-4" >
-													    <a class="fa fa-fw fa-user-times fa-1x"
-															th:href="@{/deleteUser/} + ${User.getId()}" style="color: red;"> <span style="color: black;">Delete</span></a>		
+														<div th:if="${delete}" class="ui-g-12 ui-md-6" style="background-color: red;" >
+													    <a class="fa fa-fw fa-user-times fa-1x" type="button"
+															th:href="@{/deleteUser/} + ${User.getId()}" style="color: red;" > <span style="color: black;">Delete</span></a>		
 														</div>			
-														<div class="ui-g-12 ui-md-4">
-													    <a class="fa fa-fw fa-user-secret fa-1x" style="color: orange;"
-															th:href="@{/delegate/} + ${User.getId()}"> <span style="color: black;">Delegate</span></a>
-														</div>
+													
 														</td>
 													
 													</tr>
@@ -447,10 +466,7 @@
 												</tbody>
 											</table>
 										</div>
-										<input type="hidden" id="j_idt79:j_idt131_selection"
-											name="j_idt79:j_idt131_selection" autocomplete="off" value="" />
 									</div>
-									<script id="j_idt79:j_idt131_s" type="text/javascript">$(function () { PrimeFaces.cw("DataTable", "widget_j_idt79_j_idt131", { id: "j_idt79:j_idt131", selectionMode: "single", reflow: true, groupColumnIndexes: [] }); });</script>
 								</div>
 							</div>
 
@@ -464,7 +480,7 @@
 				</form>
 			</div>
 
-			----
+			
 			<FOOTER></FOOTER>
 			<div class="layout-footer ui-g-12">
 				<div class="ui-g">

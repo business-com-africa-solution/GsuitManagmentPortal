@@ -24,7 +24,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class UserApp {
-	@GeneratedValue
+	
 	@Id
 	@Column(name = "ID")
 	private String id;

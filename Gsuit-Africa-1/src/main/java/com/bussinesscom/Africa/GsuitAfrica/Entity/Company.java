@@ -14,6 +14,8 @@ public class Company {
 	private Integer companyId;
 	private String name;
 	private String description;
+	private String Logo;
+	private String Address;
 //	@ManyToOne
 //	private SignatureTemplate signature;
 //	@ManyToOne

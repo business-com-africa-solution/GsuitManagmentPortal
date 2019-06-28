@@ -25,45 +25,56 @@ public class Role {
 	private RoleAccess roleAcess;   
     @ManyToOne
 	private MarkerChecker markerchcker;
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public Long getCreatedOn() {
+		return createdOn;
+	}
+	public void setCreatedOn(Long createdOn) {
+		this.createdOn = createdOn;
+	}
+	public Long getModifiedOn() {
+		return modifiedOn;
+	}
+	public void setModifiedOn(Long modifiedOn) {
+		this.modifiedOn = modifiedOn;
+	}
+	public RoleAccess getRoleAcess() {
+		return roleAcess;
+	}
+	public void setRoleAcess(RoleAccess roleAcess) {
+		this.roleAcess = roleAcess;
+	}
+	public MarkerChecker getMarkerchcker() {
+		return markerchcker;
+	}
+	public void setMarkerchcker(MarkerChecker markerchcker) {
+		this.markerchcker = markerchcker;
+	}
+	@Override
+	public String toString() {
+		return "Role [id=" + id + ", name=" + name + ", description=" + description + ", createdOn=" + createdOn
+				+ ", modifiedOn=" + modifiedOn + ", roleAcess=" + roleAcess + ", markerchcker=" + markerchcker + "]";
+	}
+	
+	
+
 
     
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public Long getCreatedOn() {
-        return createdOn;
-    }
-
-    public void setCreatedOn(Long createdOn) {
-        this.createdOn = createdOn;
-    }
-
-    public Long getModifiedOn() {
-        return modifiedOn;
-    }
-
-    public void setModifiedOn(Long modifiedOn) {
-        this.modifiedOn = modifiedOn;
-    }
 }
