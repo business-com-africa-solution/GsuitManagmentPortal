@@ -1,27 +1,25 @@
-apiVersion: extensions/v1beta1
-kind: Deployment
-metadata:
-  name: postgres
-spec:
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: postgres
-    spec:
-      containers:
-        - name: postgres
-          image: postgres:10.4
-          imagePullPolicy: "IfNotPresent"
-          ports:
-            - containerPort: 5432
-          envFrom:
-            - configMapRef:
-                name: postgres-config
-          volumeMounts:
-            - mountPath: /var/lib/postgresql/data
-              name: postgredb
-      volumes:
-        - name: postgredb
-          persistentVolumeClaim:
-            claimName: postgres-pv-claim
+#apiVersion: extensions/v1beta1
+#kind: Deployment
+#metadata:
+#  name: postgres
+#spec:
+#  replicas: 1
+#  template:
+#    metadata:
+#      labels:
+#        app: postgres
+#    spec:
+#      containers:
+#        - name: postgres
+#          image: gcr.io/my-project-95-234306/gce-postgres:10.4
+#          command: ["/postgres","instances=my-project-95-234306:us-central1:gsuitmanagment=tcp:0.0.0.0:5432","credential_file=/secrets/cloudsql/cloudsql-instance-credentials"]
+#          volumeMounts:
+#            - name: postgredb
+#              mountPath: /secrets/cloudsql
+#              readOnly: true
+#      volumes:
+#        - name: postgredb
+#          secret:
+#            secretName: cloudsql-instance-credentials
+#        - name: cloudsql
+#          emptyDir:         

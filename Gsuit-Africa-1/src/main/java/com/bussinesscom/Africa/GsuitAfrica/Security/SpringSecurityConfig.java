@@ -61,12 +61,13 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 				"/javax.faces.resource/scrollpanel/**", "/javax.faces.resource/spacer/**",
 				"/javax.faces.resource/touch/**", "/javax.faces.resource/tree/**", "/javax.faces.resource/images/**",
 				"/javax.faces.resource/fa/**", "/javax.faces.resource/css/**", "/javax.faces.resource/jquery/**",
+				"/assets/css/**","/assets/js/**","/assets/**","/assets/fonts/**","/css/**","/js/**"
 
 		};
 
 		http.authorizeRequests().antMatchers(resources).permitAll()
 				.antMatchers("/", "/login/BussnesComAfrica", "/DashBoard/**",
-						"/usermanagment/**","/viewProfile/**","deleteUser/**",
+						"/usermanagment/**","/viewProfile/**","deleteUser/**","/DriveStatisticalAnalysis/**","/DrivePermissions/**","/createUser/**","/userRegistrations/**",
 						"/createUser/**","/userRegistrations/**","/processDeligationForm/**","/DriveAnalysis/**","/getData","/calenderppointment/**","/updateCalenderSignature/**","/calendersettings/**",
 						"/processUpdateForm/**","/starts","/suggestion","/GmailAnalysis/**","/DashBoard/**","/Delegation/**","/DelegateAccount/**")
 				.permitAll().antMatchers("/edwin/**").hasAnyRole("USER").anyRequest().authenticated().and().formLogin()

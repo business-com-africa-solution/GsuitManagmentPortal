@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
-<!-- Mirrored from www.primefaces.org/california/data.xhtml by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 03 Apr 2019 13:07:24 GMT -->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:th="http://www.thymeleaf.org">
+
+<!-- Mirrored from www.primefaces.org/california/sample.xhtml by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 03 Apr 2019 13:07:24 GMT -->
 <!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<!-- /Added by HTTrack -->
 
 <head id="j_idt2">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -15,117 +18,41 @@
 		href="/javax.faces.resource/fa/font-awesome.css408e.css?ln=primefaces&amp;v=6.2" />
 	<link type="text/css" rel="stylesheet"
 		href="/javax.faces.resource/components.css408e.css?ln=primefaces&amp;v=6.2" />
+	<script type="text/javascript"
+		src="/javax.faces.resource/jquery/jquery.js408e.xhtml?ln=primefaces&amp;v=6.2"></script>
+	<script type="text/javascript"
+		src="/javax.faces.resource/jquery/jquery-plugins.js408e.xhtml?ln=primefaces&amp;v=6.2"></script>
+	<script type="text/javascript" src="/javax.faces.resource/core.js408e.xhtml?ln=primefaces&amp;v=6.2"></script>
+	<script type="text/javascript" src="/javax.faces.resource/components.js408e.xhtml?ln=primefaces&amp;v=6.2"></script>
+	<link type="text/css" rel="stylesheet"
+		href="/javax.faces.resource/keyboard/keyboard.css408e.css?ln=primefaces&amp;v=6.2" />
+	<script type="text/javascript"
+		src="/javax.faces.resource/keyboard/keyboard.js408e.xhtml?ln=primefaces&amp;v=6.2"></script>
+	<script type="text/javascript"
+		src="/javax.faces.resource/touch/touchswipe.js408e.xhtml?ln=primefaces&amp;v=6.2"></script>
 	<link type="text/css" rel="stylesheet"
 		href="/javax.faces.resource/css/nanoscroller.cssb45c.css?ln=california-layout" />
 	<link type="text/css" rel="stylesheet"
 		href="/javax.faces.resource/css/layout-blue.cssb45c.css?ln=california-layout" />
-	<title>Data</title>
-
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-	<script type="text/javascript" th:inline="javascript">
-		google.charts.load('current', { 'packages': ['corechart'] });
-		google.charts.setOnLoadCallback(drawVisualization);
-
-		function drawVisualization() {
-
-
-			var yearlysize =/*[[${yyy}]]*/[];
-
-			console.log("YEARLY DATA--------------" + yearlysize)
-
-			var data = new google.visualization.DataTable();
-			// assumes "word" is a string and "count" is a number
-			data.addColumn('string', 'YEAR');
-			data.addColumn('number', 'SIZE');
-
-			for (var i = 0; i < yearlysize.length; i++) {
-
-				data.addRow([yearlysize[i].year, ((yearlysize[i].totalSize) / 1000000)]);
-			}
-
-
-			var options = {
-				title: 'Yearly Google Drive Usage',
-				vAxis: { title: 'DataSize(MB)' },
-				hAxis: { title: 'Year' },
-				seriesType: 'bars',
-				series: { 5: { type: 'line' } }
-			};
-
-			var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
-			chart.draw(data, options);
+	<script type="text/javascript">
+		if (window.PrimeFaces) {
+			PrimeFaces.settings.locale = 'en_US';
+			PrimeFaces.settings.projectStage = 'Development';
 		}
-
-		google.charts.load("current", { packages: ["corechart"] });
-		google.charts.setOnLoadCallback(drawChart);
-		function drawChart() {
-
-			var storageQuota =/*[[${StorageQuota}]]*/[];
-
-			console.log("OUT data-------" + storageQuota);
-
-			var data = new google.visualization.DataTable();
-			// assumes "word" is a string and "count" is a number
-			data.addColumn('string', 'value');
-			data.addColumn('number', 'data');
-
-			for (var i = 0; i < storageQuota.length; i++) {
-
-				data.addRow([storageQuota[i].value, storageQuota[i].data]);
-			}
-
-
-			var options = {
-				title: 'DRIVE STORAGE ANALYSIS',
-				is3D: true
-			};
-			var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-			chart.draw(data, options);
-
-
-		}
-
-		// third
-
-// 		google.charts.load("current", {packages:["corechart"]});
-//     google.charts.setOnLoadCallback(drawChart);
-//     function drawChart() {
-//       var data = google.visualization.arrayToDataTable([
-//         ["Element", "Density", { role: "style" } ],
-//         ["Copper", 8.94, "#b87333"],
-//         ["Silver", 10.49, "silver"],
-//         ["Gold", 19.30, "gold"],
-//         ["Platinum", 21.45, "color: #e5e4e2"]
-//       ]);
-
-//       var view = new google.visualization.DataView(data);
-//       view.setColumns([0, 1,
-//                        { calc: "stringify",
-//                          sourceColumn: 1,
-//                          type: "string",
-//                          role: "annotation" },
-//                        2]);
-
-//       var options = {
-//         title: "Density of Precious Metals, in g/cm^3",
-//         width: 600,
-//         height: 400,
-//         bar: {groupWidth: "95%"},
-//         legend: { position: "none" },
-//       };
-//       var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
-//       chart.draw(view, options);
-//   }
-
 	</script>
+	<title>Sample</title>
+	<script type="text/javascript"
+		src="/javax.faces.resource/js/nanoscroller.jsb45c.xhtml?ln=california-layout"></script>
+	<script type="text/javascript" src="/javax.faces.resource/js/layout.jsb45c.xhtml?ln=california-layout"></script>
+
+	<link type="text/css" rel="stylesheet" href="/javax.faces.resource/myjavascripts/checkbox.css" />
+
 
 </head>
 
 <body class="main-body">
 
-
-	<div class="layout-wrapper">
+	<div class="layout-wrapper ">
 
 		<div class="layout-topbar">
 			<a th:href="@{/DashBoard}" class="logo"><img id="j_idt20"
@@ -214,6 +141,14 @@
 
 
 						</ul>
+
+						<script id="menuform:j_idt52_s" type="text/javascript">
+							PrimeFaces.cw("California", "me", {
+								id: "menuform:j_idt52"
+							});
+						</script>
+						<input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:38"
+							value="-1530536480978579937:5643789647651973515" autocomplete="off" />
 					</form>
 				</div>
 			</div>
@@ -294,12 +229,20 @@
 				</div>
 				<input type="hidden" id="j_idt55_activeIndex" name="j_idt55_activeIndex" value="0" autocomplete="off" />
 			</div>
-
+			<script id="j_idt55_s" type="text/javascript">
+				PrimeFaces.cw("TabView", "widget_j_idt55", {
+					id: "j_idt55",
+					effectDuration: "normal",
+					scrollable: false
+				});
+			</script>
 		</div>
 
 
+
+
 		<div class="layout-main">
-			<div class="route-bar" style="height: 50px;">
+			<div class="route-bar">
 				<div class="route-bar-breadcrumb">
 					<i class="fa fa-home"></i> <span>/ </span>GOOGLE DRIVE
 				</div>
@@ -328,31 +271,205 @@
 				</script>
 			</div>
 
-			<div class="ui-fluid">
+			<div class="layout-main-content">
+				<form id="j_idt79" name="j_idt79" method="post"
+					action="https://www.primefaces.org/california/sample.xhtml"
+					enctype="application/x-www-form-urlencoded">
+					<input type="hidden" name="j_idt79" value="j_idt79" />
+
+					<div class="ui-fluid">
+						<div class="ui-g">
+							<div class="card" style="background-color: white;">
+
+								<div class="ui-g-12">
+
+									<div class="ui-g-12 ui-md-12">
+
+
+										<div class="ui-g-12 ui-md-12" style="background-color: #FBFAFA;">
+
+											<div class="ui-g-12 ui-md-8">
+												<div class="ui-inputgroup">
+													<button
+														class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+														type="button">
+														<span class="ui-button-text ui-c">Search</span>
+													</button>
+													<input type="text" placeholder="Email Address"
+														class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all"
+														id="myInput" onkeyup="myFunction()" />
+												</div>
+											</div>
+
+											
+											<div class="ui-g-12 ui-md-4" style="background-color: #F9F9F9;">
+
+												<div class="ui-g-12 ui-md-6">
+													<a style="color: black;">ORGANIZATION DRIVE </a>
+												</div>
+
+												<div class="ui-g-12 ui-md-6">
+													<a class="fa fa-bar-chart" href="#" style="color: green;"
+														type="button" value="form" onclick="a();">DRIVE STATISTICS </a>
+												</div>
+
+											</div>
+										</div>
+
+										<br>
+
+
+										<div class="ui-g-12 ui-md-12">
+
+											<script>
+												function myFunction() {
+													var input, filter, table, tr, td, i, txtValue;
+													input = document
+														.getElementById("myInput");
+													filter = input.value
+														.toUpperCase();
+													table = document
+														.getElementById("myTable");
+													tr = table
+														.getElementsByTagName("tr");
+													for (i = 0; i < tr.length; i++) {
+														td = tr[i]
+															.getElementsByTagName("td")[0];
+														if (td) {
+															txtValue = td.textContent
+																|| td.innerText;
+															if (txtValue
+																.toUpperCase()
+																.indexOf(
+																	filter) > -1) {
+																tr[i].style.display = "";
+															} else {
+																tr[i].style.display = "none";
+															}
+														}
+													}
+												}
+											</script>
+
+
+											<div id="j_idt79:j_idt131"
+												class="ui-datatable ui-widget ui-datatable-reflow">
+												<div class="ui-datatable-header ui-widget-header ui-corner-top">
+													User Account</div>
+												<div class="ui-datatable-tablewrapper">
+													<table role="grid" id="myTable">
+														<thead id="j_idt79:j_idt131_head">
+															<tr role="row">
+																<th id="j_idt79:j_idt131:j_idt133"
+																	class="ui-state-default ui-sortable-column"
+																	role="columnheader" aria-label="Id" scope="col">
+																	<span class="ui-column-title">Email</span></th>
+																<th class="ui-state-default ui-sortable-column"
+																	role="columnheader" aria-label="Year" scope="col">
+																	<span class="ui-column-title">Name</span></th>
+
+																<th id="j_idt79:j_idt131:j_idt139"
+																	class="ui-state-default ui-sortable-column"
+																	role="columnheader" aria-label="Color" scope="col">
+																	<span class="ui-column-title"> DRIVE STATE </span>
+																</th>
+															</tr>
+														</thead>
+														<tbody id="j_idt79:j_idt131_data" class="ui-datatable-data"
+															tabindex="0">
+															<tr data-ri="0" data-rk="8625394f" role="row"
+																aria-selected="false" th:each="User : ${users}">
+																<td role="gridcell" th:text="${User.getPrimaryEmail()}">
+																</td>
+																<td role="gridcell" th:text="${User.name.getFullName()}"
+																	style="width: 100px;"></td>
+
+																<td role="gridcell">
+																	<div class="ui-g-12 ui-md-6"
+																		style="background-color: #4285F4;">
+																		<a type="button"
+																			th:href="@{/DriveStatisticalAnalysis/} + ${User.getId()}">
+																			<span style="color: white;">STATISTICS AND
+																				ANALYSIS</span></a>
+																	</div>
+
+																	<div class="ui-g-12 ui-md-6"
+																		style="background-color: #F4B400;">
+																		<a type="button"
+																			th:href="@{/DrivePermissions/} + ${User.getId()}">
+																			<span style="color: white;">SHARED AND
+																				PERMISIONS</span></a>
+																	</div>
+																</td>
+															</tr>
+
+
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<script id="j_idt79:j_idt131_s" type="text/javascript">
+												$(function () {
+													PrimeFaces
+														.cw(
+															"DataTable",
+															"widget_j_idt79_j_idt131",
+															{
+																id: "j_idt79:j_idt131",
+																selectionMode: "single",
+																reflow: true,
+																groupColumnIndexes: []
+															});
+												});
+											</script>
+
+
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:130"
+						value="-5941903726094949490:1395468341017449725" autocomplete="off" />
+				</form>
+			</div>
+
+			----
+			<FOOTER></FOOTER>
+			<div class="layout-footer ui-g-12">
 				<div class="ui-g">
-					<div class="ui-g-12 ui-md-12">
-						<div id="chart_div" style="height: 300px;"></div>
+					<div class="ui-g-12 ui-md-6 footer-left">
+						<h3>BusinessComAfrica</h3>
+						<p>Premium PrimeFaces Application Template</p>
 					</div>
-					<div class="ui-g-12 ui-md-6">
-						<div id="donutchart" style="height:400px;"></div>
-					</div>
-					<div class="ui-g-12 ui-md-6">
-						<!-- <div id="barchart_values" style="height: 500px;"></div> -->
+					<div class="ui-g-12 ui-md-6 footer-right">
+						<a href="#"> <i class="fa fa-twitter"></i>
+						</a> <a href="#"> <i class="fa fa-facebook"></i>
+						</a> <a href="#"> <i class="fa fa-github"></i>
+						</a>
 					</div>
 				</div>
 			</div>
-
-
-
 		</div>
 	</div>
-
-
-
-
+	<div id="j_idt225" style="width: 32px; height: 32px; position: fixed; right: 7px; bottom: 7px">
+		<div id="j_idt225_start" style="display: none">
+			<i class="fa fa-circle-o-notch fa-spin ajax-loader" aria-hidden="true"></i>
+		</div>
+		<div id="j_idt225_complete" style="display: none"></div>
+	</div>
+	<script id="j_idt225_s" type="text/javascript">
+		$(function () {
+			PrimeFaces.cw("AjaxStatus", "widget_j_idt225", {
+				id: "j_idt225"
+			});
+		});
+	</script>
 </body>
 
 
-<!-- Mirrored from www.primefaces.org/california/data.xhtml by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 03 Apr 2019 13:07:26 GMT -->
+<!-- Mirrored from www.primefaces.org/california/sample.xhtml by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 03 Apr 2019 13:07:24 GMT -->
 
 </html>

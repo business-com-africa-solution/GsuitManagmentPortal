@@ -407,7 +407,7 @@ function validate(form) {
 
 									<a  class="ui-button ui-widget  ui-corner-all ui-button-text-only outline-btn"
 											style="margin-right: 40px; width: 200px;height:40px; position: absolute; right: 0;"
-											type="submit" th:href="@{createUser}" >Add New User</a>
+											type="submit" th:href="@{/createUser/}+${userid}" >Add New User</a>
 										
 									<h1>DataTable</h1>
 									<div id="j_idt79:j_idt131"
@@ -446,12 +446,12 @@ function validate(form) {
 														<td role="gridcell" th:text="${User.getIsAdmin()}"></td>
 														<td th:if="${acessdenied}" role="gridcell">
 														<div th:if="${update}" class="ui-g-12 ui-md-6" style="background-color: green;" >
-														<!-- <a  class="fa fa-fw fa-user-circle fa-1x"
+														 <a  class="fa fa-fw fa-user-circle fa-1x"
 															th:href="@{/viewProfile/} + ${User.getId()}" style="color: green;" type="button" aria-hidden="true"> <span style="color: black;">Profile</span></a>
-															 -->
-															<form onSubmit="return confirm('Are you sure you wish to delete?');" action="@{/viewProfile/} + ${User.getId()}">
+															 
+															<!-- <form onSubmit="return confirm('Are you sure you wish to delete?');" action="@{/viewProfile/} + ${User.getId()}">
 																<button type="submit">submit</button>
-															</form>
+															</form> -->
 														</div>
 														<div th:if="${delete}" class="ui-g-12 ui-md-6" style="background-color: red;" >
 													    <a class="fa fa-fw fa-user-times fa-1x" type="button"
