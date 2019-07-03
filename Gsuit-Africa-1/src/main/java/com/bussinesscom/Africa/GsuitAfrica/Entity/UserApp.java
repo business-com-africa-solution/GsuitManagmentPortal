@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 //import org.springframework.security.core.GrantedAuthority;
@@ -25,6 +26,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class UserApp {
 	
+	@GeneratedValue
 	@Id
 	@Column(name = "ID")
 	private String id;
@@ -38,14 +40,19 @@ public class UserApp {
 	private String imageUrl;
 	@Column(name = "EMAIL")
 	private String email;
+	@Column(name = "PHONENUMBER")
+	private String phoneNumber;
 	@Column(name = "UPDATETIME")
 	private Date updatedAt;
 	@Column(name = "PASSWORD")
 	private String password;
-	
 
 	@OneToMany
 	private Set<Role> roles;
+	
+	@ManyToOne
+	private Company company;
+	
 
 	
 	public UserApp() {
@@ -112,6 +119,13 @@ public class UserApp {
 		this.email = email;
 	}
 	
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	
 	
 //	@Override
 //    public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -163,6 +177,12 @@ public class UserApp {
 	@Override
 	public String toString() {
 		return email+"";
+	}
+	public Company getCompany() {
+		return company;
+	}
+	public void setCompany(Company company) {
+		this.company = company;
 	}
 
 	

@@ -109,7 +109,7 @@ public class UserManagment {
 
 		model.addAttribute("users", users);
 		model.addAttribute("userid", userId);
-		
+
 		return "orgusers";
 	}
 
@@ -175,11 +175,15 @@ public class UserManagment {
 	}
 
 	@RequestMapping(value = "createUser/{userId}", method = RequestMethod.GET)
-	public String getCreateUser(@PathVariable("userId") String userId,Model model) throws IOException, GeneralSecurityException, URISyntaxException {
+	public String getCreateUser(@PathVariable("userId") String userId, Model model)
+			throws IOException, GeneralSecurityException, URISyntaxException {
 
 		model.addAttribute("image", "/jMega avax.faces.resource/images/hands.png?ln=california-layout");
 		model.addAttribute("domain", "dk.businesscom.com");
 		myUser user = new myUser();
+		user.setCretedById(userId);
+
+		model.addAttribute("userId", userId);
 		model.addAttribute("myUser", user);
 		return "userregisteration";
 
@@ -205,10 +209,22 @@ public class UserManagment {
 		String password = myuser.getDefaultPassword();
 		users.setPassword(password);
 
+		System.out.println("Succeess Message ------------- " + users.toString());
+
 		User succeessMessage = serviceDirect.users().insert(users).execute();
 		System.out.println("Succeess Message ------------- " + succeessMessage);
 
-		return "redirect:/usermanagment";
+		String onsucess = "<div class=\"alert\">\n"
+				+ "			 <span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span> \n"
+				+ "			 <strong>Sucess!</strong> USER "+succeessMessage.getPrimaryEmail()+" has been created sucessfully\n"
+				+ "		   </div>";
+
+		model.addAttribute("onsucessAlert", onsucess);
+		myUser newUser= new myUser();
+		newUser.setCretedById(myuser.getCretedById());
+		model.addAttribute("myUser", newUser);
+		
+		return "userregisteration";
 
 	}
 
@@ -230,9 +246,7 @@ public class UserManagment {
 		}
 
 		userx.setName(names);
-
 		System.out.println("USERS ID------------" + dataUpdate.getId());
-
 		System.out.println("USERS GIVEN NAME------------" + dataUpdate.getGivenName());
 		System.out.println("USERS FULL NAME------------" + dataUpdate.getFullname());
 		System.out.println("USERS FAMILY NAME------------" + dataUpdate.getFamilyname());
@@ -242,7 +256,6 @@ public class UserManagment {
 			User user = serviceDirect.users().update(dataUpdate.getId(), userx).execute();
 			System.out.println("USERS------------" + user.toString());
 			System.out.println("Eliases------------" + user.getAliases());
-
 			if (user != null && Utilities.getNullStringList(user.getAliases()) != 0) {
 				ContactApiService.ContactService("edwin@dev.businesscom.dk", user.getAliases().get(0));
 			}

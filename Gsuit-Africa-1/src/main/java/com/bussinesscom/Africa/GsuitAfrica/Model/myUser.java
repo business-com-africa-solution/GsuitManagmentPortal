@@ -10,6 +10,7 @@ public class myUser {
 	private String jobPosition;
 	private String defaultPassword;
 	private Boolean changePasswordAtNextLogin;
+	private String cretedById;
 
 	public String getFamilyName() {
 		return familyName;
@@ -73,6 +74,14 @@ public class myUser {
 
 	public void setChangePasswordAtNextLogin(Boolean changePasswordAtNextLogin) {
 		this.changePasswordAtNextLogin = changePasswordAtNextLogin;
+	}
+
+	public String getCretedById() {
+		return cretedById;
+	}
+
+	public void setCretedById(String cretedById) {
+		this.cretedById = cretedById;
 	}
 
 }

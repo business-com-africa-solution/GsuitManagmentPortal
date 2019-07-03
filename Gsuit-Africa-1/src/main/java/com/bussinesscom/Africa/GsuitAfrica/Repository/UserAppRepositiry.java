@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import com.bussinesscom.Africa.GsuitAfrica.Entity.Company;
 import com.bussinesscom.Africa.GsuitAfrica.Entity.UserApp;
 
 
@@ -13,6 +14,8 @@ public interface UserAppRepositiry extends JpaRepository<UserApp, String>{
 
 	
 	UserApp findByEmail(String userId);
+
+	List<UserApp> findByCompany(Company myCompanyUsers);
 
 	
 

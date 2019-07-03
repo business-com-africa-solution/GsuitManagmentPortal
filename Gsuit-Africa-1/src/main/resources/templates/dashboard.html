@@ -136,9 +136,11 @@
 
 
 							<li th:if="${Services.getSignature()}" id="menuform:om_doc"
-								role="menuitem" style="list-style-type: none;"><a href="#">
+								role="menuitem" style="list-style-type: none;"><a th:href="@{/SignatureSetting/}+${userId}">
 									<i class="fa fa-address-card-o fa-1x"></i><span>Signature
 										settings</span>
+
+										
 							</a></li>
 
 							<li th:if="${Services.getMaildelegation()}" id="menuform:om_dashboard" role="menuitem"><a

@@ -61,15 +61,17 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 				"/javax.faces.resource/scrollpanel/**", "/javax.faces.resource/spacer/**",
 				"/javax.faces.resource/touch/**", "/javax.faces.resource/tree/**", "/javax.faces.resource/images/**",
 				"/javax.faces.resource/fa/**", "/javax.faces.resource/css/**", "/javax.faces.resource/jquery/**",
-				"/assets/css/**","/assets/js/**","/assets/**","/assets/fonts/**","/css/**","/js/**"
+				"/assets/css/**","/assets/js/**","/assets/**","/assets/fonts/**","/css/**","/js/**",
+				"/elrteEditor/elrte/images/**","/elrteEditor/elrte/css/**","/elrteEditor/elrte/js/**",
+				"/elrteEditor/ellib/css/**","/elrteEditor/ellib/js/**","/elrteEditor/ellib/images/**","/elrteEditor/**",
 
 		};
 
 		http.authorizeRequests().antMatchers(resources).permitAll()
-				.antMatchers("/", "/login/BussnesComAfrica", "/DashBoard/**",
-						"/usermanagment/**","/viewProfile/**","deleteUser/**","/DriveStatisticalAnalysis/**","/DrivePermissions/**","/createUser/**","/userRegistrations/**",
-						"/createUser/**","/userRegistrations/**","/processDeligationForm/**","/DriveAnalysis/**","/getData","/calenderppointment/**","/updateCalenderSignature/**","/calendersettings/**",
-						"/processUpdateForm/**","/starts","/suggestion","/GmailAnalysis/**","/DashBoard/**","/Delegation/**","/DelegateAccount/**")
+				.antMatchers("/", "/login/BussnesComAfrica", "/DashBoard/**","/createAppointments","/createUserApi/**","/SignatureSetting/**","/SetSignature/**","/DeleteSignature/**"
+						,"/usermanagment/**","/viewProfile/**","deleteUser/**","/DriveStatisticalAnalysis/**","/DrivePermissions/**","/createUser/**","/userRegistrations",
+						"/createUser/**","/processDeligationForm/**","/DriveAnalysis/**","/getData","/calenderppointment/**","/updateCalenderSignature/**","/calendersettings/**",
+						"/processUpdateForm/**","/starts","/suggestion","/GmailAnalysis/**","/DashBoard/**","/Delegation/**","/DelegateAccount/**","/createdSignature/**")
 				.permitAll().antMatchers("/edwin/**").hasAnyRole("USER").anyRequest().authenticated().and().formLogin()
 				.loginPage("/login/gmail").permitAll().and().logout().permitAll().and().exceptionHandling()
 				.accessDeniedHandler(accessDeniedHandler);

@@ -157,7 +157,7 @@ public class CalenderView {
         				"            <hr>\n" + 
         				"            <p ><span style=\"color: blue;margin-left: 20px;font-family: initial\">Click to Request For An Appoint</span></p>\n" + 
         				"            <a href=\""+link+"\"height=\"50px\" width=\"180px\" target=\"_blank\">\n" + 
-        				"            <img  alt=\"W3Schools\" src=\"http://www.purebridaliowa.com/wp-content/uploads/2019/02/appointment-request-icon.57110256_std.png\" width=\"250px\" height=\"70px\"></a>\n" + 
+        				"            <img   src=\"http://www.purebridaliowa.com/wp-content/uploads/2019/02/appointment-request-icon.57110256_std.png\" width=\"250px\" height=\"70px\"></a>\n" + 
         				"        </div>";
         		
         		
@@ -193,12 +193,14 @@ public class CalenderView {
         				"</div></div>\n" + 
         				"";
           
+        		
             	
             	com.google.api.services.gmail.model.SendAs sendc=new com.google.api.services.gmail.model.SendAs();
 //            	sendc.setSignature("<div>"+signature+"<div/>"+""+"<div>"+myCalender+"<div/>");
             	sendc.setSignature(calenderAppointmentHtml);
             			
             	gmail.users().settings().sendAs().update(user.getId(), user.getPrimaryEmail(), sendc).execute();
+            	model.addAttribute("userupdate",user.getEmails()	);
   
             	calenderAppointment.setAppointmentActive(false);
             	calenderAppointment.setId(user.getId());
