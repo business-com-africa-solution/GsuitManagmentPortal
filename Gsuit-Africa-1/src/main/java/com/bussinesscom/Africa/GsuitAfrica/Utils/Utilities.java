@@ -54,15 +54,15 @@ public class Utilities {
 
 	}
 
-	public static Integer getNullJsonArray(JSONArray jsArray) {
-		try {
-			System.out.println("Json Array Size-----" + jsArray.length());
-			return jsArray.length();
-		} catch (NullPointerException npe) {
-			// do something
-			return 0;
-		}
-	}
+//	public static Integer getNullJsonArray(JSONArray jsArray) {
+//		try {
+//			System.out.println("Json Array Size-----" + jsArray.length());
+//			return jsArray.length();
+//		} catch (NullPointerException npe) {
+//			// do something
+//			return 0;
+//		}
+//	}
 
 	public static Integer getNullStringList(List<String> jsArray) {
 		try {
