@@ -4,7 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import org.json.JSONArray;
 
 import com.google.api.client.util.DateTime;
 
