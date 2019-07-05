@@ -11,6 +11,8 @@ import com.bussinesscom.Africa.GsuitAfrica.Entity.SignatureTemplate;
 public interface SignatureRepository extends JpaRepository<SignatureTemplate, Integer>{
 
 	List<SignatureTemplate> findByCompany(Company myCompany);
+
+	SignatureTemplate findByIsActive(boolean b);
 	
 
 }

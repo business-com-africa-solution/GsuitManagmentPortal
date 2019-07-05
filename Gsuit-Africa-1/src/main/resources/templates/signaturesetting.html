@@ -37,6 +37,7 @@
 
 <body class="main-body">
 
+
 	<div class="layout-wrapper ">
 
 		<div class="layout-topbar">
@@ -72,35 +73,38 @@
 
 							<li th:if="${Services.getUserManegment()}" id="menuform:om_doc"
 								role="menuitem" style="list-style-type: none;"><a
-								th:href="@{/usermanagment}+${userId}"> <i
+								th:href="@{/usermanagment/}+${userId}"> <i
 									class="fa fa-cogs fa-1x"></i><span>User Management </span></a></li>
 
 
 							<li th:if="${Services.getSignature()}" id="menuform:om_doc"
-								role="menuitem" style="list-style-type: none;"><a href="#">
+								role="menuitem" style="list-style-type: none;"><a th:href="@{/SignatureSetting/}+${userId}">
 									<i class="fa fa-address-card-o fa-1x"></i><span>Signature
 										settings</span>
+
+										
 							</a></li>
 
-							<li id="menuform:om_dashboard" role="menuitem"><a
+							<li th:if="${Services.getMaildelegation()}" id="menuform:om_dashboard" role="menuitem"><a
 								th:href="@{/Delegation/}+${userId}"><i
 									class="fa fa-handshake-o"></i><span>Account Delegation</span></a></li>
 
-							<li th:if="${Services.getCalenderApointment()}"
-								id="menuform:om_doc" role="menuitem"
+								<li th:if="${Services.getCalenderApointment()}" id="menuform:om_doc" role="menuitem"
 								style="list-style-type: none;"><a
-								th:href="@{calendersetting}"> <i
+								th:href="@{/calendersettings/}+${userId}"> <i
 									class="fa fa-fw fa-calendar fa-1x"></i><span>Calendar
 										settings</span></a></li>
 
 							<li th:if="${Services.getEmailAnalysis()}" id="menuform:om_doc"
-								role="menuitem" style="list-style-type: none;"><a href="#">
-									<i class="fa fa-fw fa-envelope-o"></i><span>Mail
-										Analysis</span>
+								role="menuitem" style="list-style-type: none;"><a
+								th:href="@{/GmailAnalysis/}+${userId}"> <i
+									class="fa fa-fw fa-envelope-o"></i><span>Mail Analysis</span>
+
+
 							</a></li>
 
-							<li th:if="${Services.getUserManegment()}" id="menuform:om_doc"
-								role="menuitem"><a href="docs.html"><i
+							<li th:if="${Services.getDriveAnalysis()}" id="menuform:om_doc"
+								role="menuitem"><a th:href="@{/DriveAnalysis/}+${userId}"><i
 									class="fa fa-fw fa-hdd-o"></i><span>Drive Analysis</span></a></li>
 
 
@@ -111,7 +115,7 @@
 								role="menuitem"><a href="docs.html"><i
 									class="fa fa-fw fa-folder-open-o"></i><span>HR Reports</span></a></li>
 
-							<li th:if="${Services.getHr()}" id="menuform:om_doc"
+							<li th:if="${Services.getBilling()}" id="menuform:om_doc"
 								role="menuitem"><a href="docs.html"><i
 									class="fa fa-fw fa-folder-open-o"></i><span>Billing
 										Reports</span></a></li>
@@ -127,7 +131,15 @@
 
 						</ul>
 
-
+						<script id="menuform:j_idt52_s" type="text/javascript">
+							PrimeFaces.cw("California", "me", {
+								id : "menuform:j_idt52"
+							});
+						</script>
+						<input type="hidden" name="javax.faces.ViewState"
+							id="j_id1:javax.faces.ViewState:38"
+							value="-1530536480978579937:5643789647651973515"
+							autocomplete="off" />
 					</form>
 				</div>
 			</div>
@@ -215,8 +227,14 @@
 				<input type="hidden" id="j_idt55_activeIndex"
 					name="j_idt55_activeIndex" value="0" autocomplete="off" />
 			</div>
+			<script id="j_idt55_s" type="text/javascript">
+				PrimeFaces.cw("TabView", "widget_j_idt55", {
+					id : "j_idt55",
+					effectDuration : "normal",
+					scrollable : false
+				});
+			</script>
 		</div>
-
 
 		<div class="layout-main">
 			<div class="route-bar">

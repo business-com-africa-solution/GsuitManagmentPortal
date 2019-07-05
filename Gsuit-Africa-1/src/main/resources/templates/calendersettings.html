@@ -57,10 +57,12 @@
 
 <body class="main-body">
 
+
 	<div class="layout-wrapper ">
 
 		<div class="layout-topbar">
-			<a th:href="@{/DashBoard}" class="logo"><img id="j_idt20"
+			<a th:href="@{/DashBoard/}+${userId}" class="logo"><img
+				id="j_idt20"
 				src="/jMega avax.faces.resource/images/gsuiteBuscom.png"
 				style="width: 14 0px; padding: 0px;" alt="" /> </a> <a id="menu-button"><i
 				class="fa fa-align-left"> </i> </a> <a id="layout-megamenu-button">
@@ -82,51 +84,47 @@
 
 
 					</div>
-					<form id="menuform" name="menuform" method="post"
-						action="https://www.primefaces.org/california/dashboard.xhtml"
-						enctype="application/x-www-form-urlencoded">
+					<form id="menuform" name="menuform" method="post">
 						<input type="hidden" name="menuform" value="menuform" />
 
 						<ul id="menuform:j_idt52" class="layout-menu"
 							th:each="Services : ${servicesAcess}">
 
-							<li id="menuform:om_dashboard" role="menuitem"><a
-								th:href="@{/DashBoard}"><i class="fa fa-fw fa-inbox"></i><span>Profile</span></a></li>
-							<li id="menuform:om_dashboard" role="menuitem"><a
-								th:href="@{/DashBoard}"><i class="fa fa-fw fa-inbox"></i><span>Notifications</span></a></li>
-							<li id="menuform:om_dashboard" role="menuitem"></li>
 
 							<li th:if="${Services.getUserManegment()}" id="menuform:om_doc"
 								role="menuitem" style="list-style-type: none;"><a
-								th:href="@{/usermanagment}"> <i class="fa fa-cogs fa-1x"></i><span>User
-										Management </span></a></li>
+								th:href="@{/usermanagment/}+${userId}"> <i
+									class="fa fa-cogs fa-1x"></i><span>User Management </span></a></li>
 
 
 							<li th:if="${Services.getSignature()}" id="menuform:om_doc"
-								role="menuitem" style="list-style-type: none;"><a href="#">
+								role="menuitem" style="list-style-type: none;"><a th:href="@{/SignatureSetting/}+${userId}">
 									<i class="fa fa-address-card-o fa-1x"></i><span>Signature
 										settings</span>
+
+										
 							</a></li>
 
-							<li id="menuform:om_dashboard" role="menuitem"><a
-								th:href="@{/Delegation/}+${userId}"><i class="fa fa-handshake-o"></i><span>Account
-										Delegation</span></a></li>
+							<li th:if="${Services.getMaildelegation()}" id="menuform:om_dashboard" role="menuitem"><a
+								th:href="@{/Delegation/}+${userId}"><i
+									class="fa fa-handshake-o"></i><span>Account Delegation</span></a></li>
 
-							<li th:if="${Services.getCalenderApointment()}"
-								id="menuform:om_doc" role="menuitem"
+								<li th:if="${Services.getCalenderApointment()}" id="menuform:om_doc" role="menuitem"
 								style="list-style-type: none;"><a
-								th:href="@{calendersetting}"> <i
+								th:href="@{/calendersettings/}+${userId}"> <i
 									class="fa fa-fw fa-calendar fa-1x"></i><span>Calendar
 										settings</span></a></li>
 
 							<li th:if="${Services.getEmailAnalysis()}" id="menuform:om_doc"
-								role="menuitem" style="list-style-type: none;"><a href="#">
-									<i class="fa fa-fw fa-envelope-o"></i><span>Mail
-										Analysis</span>
+								role="menuitem" style="list-style-type: none;"><a
+								th:href="@{/GmailAnalysis/}+${userId}"> <i
+									class="fa fa-fw fa-envelope-o"></i><span>Mail Analysis</span>
+
+
 							</a></li>
 
-							<li th:if="${Services.getUserManegment()}" id="menuform:om_doc"
-								role="menuitem"><a href="docs.html"><i
+							<li th:if="${Services.getDriveAnalysis()}" id="menuform:om_doc"
+								role="menuitem"><a th:href="@{/DriveAnalysis/}+${userId}"><i
 									class="fa fa-fw fa-hdd-o"></i><span>Drive Analysis</span></a></li>
 
 
@@ -137,7 +135,7 @@
 								role="menuitem"><a href="docs.html"><i
 									class="fa fa-fw fa-folder-open-o"></i><span>HR Reports</span></a></li>
 
-							<li th:if="${Services.getHr()}" id="menuform:om_doc"
+							<li th:if="${Services.getBilling()}" id="menuform:om_doc"
 								role="menuitem"><a href="docs.html"><i
 									class="fa fa-fw fa-folder-open-o"></i><span>Billing
 										Reports</span></a></li>

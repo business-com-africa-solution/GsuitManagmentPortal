@@ -84,10 +84,9 @@ public class CalenderView {
 		Calendar service = SercicesAccounts.getCalenderService("" + email + "");
 		DateTime now = new DateTime(System.currentTimeMillis());
 		
-		
 		com.google.api.services.calendar.model.Events events1 = service.events().list("primary").setMaxResults(100)
 				.setTimeMin(now).setTimeMax(endDate).setOrderBy("startTime").setSingleEvents(true).execute();
-
+		
 		List<Event> items = events1.getItems();
 		if (items.isEmpty()) {
 			System.out.println("No upcoming events found.");

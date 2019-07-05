@@ -65,209 +65,89 @@ function validate(form) {
 
 <body class="main-body">
 
+
 	<div class="layout-wrapper ">
-		<form id="j_idt11" name="j_idt11" method="post"
-			action="https://www.primefaces.org/california/sample.xhtml"
-			enctype="application/x-www-form-urlencoded">
-			<input type="hidden" name="j_idt11" value="j_idt11" />
-
-			<div id="layout-megamenu"
-				class="ui-g-12 layout-megamenu layout-megamenu-dark ">
-				<div class="ui-g-12 ui-md-6 ui-lg-3 layout-megamenu-submenu">
-					<h4>System Reports</h4>
-					<ul>
-						<li><a href="#"> <i class="fa fa-fw fa-th-list"></i> <span>System
-									Logs</span>
-						</a></li>
-						<li><a href="#"> <i class="fa fa-fw fa-server"></i> <span>Back-up
-									Server</span>
-						</a></li>
-						<li><a href="#"> <i class="fa fa-fw fa-users"></i> <span>Conversions</span>
-						</a></li>
-						<li><a href="#"> <i class="fa fa-fw fa-database"></i> <span>Storage
-									Logs</span>
-						</a></li>
-					</ul>
-				</div>
-				<div class="ui-g-12 ui-md-6 ui-lg-3 layout-megamenu-submenu">
-					<h4>Finance Reports</h4>
-					<ul>
-						<li><a href="#"> <i class="fa fa-fw fa-file-text-o"></i>
-								<span>Annual Reports</span>
-						</a></li>
-						<li><a href="#"> <i class="fa fa-fw fa-dollar"></i> <span>Revenue
-									Reports</span>
-						</a></li>
-						<li><a href="#"> <i class="fa fa-fw fa-user-o"></i> <span>HR
-									Reports</span>
-						</a></li>
-						<li><a href="#"> <i class="fa fa-fw fa-bar-chart"></i> <span>Finance
-									Margin</span>
-						</a></li>
-					</ul>
-				</div>
-				<div class="ui-g-12 ui-md-6 ui-lg-3 layout-megamenu-submenu">
-					<h4>Settings</h4>
-					<ul>
-						<li><a href="#"> <i class="fa fa-fw fa-envelope-o"></i> <span>E-mail
-									Notifications</span>
-						</a></li>
-						<li><a href="#"> <i class="fa fa-fw fa-mobile"></i> <span>Sms
-									Alerts</span>
-						</a></li>
-						<li><a href="#"> <i class="fa fa-fw fa-globe"></i> <span>Site
-									Tracking</span>
-						</a></li>
-					</ul>
-				</div>
-				<div class="ui-g-12 ui-md-6 ui-lg-3 layout-megamenu-submenu">
-					<div class="content-img">
-						<img id="j_idt11:j_idt13"
-							src="/javax.faces.resource/images/image-mega.pngb45c.png?ln=california-layout"
-							alt="" />
-
-						<div class="img-megamenu">
-							<span class="ui-g-12 img-header">Powered By</span> <span
-								class="ui-g-12 img-subheader">BusnessComAfrica</span>
-						</div>
-						<button id="j_idt11:j_idt15" name="j_idt11:j_idt15"
-							class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only alt-btn"
-							type="button">
-							<span class="ui-button-text ui-c">Buy Now</span>
-						</button>
-						<script id="j_idt11:j_idt15_s" type="text/javascript">PrimeFaces.cw("CommandButton", "widget_j_idt11_j_idt15", { id: "j_idt11:j_idt15" });</script>
-					</div>
-				</div>
-			</div>
-			<input type="hidden" name="javax.faces.ViewState"
-				id="j_id1:javax.faces.ViewState:0"
-				value="-5941903726094949490:1395468341017449725" autocomplete="off" />
-		</form>
 
 		<div class="layout-topbar">
 			<a th:href="@{/DashBoard/}+${userId}" class="logo"><img
-				id="j_idt20" src="jMega avax.faces.resource/images/gsuiteBuscom.png"
-				style="width: 14 0px; padding: 0px;" alt="" /></a> <a id="menu-button"
-				th:href="@{/DashBoard}"> <i class="fa fa-align-left"></i>
-			</a> <a id="layout-megamenu-button" href="#"> <i
-				class="fa fa-angle-down"></i>BusnessCom <span
-				class="mega-menu-title">Africa</span>
-			</a> <a id="right-sidebar-button" href="#"> <i
-				class="fa fa-ellipsis-v"></i>
+				id="j_idt20"
+				src="/jMega avax.faces.resource/images/gsuiteBuscom.png"
+				style="width: 14 0px; padding: 0px;" alt="" /> </a> <a id="menu-button"><i
+				class="fa fa-align-left"> </i> </a> <a id="layout-megamenu-button">
+				<i class="fa fa-angle-down"></i>G.M.S<span class="mega-menu-title"></span>
+			</a> <a id="right-sidebar-button"> <i class="fa fa-ellipsis-v"></i>
 			</a>
 		</div>
-
 
 		<div class="layout-sidebar  ">
 			<div id="nano-container" class="nano">
 				<div class="nano-content sidebar-scroll-content">
 					<div class="user-profile">
 						<a id="sidebar-profile-button" href="#"><img id="j_idt40"
-							src="jMega avax.faces.resource/images/hands.png?ln=california-layout"
+							th:src="${image}"
 							style="height: 92px; width: 92px; border-radius: 100px; -webkit-border-radius: 100px; -moz-border-radius: 100px;"
-							alt="" /> <span class="sidebar-profile-name">Pauline
-								Harrell</span> <span class="sidebar-profile-role">Administrator</span>
+							alt="" /> <span class="sidebar-profile-name" th:inline="text">[[${userName}]]</span>
+							<span class="sidebar-profile-role" th:inline="text">[[${userEmail}]]</span>
 						</a>
-						<ul id="sidebar-usermenu" class="usermenu">
-							<li><a href="#"> <i class="fa fa-fw fa-user"></i> <span
-									class="topbar-item-name">Profile</span>
-							</a></li>
 
 
-							<li><a href="#"> <i class="fa fa-fw fa-bell-o"></i> <span
-									class="topbar-item-name">Notifications</span> <i
-									class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i>
-							</a></li>
-						</ul>
 					</div>
-					<form id="menuform" name="menuform" method="post"
-						action="https://www.primefaces.org/california/dashboard.xhtml"
-						enctype="application/x-www-form-urlencoded">
+					<form id="menuform" name="menuform" method="post">
 						<input type="hidden" name="menuform" value="menuform" />
-						<ul id="menuform:j_idt52" class="layout-menu">
-							<li id="menuform:om_dashboard" role="menuitem"><a
-								th:href="@{/DashBoard/}+${userId}"><i class="fa fa-fw fa-home"></i><span>Dashboard</span></a></li>
 
-							<li id="menuform:om_customization" role="menuitem"
-								class="ui-menuitem-submenu"><a href="#"><i
-									class="fa fa-fw fa-user fa-1x"></i><span>User Managment</span><i
-									class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
-								<ul role="menu">
-									<li id="menuform:custom_user_1" role="menuitem"><a
-										href="error.html"> <i class="fa fa-fw fa-smile-o fa-1x"></i><span>User
-												Information</span>
-									</a></li>
-									<li id="menuform:custom_user_2" role="menuitem"><a
-										href="404.html"
-										onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:custom3':'menuform:custom3'}).submit('menuform');return false;PrimeFaces.onPost();"><i
-											class="fa fa-fw fa-vcard fa-1x"></i><span>Signature</span></a></li>
-									
-								</ul></li>
-
-							<li id="menuform:om_mega_menu_customization" role="menuitem"
-								class="text-badge ui-menuitem-submenu"><a href="#"><i
-									class="fa fa-fw fa-building-o fa-1x"></i><span>Organization Managment</span> <i
-									class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
-								<ul role="menu">
-									<li id="menuform:om_sample" role="menuitem"><a
-										href="#"><i class="fa fa-fw fa-building fa-1x"></i><span>Organization Info</span></a></li>
-
-									<li id="menuform:om_sample" role="menuitem"><a
-										href="#"><i class="fa fa-fw fa-vcard fa-1x"></i><span>Signature
-										</span></a></li>
-
-									<li id="menuform:om_sample" role="menuitem"><a
-										href="sample.html"><i class="fa fa-fw fa-calendar fa-1x"></i><span>Calendar Appointment</span></a></li>
-
-								</ul></li>
-							<li id="menuform:om_user_menu_customization" role="menuitem"
-								class="ui-menuitem-submenu"><a href="#"><i
-									class="fa fa-fw fa-line-chart"></i><span>Accounts Analysis</span><i
-									class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
-								<ul role="menu">
-									<li id="menuform:custom_user_1" role="menuitem"><a
-										href="#"
-										onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:custom_user_1':'menuform:custom_user_1'}).submit('menuform');return false;PrimeFaces.onPost();"><i
-											class="fa fa-fw fa-envelope-o"></i><span>Mail Box</span></a></li>
-									<li id="menuform:custom_user_2" role="menuitem"><a
-										href="#"
-										onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:custom_user_2':'menuform:custom_user_2'}).submit('menuform');return false;PrimeFaces.onPost();"><i
-											class="fa fa-fw fa-hdd-o"></i><span>Google Drive</span></a></li>
-								</ul>
-							</li>
-
-							<li id="menuform:om_user_menu_customization" role="menuitem"
-								class="ui-menuitem-submenu"><a href="#"><i
-									class="fa fa-fw fa-handshake-o"></i><span>Human Resource</span><i
-									class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
-								<ul role="menu">
-									<li id="menuform:custom_user_1" role="menuitem"><a
-										href="#"
-										onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:custom_user_1':'menuform:custom_user_1'}).submit('menuform');return false;PrimeFaces.onPost();"><i
-											class="fa fa-fw fa-file-o"></i><span>Leave application</span></a></li>
-
-								</ul></li>
+						<ul id="menuform:j_idt52" class="layout-menu"
+							th:each="Services : ${servicesAcess}">
 
 
-							<li id="menuform:om_user_menu_customization" role="menuitem"
-								class="ui-menuitem-submenu"><a href="#"><i
-									class="fa fa-fw fa-line-chart"></i><span>Reports</span><i
-									class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
-								<ul role="menu">
-									<li id="menuform:custom_user_1" role="menuitem"><a
-										href="#"
-										onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:custom_user_1':'menuform:custom_user_1'}).submit('menuform');return false;PrimeFaces.onPost();"><i
-											class="fa fa-fw fa-folder-open-o"></i><span>Hr Reports</span></a></li>
-									<li id="menuform:custom_user_2" role="menuitem"><a
-										href="#"
-										onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:custom_user_2':'menuform:custom_user_2'}).submit('menuform');return false;PrimeFaces.onPost();"><i
-											class="fa fa-fw fa-folder-open-o"></i><span>Financial
-												Report</span></a></li>
-								</ul></li>
+							<li th:if="${Services.getUserManegment()}" id="menuform:om_doc"
+								role="menuitem" style="list-style-type: none;"><a
+								th:href="@{/usermanagment/}+${userId}"> <i
+									class="fa fa-cogs fa-1x"></i><span>User Management </span></a></li>
 
 
-							<li id="menuform:om_doc" role="menuitem"><a href="docs.html"><i
-									class="fa fa-fw fa-lock"></i><span>Security Managment</span></a></li>
+							<li th:if="${Services.getSignature()}" id="menuform:om_doc"
+								role="menuitem" style="list-style-type: none;"><a th:href="@{/SignatureSetting/}+${userId}">
+									<i class="fa fa-address-card-o fa-1x"></i><span>Signature
+										settings</span>
+
+										
+							</a></li>
+
+							<li th:if="${Services.getMaildelegation()}" id="menuform:om_dashboard" role="menuitem"><a
+								th:href="@{/Delegation/}+${userId}"><i
+									class="fa fa-handshake-o"></i><span>Account Delegation</span></a></li>
+
+								<li th:if="${Services.getCalenderApointment()}" id="menuform:om_doc" role="menuitem"
+								style="list-style-type: none;"><a
+								th:href="@{/calendersettings/}+${userId}"> <i
+									class="fa fa-fw fa-calendar fa-1x"></i><span>Calendar
+										settings</span></a></li>
+
+							<li th:if="${Services.getEmailAnalysis()}" id="menuform:om_doc"
+								role="menuitem" style="list-style-type: none;"><a
+								th:href="@{/GmailAnalysis/}+${userId}"> <i
+									class="fa fa-fw fa-envelope-o"></i><span>Mail Analysis</span>
+
+
+							</a></li>
+
+							<li th:if="${Services.getDriveAnalysis()}" id="menuform:om_doc"
+								role="menuitem"><a th:href="@{/DriveAnalysis/}+${userId}"><i
+									class="fa fa-fw fa-hdd-o"></i><span>Drive Analysis</span></a></li>
+
+
+							<li id="menuform:om_doc" role="menuitem"><a href="docs.html"><i>
+										Other Services </i><span></span></a></li>
+
+							<li th:if="${Services.getHr()}" id="menuform:om_doc"
+								role="menuitem"><a href="docs.html"><i
+									class="fa fa-fw fa-folder-open-o"></i><span>HR Reports</span></a></li>
+
+							<li th:if="${Services.getBilling()}" id="menuform:om_doc"
+								role="menuitem"><a href="docs.html"><i
+									class="fa fa-fw fa-folder-open-o"></i><span>Billing
+										Reports</span></a></li>
+
 
 							<li id="menuform:om_doc" role="menuitem"><a href="docs.html"><i
 									class="fa fa-fw fa-book"></i><span>Help and Support</span></a></li>
@@ -278,7 +158,12 @@ function validate(form) {
 
 
 						</ul>
-						<script id="menuform:j_idt52_s" type="text/javascript">PrimeFaces.cw("California", "me", { id: "menuform:j_idt52" });</script>
+
+						<script id="menuform:j_idt52_s" type="text/javascript">
+							PrimeFaces.cw("California", "me", {
+								id : "menuform:j_idt52"
+							});
+						</script>
 						<input type="hidden" name="javax.faces.ViewState"
 							id="j_id1:javax.faces.ViewState:38"
 							value="-1530536480978579937:5643789647651973515"
@@ -289,30 +174,32 @@ function validate(form) {
 
 		</div>
 
-
 		<div id="layout-right-sidebar">
-			<div id="j_idt54"
+			<div id="j_idt55"
 				class="ui-tabs ui-widget ui-widget-content ui-corner-all ui-hidden-container ui-tabs-top"
-				data-widget="widget_j_idt54">
+				data-widget="widget_j_idt55">
 				<ul
 					class="ui-tabs-nav ui-helper-reset ui-widget-header ui-corner-all"
 					role="tablist">
 					<li
 						class="ui-tabs-header ui-state-default ui-tabs-selected ui-state-active ui-corner-top"
-						role="tab" aria-expanded="true" aria-selected="false"
-						data-index="0"><a href="#j_idt54:j_idt55" tabindex="-1">
-							<i class="fa fa-calendar"></i>
+						role="tab" aria-expanded="true" aria-selected="true"
+						data-index="0"><a href="#j_idt55:j_idt56" tabindex="-1">
+							<i class="fa fa-cog"></i>
 					</a></li>
 					<li class="ui-tabs-header ui-state-default ui-corner-top"
 						role="tab" aria-expanded="false" aria-selected="false"
-						data-index="1"><a href="#j_idt54:j_idt58" tabindex="-1">
+						data-index="1"><a href="#j_idt55:j_idt59" tabindex="-1">
 							<i class="fa fa-inbox"></i>
 					</a></li>
-
+					<li class="ui-tabs-header ui-state-default ui-corner-top"
+						role="tab" aria-expanded="false" aria-selected="false"
+						data-index="2"><a href="#j_idt55:j_idt70" tabindex="-1">
+							<i class="fa fa-calendar"></i>
+					</a></li>
 				</ul>
 				<div class="ui-tabs-panels">
-
-					<div id="j_idt54:j_idt55"
+					<div id="j_idt55:j_idt70"
 						class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-helper-hidden"
 						role="tabpanel" aria-hidden="true" data-index="2">
 						<div class="submenu-title">
@@ -365,10 +252,16 @@ function validate(form) {
 						</div>
 					</div>
 				</div>
-				<input type="hidden" id="j_idt54_activeIndex"
-					name="j_idt54_activeIndex" value="0" autocomplete="off" />
+				<input type="hidden" id="j_idt55_activeIndex"
+					name="j_idt55_activeIndex" value="0" autocomplete="off" />
 			</div>
-			<script id="j_idt54_s" type="text/javascript">PrimeFaces.cw("TabView", "widget_j_idt54", { id: "j_idt54", effectDuration: "normal", scrollable: false });</script>
+			<script id="j_idt55_s" type="text/javascript">
+				PrimeFaces.cw("TabView", "widget_j_idt55", {
+					id : "j_idt55",
+					effectDuration : "normal",
+					scrollable : false
+				});
+			</script>
 		</div>
 
 		<div class="layout-main">

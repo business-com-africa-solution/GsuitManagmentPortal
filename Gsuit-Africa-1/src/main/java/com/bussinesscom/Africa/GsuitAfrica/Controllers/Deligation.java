@@ -32,6 +32,7 @@ import com.google.api.services.admin.directory.model.User;
 import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.model.Delegate;
 import com.google.api.services.gmail.model.ListDelegatesResponse;
+import com.google.api.services.gmail.model.Profile;
 
 @Controller
 public class Deligation {
@@ -82,12 +83,14 @@ public class Deligation {
 	public String AccountToDeligation(@PathVariable("delegateId") String delegateId, Model model,final HttpServletRequest request) throws GeneralSecurityException, IOException, URISyntaxException 
 	{
 		
-		Optional<UserApp> user=userrepo.findById(delegateId);
+		String[] myId=delegateId.split("lg");
+		Optional<UserApp> user=userrepo.findById(myId[0]);
 		String delegateEmail=user.get().getEmail();
 		String imageurl=user.get().getImageUrl();
 		String username=user.get().getUsername();
 		UpdateDirectory dataUpdate=new UpdateDirectory();
-		dataUpdate.setId(delegateId);
+		
+		dataUpdate.setId(myId[1]);
 		System.out.println("User email-----------------"+delegateEmail);
 		model.addAttribute("familyName",user.get().getFirstName());
 		model.addAttribute("delusername",username);
@@ -97,7 +100,6 @@ public class Deligation {
 		model.addAttribute("id", delegateId);
 		
 		model.addAttribute("updateuser",dataUpdate);
-		
 		List<String> names=new ArrayList<String>();
 		names.add("E");
 		names.add("s");
@@ -123,13 +125,60 @@ public class Deligation {
 	}
 	
 	@RequestMapping(value = "processDeligationForm/{Id}", method=RequestMethod.POST)
-	public String processDeligationForm(@PathVariable("Id") String Id,@ModelAttribute(value="updateuser") UpdateDirectory dataUpdate) throws IOException {
+	public String processDeligationForm(@PathVariable("Id") String Id,@ModelAttribute(value="updateuser") UpdateDirectory dataUpdate) throws IOException, GeneralSecurityException, URISyntaxException {
 		
-		System.out.println("xxxxxxxxxxxxxxxxxuer id-----"+Id);
+		String[] myId=Id.split("lg");
+		String userAppId=myId[1];
+		String delegatedAccountId=myId[0];
 		
+		Optional<UserApp> user=userrepo.findById(myId[0]);
+		System.out.println("EMAIL Person----"+user.get().getEmail());
+		
+		String emailAdress=((dataUpdate.getEmailAdress()).toLowerCase()).replaceAll("\\s+", "");
+		System.out.println("EMAIL Delegate----"+emailAdress);
+		
+		serviceGmail=SercicesAccounts.getGmailService(user.get().getEmail());
+//		
+		Delegate deligation=new Delegate();
+		deligation.setDelegateEmail(emailAdress);
+//		
+		serviceGmail.users().settings().delegates().create(user.get().getEmail(), deligation).execute();
+//		Profile pro=serviceGmail.users().getProfile((emailAdress)).execute();
+//		System.out.println("serviceGmail-----"+pro.getMessagesTotal());
+////		
 		return "redirect:/DelegateAccount/"+Id;
 		
 	}
+	
+	
+	@RequestMapping(value = "RemoveDelegateAccount/{Id}", method=RequestMethod.POST)
+	public String RemoveDelegateAccount(@PathVariable("Id") String Id,@ModelAttribute(value="updateuser") UpdateDirectory dataUpdate) throws IOException, GeneralSecurityException, URISyntaxException {
+		
+		String[] myId=Id.split("lg");
+		String userAppId=myId[1];
+		String delegatedAccountId=myId[0];
+		
+		Optional<UserApp> user=userrepo.findById(myId[0]);
+		System.out.println("EMAIL Person----"+user.get().getEmail());
+		
+		String emailAdress=((dataUpdate.getEmailAdress()).toLowerCase()).replaceAll("\\s+", "");
+		System.out.println("EMAIL Delegate----"+emailAdress);
+		
+		serviceGmail=SercicesAccounts.getGmailService(user.get().getEmail());
+//		
+		Delegate deligation=new Delegate();
+		deligation.setDelegateEmail(emailAdress);
+//		
+		serviceGmail.users().settings().delegates().create(user.get().getEmail(), deligation).execute();
+//		Profile pro=serviceGmail.users().getProfile((emailAdress)).execute();
+//		System.out.println("serviceGmail-----"+pro.getMessagesTotal());
+////		
+		return "redirect:/DelegateAccount/"+Id;
+		
+	}
+	
+	
+	
 	
 	
 	

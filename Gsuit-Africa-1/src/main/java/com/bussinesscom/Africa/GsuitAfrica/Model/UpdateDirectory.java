@@ -8,6 +8,7 @@ public class UpdateDirectory {
 	private String familyname;
 	private String emailAdress;
 	private String imageUrl;
+	private String createdById;
 	
 	public String getGivenName() {
 		return givenName;
@@ -49,6 +50,12 @@ public class UpdateDirectory {
 	public String toString() {
 		return "UpdateDirectory [id=" + id + ", givenName=" + givenName + ", fullname=" + fullname + ", familyname="
 				+ familyname + ", emailAdress=" + emailAdress + ", imageUrl=" + imageUrl + "]";
+	}
+	public String getCreatedById() {
+		return createdById;
+	}
+	public void setCreatedById(String createdById) {
+		this.createdById = createdById;
 	}
 	
 	
