@@ -104,22 +104,21 @@ public class DriveAnalysis {
 			System.out.println("File Name : " + file.get(x).getName() + "  " + "Permisions ----------"
 					+ file.get(x).getPermissions());
 			SimpleDateFormat df = new SimpleDateFormat("yyyy");
+			System.out.println("yesr====="+file.get(x).getCreatedTime()+" Size"+file.get(x).getSize()+" name "+file.get(x).getName());
+			
 			String year = df.format(file.get(x).getCreatedTime().getValue());
 			if (!hashMap.containsKey(year)) {
 				list.add(new DriveYearly(file.get(x).getName(), 1, file.get(x).getSize()));
+			
 				hashMap.put(year, list);
 			} else {
 				list.add(new DriveYearly(file.get(x).getName(), 1, file.get(x).getSize()));
+			
+
 			}
 		}
 
-		List<DriveYearly> das = hashMap.get("2019");
 		List<DriveYearly> finalData = new ArrayList<DriveYearly>();
-		finalData.add(new DriveYearly("2015", 1, 10l));
-		finalData.add(new DriveYearly("2016", 1, 10l));
-		finalData.add(new DriveYearly("2017", 1, 10l));
-		finalData.add(new DriveYearly("2018", 1, 10l));
-		finalData.add(new DriveYearly("2019", 1, 10l));
 
 		for (Entry<String, List<DriveYearly>> entry : hashMap.entrySet()) {
 			String key = entry.getKey();
@@ -199,11 +198,6 @@ public class DriveAnalysis {
 					
 				}
 				
-				
-				
-				
-				
-				
 			}
 			System.out.println("=====================================================================");
 		}
@@ -256,11 +250,11 @@ public class DriveAnalysis {
 
 			List<DriveYearly> das = hashMap.get("2019");
 			List<DriveYearly> finalData = new ArrayList<DriveYearly>();
-			finalData.add(new DriveYearly("2015", 1, 10l));
-			finalData.add(new DriveYearly("2016", 1, 10l));
-			finalData.add(new DriveYearly("2017", 1, 10l));
-			finalData.add(new DriveYearly("2018", 1, 10l));
-			finalData.add(new DriveYearly("2019", 1, 10l));
+//			finalData.add(new DriveYearly("2015", 1, 10l));
+//			finalData.add(new DriveYearly("2016", 1, 10l));
+//			finalData.add(new DriveYearly("2017", 1, 10l));
+//			finalData.add(new DriveYearly("2018", 1, 10l));
+//			finalData.add(new DriveYearly("2019", 1, 10l));
 
 			for (Entry<String, List<DriveYearly>> entry : hashMap.entrySet()) {
 				String key = entry.getKey();

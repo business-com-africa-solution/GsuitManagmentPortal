@@ -69,9 +69,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests().antMatchers(resources).permitAll()
 				.antMatchers("/", "/login/BussnesComAfrica", "/DashBoard/**","/createAppointments","/createUserApi/**","/SignatureSetting/**","/SetSignature/**","/DeleteSignature/**"
-						,"/usermanagment/**","/viewProfile/**","deleteUser/**","/DriveStatisticalAnalysis/**","/DrivePermissions/**","/createUser/**","/userRegistrations",
-						"/createUser/**","/processDeligationForm/**","/DriveAnalysis/**","/getData","/calenderppointment/**","/updateCalenderSignature/**","/calendersettings/**",
-						"/processUpdateForm/**","/starts","/suggestion","/GmailAnalysis/**","/DashBoard/**","/Delegation/**","/DelegateAccount/**","/createdSignature/**")
+						,"/usermanagment/**","/viewProfile/**","/deleteUser/**","/DriveStatisticalAnalysis/**","/DrivePermissions/**","/createUser/**","/userRegistrations",
+						"/createUser/**","/processDeligationForm/**","/DriveAnalysis/**","/getData","/calenderppointment/**","/updateCalenderSignature/**","/calendersettings/**","/Gsuit-Africa-1/****",
+						"/processUpdateForm/**","/starts","/suggestion","/GmailAnalysis/**","/DashBoard/**","/Delegation/**","/DelegateAccount/**","/createdSignature/**","/RemoveDelegateAccount/**")
 				.permitAll().antMatchers("/edwin/**").hasAnyRole("USER").anyRequest().authenticated().and().formLogin()
 				.loginPage("/login/gmail").permitAll().and().logout().permitAll().and().exceptionHandling()
 				.accessDeniedHandler(accessDeniedHandler);

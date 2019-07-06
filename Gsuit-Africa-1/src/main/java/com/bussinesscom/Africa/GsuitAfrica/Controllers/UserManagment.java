@@ -117,24 +117,27 @@ public class UserManagment {
 	public String getUserProfile(@PathVariable("userId") String userId, Model model)
 			throws IOException, GeneralSecurityException, URISyntaxException {
 
+		String[] ids = userId.split("lg");
+		String selectedUserId = ids[0];
+		String updateById = ids[1];
 		model.addAttribute("image", "/jMega avax.faces.resource/images/hands.png?ln=california-layout");
 		model.addAttribute("domain", "dk.businesscom.com");
 
 		for (int a = 0; a < users.size(); a++) {
-			if (users.get(a).getId().equals(userId)) {
+			if (users.get(a).getId().equals(selectedUserId)) {
 
 				String[] email = users.get(a).getPrimaryEmail().split("@");
-				System.out.println("Id------------" + userId);
+				System.out.println("Id------------" + selectedUserId);
 				System.out.println("Email------------" + users.get(a).getPrimaryEmail());
 				model.addAttribute("familyName", users.get(a).getName().getFamilyName());
 				model.addAttribute("givenName", users.get(a).getName().getGivenName());
 				model.addAttribute("emailName", email[0]);
-				model.addAttribute("id", userId);
+				model.addAttribute("id", selectedUserId);
 
 				model.addAttribute("aliaseslist", users.get(a).getAliases());
 
 				UpdateDirectory dataUpdate = new UpdateDirectory();
-				dataUpdate.setId(userId);
+				dataUpdate.setId(selectedUserId);
 				serviceGmail = SercicesAccounts.getGmailService("" + users.get(a).getPrimaryEmail());
 				com.google.api.services.gmail.model.SendAs sendAss = serviceGmail.users().settings().sendAs()
 						.get(users.get(a).getPrimaryEmail(), users.get(a).getPrimaryEmail()).execute();
@@ -144,7 +147,6 @@ public class UserManagment {
 				List<Delegate> deligateList = deligateData.getDelegates();
 
 				model.addAttribute("deligateList", deligateList);
-
 				model.addAttribute("users", users);
 				model.addAttribute("signateure", sendAss.getSignature());
 				model.addAttribute("updateuser", dataUpdate);
@@ -160,17 +162,21 @@ public class UserManagment {
 	public String getdelete(@PathVariable("userId") String userId, Model model)
 			throws IOException, GeneralSecurityException, URISyntaxException {
 
+		String[] ids = userId.split("lg");
+		String selectedUserId = ids[0];
+		String updateById = ids[1];
+
 		model.addAttribute("image", "/jMega avax.faces.resource/images/hands.png?ln=california-layout");
 		model.addAttribute("domain", "dk.businesscom.com");
 
 		for (int a = 0; a < users.size(); a++) {
-			if (users.get(a).getId().equals(userId)) {
-				System.out.println("Id------------" + userId);
+			if (users.get(a).getId().equals(selectedUserId)) {
+				System.out.println("Id------------" + selectedUserId);
 				System.out.println("Email------------" + users.get(a).getPrimaryEmail());
 				serviceDirect.users().delete(users.get(a).getPrimaryEmail()).execute();
 			}
 		}
-		return "userprofile";
+		return "redirect:/usermanagment/" + updateById;
 
 	}
 
@@ -182,7 +188,6 @@ public class UserManagment {
 		model.addAttribute("domain", "dk.businesscom.com");
 		myUser user = new myUser();
 		user.setCretedById(userId);
-
 		model.addAttribute("userId", userId);
 		model.addAttribute("myUser", user);
 		return "userregisteration";
@@ -195,6 +200,12 @@ public class UserManagment {
 
 		model.addAttribute("image", "/jMega avax.faces.resource/images/hands.png?ln=california-layout");
 		model.addAttribute("domain", "dk.businesscom.com");
+
+//	System.out.println("userId------------" + userId);
+//		
+//		String[] ids = userId.split("lg");
+//		String selectedUserId = ids[0];
+//		String updateById = ids[1];
 
 		User users = new User();
 		users.setChangePasswordAtNextLogin(true);
@@ -216,21 +227,27 @@ public class UserManagment {
 
 		String onsucess = "<div class=\"alert\">\n"
 				+ "			 <span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span> \n"
-				+ "			 <strong>Sucess!</strong> USER "+succeessMessage.getPrimaryEmail()+" has been created sucessfully\n"
-				+ "		   </div>";
+				+ "			 <strong>Sucess!</strong> USER " + succeessMessage.getPrimaryEmail()
+				+ " has been created sucessfully\n" + "		   </div>";
 
 		model.addAttribute("onsucessAlert", onsucess);
-		myUser newUser= new myUser();
+		myUser newUser = new myUser();
 		newUser.setCretedById(myuser.getCretedById());
 		model.addAttribute("myUser", newUser);
-		
+
 		return "userregisteration";
 
 	}
 
-	@RequestMapping(value = "/processUpdateForm", method = RequestMethod.POST)
-	public String upDateUserInformation(@ModelAttribute(value = "updateuser") UpdateDirectory dataUpdate)
-			throws IOException {
+	@RequestMapping(value = "/processUpdateForm/{userId}", method = RequestMethod.POST)
+	public String upDateUserInformation(@PathVariable("userId") String userId,
+			@ModelAttribute(value = "updateuser") UpdateDirectory dataUpdate) throws IOException {
+
+		System.out.println("userId------------" + userId);
+
+		String[] ids = userId.split("lg");
+		String selectedUserId = ids[0];
+		String updateById = ids[1];
 
 		Optional<UserApp> userApp = userrepo.findById(dataUpdate.getId());
 
@@ -259,7 +276,7 @@ public class UserManagment {
 			if (user != null && Utilities.getNullStringList(user.getAliases()) != 0) {
 				ContactApiService.ContactService("edwin@dev.businesscom.dk", user.getAliases().get(0));
 			}
-			return "redirect:/usermanagment";
+			return "redirect:/usermanagment/" + updateById;
 		} catch (IOException | GeneralSecurityException | URISyntaxException | ServiceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

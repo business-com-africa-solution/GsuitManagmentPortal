@@ -307,7 +307,7 @@
 											class="ui-panelgrid-content ui-widget-content ui-grid ui-grid-responsive">
 
 											<div class="ui-g">
-												<form th:action="@{/processUpdateForm}"
+												<form th:action="@{/processUpdateForm/}+${userId}"
 													th:object="${updateuser}" method="post">
 													<div class="ui-panelgrid-cell ui-g-12 ui-md-4">
 														<img id="j_idt119"

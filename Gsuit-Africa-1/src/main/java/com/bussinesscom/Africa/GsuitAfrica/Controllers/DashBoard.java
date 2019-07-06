@@ -233,6 +233,9 @@ public class DashBoard {
 			user.setUsername(userinfo.getFamilyName()+" "+userinfo.getGivenName());
 			user.setImageUrl(userinfo.getPicture());
 			user.setPassword(userinfo.getId());
+			Company comp=new Company();
+			comp.setCompanyId(1);
+			user.setCompany(comp);
 			user.setUpdatedAt(ts);
 			userRepository.saveAndFlush(user);
 			

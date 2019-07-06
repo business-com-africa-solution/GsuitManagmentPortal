@@ -340,15 +340,12 @@ function validate(form) {
 														<td th:if="${acessdenied}" role="gridcell">
 														<div th:if="${update}" class="ui-g-12 ui-md-6" style="background-color: green;" >
 														 <a  class="fa fa-fw fa-user-circle fa-1x"
-															th:href="@{/viewProfile/} + ${User.getId()}" style="color: green;" type="button" aria-hidden="true"> <span style="color: black;">Profile</span></a>
-															 
-															<!-- <form onSubmit="return confirm('Are you sure you wish to delete?');" action="@{/viewProfile/} + ${User.getId()}">
-																<button type="submit">submit</button>
-															</form> -->
+															th:href="@{/viewProfile/} + ${User.getId()}+lg+${userId}" style="color: green;" type="button" aria-hidden="true"> <span style="color: black;">Profile</span></a>
+													
 														</div>
 														<div th:if="${delete}" class="ui-g-12 ui-md-6" style="background-color: red;" >
 													    <a class="fa fa-fw fa-user-times fa-1x" type="button"
-															th:href="@{/deleteUser/} + ${User.getId()}" style="color: red;" > 
+															th:href="@{/deleteUser/} + ${User.getId()}+lg+${userId}" style="color: red;" > 
 															<span style="color: black;">Delete</span></a>		
 														</div>			
 													

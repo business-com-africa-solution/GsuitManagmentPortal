@@ -151,25 +151,25 @@ public class Deligation {
 	}
 	
 	
-	@RequestMapping(value = "RemoveDelegateAccount/{Id}", method=RequestMethod.POST)
-	public String RemoveDelegateAccount(@PathVariable("Id") String Id,@ModelAttribute(value="updateuser") UpdateDirectory dataUpdate) throws IOException, GeneralSecurityException, URISyntaxException {
+	@RequestMapping(value = "RemoveDelegateAccount/{Id}", method=RequestMethod.GET)
+	public String RemoveDelegateAccount(@PathVariable("Id") String Id) throws IOException, GeneralSecurityException, URISyntaxException {
 		
-		String[] myId=Id.split("lg");
-		String userAppId=myId[1];
-		String delegatedAccountId=myId[0];
-		
-		Optional<UserApp> user=userrepo.findById(myId[0]);
-		System.out.println("EMAIL Person----"+user.get().getEmail());
-		
-		String emailAdress=((dataUpdate.getEmailAdress()).toLowerCase()).replaceAll("\\s+", "");
-		System.out.println("EMAIL Delegate----"+emailAdress);
-		
-		serviceGmail=SercicesAccounts.getGmailService(user.get().getEmail());
+//		String[] myId=Id.split("lg");
+//		String userAppId=myId[1];
+//		String delegatedAccountId=myId[0];
 //		
-		Delegate deligation=new Delegate();
-		deligation.setDelegateEmail(emailAdress);
+//		Optional<UserApp> user=userrepo.findById(myId[0]);
+//		System.out.println("EMAIL Person----"+user.get().getEmail());
 //		
-		serviceGmail.users().settings().delegates().create(user.get().getEmail(), deligation).execute();
+//		String emailAdress=((dataUpdate.getEmailAdress()).toLowerCase()).replaceAll("\\s+", "");
+//		System.out.println("EMAIL Delegate----"+emailAdress);
+		
+//		serviceGmail=SercicesAccounts.getGmailService(user.get().getEmail());
+////		
+//		Delegate deligation=new Delegate();
+//		deligation.setDelegateEmail(emailAdress);
+////		
+//		serviceGmail.users().settings().delegates().create(user.get().getEmail(), deligation).execute();
 //		Profile pro=serviceGmail.users().getProfile((emailAdress)).execute();
 //		System.out.println("serviceGmail-----"+pro.getMessagesTotal());
 ////		
