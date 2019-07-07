@@ -21,7 +21,6 @@ public class UserManagmentRest {
 	@PostMapping("createUserApi")
 	public ServiceResponse getTesting(@RequestBody String newEmployee) throws IOException, GeneralSecurityException 
 	{
-		
 		System.out.println("UserSettings");
 		Object appointment=newEmployee;
 		ServiceResponse response=new ServiceResponse();

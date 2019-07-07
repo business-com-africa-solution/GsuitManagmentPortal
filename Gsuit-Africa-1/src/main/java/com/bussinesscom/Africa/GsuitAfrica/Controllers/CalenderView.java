@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import com.bussinesscom.Africa.GsuitAfrica.Model.Clients;
 import com.bussinesscom.Africa.GsuitAfrica.Model.MyEvents;
 import com.bussinesscom.Africa.GsuitAfrica.Model.UpdateDirectory;
 import com.bussinesscom.Africa.GsuitAfrica.Repository.CalenderAppointmentSlotRepository;
+import com.bussinesscom.Africa.GsuitAfrica.Repository.GmsUrlsRepository;
 import com.bussinesscom.Africa.GsuitAfrica.Repository.UserAppRepositiry;
 import com.bussinesscom.Africa.GsuitAfrica.ServiceAccount.SercicesAccounts;
 import com.bussinesscom.Africa.GsuitAfrica.Utils.Utilities;
@@ -41,7 +43,9 @@ public class CalenderView {
 	@Autowired
 	CalenderAppointmentSlotRepository calenderAppointmentRepository;
 	
-	String URL="http://businesscomtest.ddns.net/";
+	@Autowired
+	GmsUrlsRepository gmsUrlsRepository;
+
 	
 
 	@RequestMapping("calendersettings/{email}")
@@ -58,6 +62,7 @@ public class CalenderView {
 	}
 	
 	
+	@CrossOrigin(origins = "http://localhost:8080")
 	@RequestMapping("calenderppointment/{email}")
 	public String postTesting(@PathVariable("email") String email, Model model)
 			throws IOException, GeneralSecurityException, URISyntaxException {
@@ -120,6 +125,7 @@ public class CalenderView {
 	}
 	
 	
+	
 	@RequestMapping("updateCalenderSignature")
 	public String createLinksForAll(Model model) throws GeneralSecurityException, IOException, URISyntaxException
 	{
@@ -144,7 +150,10 @@ public class CalenderView {
             	Gmail gmail=SercicesAccounts.getGmailService(user.getId());
             	com.google.api.services.gmail.model.SendAs sendAs=gmail.users().settings().sendAs().get(user.getPrimaryEmail(), user.getPrimaryEmail()).execute();
             	
-            	String link=URL+"/calenderppointment/"+user.getPrimaryEmail()+"/";
+            	
+            	gmsUrlsRepository.findById(1).get().getUrl();
+            	
+            	String link=gmsUrlsRepository.findById(2).get().getUrl()+user.getPrimaryEmail()+"/";
             	UserApp userxx =new UserApp();
             	CalenderAppointmentSlot calenderAppointment=new CalenderAppointmentSlot();
             	

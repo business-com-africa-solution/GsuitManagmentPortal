@@ -84,7 +84,25 @@ public class Deligation {
 	{
 		
 		String[] myId=delegateId.split("lg");
-		Optional<UserApp> user=userrepo.findById(myId[0]);
+		
+		Optional<UserApp> meUser=userrepo.findById(myId[1]);
+		
+		String loginEmail=meUser.get().getEmail();
+		String[] domain=loginEmail.split("@");
+		Domain userDomain= domainRepositry.findByDomainName(domain[1]);
+		Company comp=userDomain.getCompany();
+		comp.getPackages();	
+		model.addAttribute("servicesAcess",comp.getPackages().getServices());
+		model.addAttribute("package",comp.getPackages().getName());
+		model.addAttribute("userName", ""+meUser.get().getLastName()+" "+meUser.get().getFirstName());		
+		model.addAttribute("image", ""+meUser.get().getImageUrl()+"?ln=california-layout");
+		model.addAttribute("userId", ""+myId[1]);
+		
+		
+		
+		
+		
+		Optional<UserApp> user=userrepo.findById(myId[0]);		
 		String delegateEmail=user.get().getEmail();
 		String imageurl=user.get().getImageUrl();
 		String username=user.get().getUsername();
@@ -94,7 +112,7 @@ public class Deligation {
 		System.out.println("User email-----------------"+delegateEmail);
 		model.addAttribute("familyName",user.get().getFirstName());
 		model.addAttribute("delusername",username);
-		model.addAttribute("image", imageurl);
+		model.addAttribute("delimage", imageurl);
 		model.addAttribute("jobtitle", "Developer");
 		model.addAttribute("delemail",delegateEmail);
 		model.addAttribute("id", delegateId);
@@ -106,8 +124,7 @@ public class Deligation {
 		names.add("c");
 		names.add("d");
 		names.add("g");
-		
-		
+			
 		model.addAttribute("list",names);
 				
 		if(user.isPresent()) 
@@ -117,7 +134,6 @@ public class Deligation {
 			List<Delegate> deleligates=deligateData.getDelegates();		
 			model.addAttribute("deligateList",deleligates);	
 		}
-		
 		
 		
 		return "deligationform";
@@ -146,7 +162,7 @@ public class Deligation {
 //		Profile pro=serviceGmail.users().getProfile((emailAdress)).execute();
 //		System.out.println("serviceGmail-----"+pro.getMessagesTotal());
 ////		
-		return "redirect:/DelegateAccount/"+Id;
+		return "redirect:/DelegateAccount/"+userAppId;
 		
 	}
 	
@@ -154,28 +170,30 @@ public class Deligation {
 	@RequestMapping(value = "RemoveDelegateAccount/{Id}", method=RequestMethod.GET)
 	public String RemoveDelegateAccount(@PathVariable("Id") String Id) throws IOException, GeneralSecurityException, URISyntaxException {
 		
-//		String[] myId=Id.split("lg");
-//		String userAppId=myId[1];
-//		String delegatedAccountId=myId[0];
-//		
-//		Optional<UserApp> user=userrepo.findById(myId[0]);
+		String[] myId=Id.split("lg");
+		String emailToRemove=myId[0];
+		String delegateccount=myId[1];
+		String updateId=myId[2];
+		
+		Optional<UserApp> user=userrepo.findById(delegateccount);
 //		System.out.println("EMAIL Person----"+user.get().getEmail());
 //		
 //		String emailAdress=((dataUpdate.getEmailAdress()).toLowerCase()).replaceAll("\\s+", "");
 //		System.out.println("EMAIL Delegate----"+emailAdress);
 		
-//		serviceGmail=SercicesAccounts.getGmailService(user.get().getEmail());
+		serviceGmail=SercicesAccounts.getGmailService(user.get().getEmail());
 ////		
 //		Delegate deligation=new Delegate();
 //		deligation.setDelegateEmail(emailAdress);
 ////		
-//		serviceGmail.users().settings().delegates().create(user.get().getEmail(), deligation).execute();
+		serviceGmail.users().settings().delegates().delete(user.get().getEmail(), emailToRemove).execute();
 //		Profile pro=serviceGmail.users().getProfile((emailAdress)).execute();
 //		System.out.println("serviceGmail-----"+pro.getMessagesTotal());
 ////		
-		return "redirect:/DelegateAccount/"+Id;
+		return "redirect:/DelegateAccount/"+delegateccount+"lg"+updateId;
 		
 	}
+	
 	
 	
 	

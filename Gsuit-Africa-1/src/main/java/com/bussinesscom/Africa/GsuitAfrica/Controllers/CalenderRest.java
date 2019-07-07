@@ -7,7 +7,9 @@ import java.util.TimeZone;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bussinesscom.Africa.GsuitAfrica.Model.Appointment;
 import com.bussinesscom.Africa.GsuitAfrica.ServiceAccount.SercicesAccounts;
+import com.bussinesscom.Africa.GsuitAfrica.Utils.HtmlTemplates;
 import com.bussinesscom.Africa.GsuitAfrica.Utils.ServiceResponse;
 import com.google.api.client.util.DateTime;
 import com.google.api.services.calendar.Calendar;
@@ -41,10 +44,13 @@ public class CalenderRest {
 	}
 	
 	
-	@RequestMapping("calenderppointment/{email}/createAppointment/{edwin}")
+	
+	@PostMapping("calenderppointment/{email}/createAppointment/{edwin}")
 	public ServiceResponse postTesting(@PathVariable("email") String email,@PathVariable("edwin") String edwin,@RequestBody Appointment appointment) throws IOException, GeneralSecurityException 
 	{
 		
+		 System.out.println("==== in postTesting ====");
+		 
 		System.out.println("Event created:----------------"+email);
 		System.out.println("Event created:----------------"+edwin);
 		
@@ -59,10 +65,23 @@ public class CalenderRest {
 		System.out.println("GMT:----------------"+GMT);
 		
 		System.out.println("Event created:----------------"+appointment.toString());
-		String description="Email Addrres: "+appointment.getEmail()+"\n"+"Firts Name "+appointment.getFirstName()+"\n"+"LastName "+appointment.getLastName()+"\n"+"Phone Number "+appointment.getPhonenumber();	
+		
+//		String description="<h2 align=\"center\">TITLE</h2>\n" + 
+//				"    <div align=\"center\">\n" + 
+//				"<p >Create and edit <a href=\"https://validator.w3.org/\" rel=\"nofollow\" target=\"_blank\" title=\"W3C HTML validator\">emailadress</a> without writing a single line of code. The WYSIWYG editor on the left helps non-developers write their own <em>high-quality HTML code</em>.</p>\n" + 
+//				"<h3>Know some code? <span class=\"fr-emoticon fr-deletable fr-emoticon-img\" style=\"background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f600.svg);\">&nbsp;</span></h3>\n" + 
+//				"<p>The editing works both ways, with live visual feedback. Write some markup code on the right, and it will appear in the left editor.</p>\n" + 
+//				"</div>";
+//		
+		
+		String description= HtmlTemplates.templateReturn(appointment.getTitle(),appointment.getFirstName()+" "+appointment.getLastName(), appointment.getPhonenumber(), "NAIROBI", appointment.getEmail(),appointment.getCompany(),appointment.getFromDate(),appointment.getTodate()); 
+		
+		System.out.println("Description-----------------------   "+description);
+		
+//		String description="Email Addrres: "+appointment.getEmail()+"\n"+"Firts Name "+appointment.getFirstName()+"\n"+"LastName "+appointment.getLastName()+"\n"+"Phone Number "+appointment.getPhonenumber();	
 		
 		Event event = new Event()
-		    .setSummary(appointment.getTitle()+"/n"+appointment.getCompany())
+		    .setSummary(appointment.getTitle())
 		    .setDescription(""+description);
 			
 		DateTime startDateTime = new DateTime((((appointment.getFromDate()))+"+0"+GMT+":00"));

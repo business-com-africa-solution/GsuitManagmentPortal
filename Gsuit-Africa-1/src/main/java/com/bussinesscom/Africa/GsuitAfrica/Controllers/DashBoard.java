@@ -52,6 +52,7 @@ import com.bussinesscom.Africa.GsuitAfrica.Entity.UserApp;
 import com.bussinesscom.Africa.GsuitAfrica.Entity.UserRole;
 import com.bussinesscom.Africa.GsuitAfrica.Model.myContact;
 import com.bussinesscom.Africa.GsuitAfrica.Repository.DomainRepository;
+import com.bussinesscom.Africa.GsuitAfrica.Repository.GmsUrlsRepository;
 import com.bussinesscom.Africa.GsuitAfrica.Repository.NotificationRepository;
 import com.bussinesscom.Africa.GsuitAfrica.Repository.UserAppRepositiry;
 import com.bussinesscom.Africa.GsuitAfrica.Repository.UserRoleRepository;
@@ -122,7 +123,7 @@ public class DashBoard {
 	@Value("${gmail.client.clientSecret}")
 	private String clientSecret;
 
-	@Value("${gmail.client.redirectUri}")
+
 	private String redirectUri;
 
 	@Value("${gmail.resource.userInfoUri}")
@@ -150,6 +151,8 @@ public class DashBoard {
 	NotificationRepository notificationRepositry;
 	
 	
+	@Autowired
+	GmsUrlsRepository gmsUrlsRepository;
 
 
 	@RequestMapping(value = "/login/gmail", method = RequestMethod.GET)
@@ -323,8 +326,6 @@ public class DashBoard {
 		Boolean userManegment=  rolesAcesses.getUserManegment().equals(comp.getPackages().getServices().getUserManegment());
 		DisplayRoleAccessService.setUserManegment(userManegment);
 		
-	
-		
 		
 		System.out.println("Comapany"+comp.getName());
 		System.out.println("Domain"+userDomain.getDomainName());
@@ -417,6 +418,7 @@ public class DashBoard {
 			flow = new GoogleAuthorizationCodeFlow.Builder(httpTransport, JSON_FACTORY, clientSecrets, permissions())
 					.build();
 		}
+		redirectUri=gmsUrlsRepository.findById(1).get().getUrl();
 		authorizationUrl = flow.newAuthorizationUrl().setRedirectUri(redirectUri);
 		return authorizationUrl.build();
 	}
