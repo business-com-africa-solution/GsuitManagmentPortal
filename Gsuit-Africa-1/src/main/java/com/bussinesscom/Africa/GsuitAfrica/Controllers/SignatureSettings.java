@@ -61,10 +61,14 @@ public class SignatureSettings {
 		model.addAttribute("image", "" + user.get().getImageUrl() + "?ln=california-layout");
 
 		System.out.println("Company-----------------------" + usrRepo.findById(userId).get().getEmail());
-		System.out
-				.println("Company-----------------------" + usrRepo.findById(userId).get().getCompany().getCompanyId());
+		System.out.println("Company-----------------------" + usrRepo.findById(userId).get().getCompany().getCompanyId());
 		List<SignatureTemplate> signatureTemplatesList = signaterRepo.findByCompany(myCompany);
 
+		
+		
+		System.out.println("is deletable-----------------------" +signatureTemplatesList.get(0).getIsDeletable());
+		
+		
 		model.addAttribute("mysignature", signatureTemplatesList);
 
 		model.addAttribute("Signature", new Signature());
@@ -109,6 +113,8 @@ public class SignatureSettings {
 		System.out.println("usesList" + usersList.get(0).toString());
 
 		for (int a = 0; a < usersList.size(); a++) {
+			
+			if(!(usersList.get(a).getEmail().equals("edwin@dev.businesscom.dk"))) {
 			Gmail signatureAccountUpdate = SercicesAccounts.getGmailService(usersList.get(a).getEmail());
 			SendAs sendAs = new SendAs();
 			System.out.println("Signature Body-----" + signatureBody);
@@ -134,7 +140,9 @@ public class SignatureSettings {
 		signatureTemplateUpdate.add(signatureTemplateSelected);
 
 		signaterRepo.saveAll(signatureTemplateUpdate);
+		}
 		return "redirect:/SignatureSetting/" + users.get().getId();
+		
 	}
 
 	@RequestMapping("DeleteSignature/{userId}")

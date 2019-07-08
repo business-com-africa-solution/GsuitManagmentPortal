@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.bussinesscom.Africa.GsuitAfrica.AutoComplet.DataTest;
 import com.bussinesscom.Africa.GsuitAfrica.Entity.Company;
 import com.bussinesscom.Africa.GsuitAfrica.Entity.Domain;
+import com.bussinesscom.Africa.GsuitAfrica.Entity.Services;
 import com.bussinesscom.Africa.GsuitAfrica.Entity.UserApp;
 import com.bussinesscom.Africa.GsuitAfrica.Model.DriveYearly;
 import com.bussinesscom.Africa.GsuitAfrica.Model.MyDriveFiles;
@@ -62,6 +63,8 @@ public class DriveAnalysis {
 	public String AccountDeligation(@PathVariable("userId") String userId, Model model,
 			final HttpServletRequest request) throws GeneralSecurityException, IOException, URISyntaxException {
 
+		
+		
 		Optional<UserApp> user = userappRepo.findById(userId);
 		String loginEmail = user.get().getEmail();
 		String[] domain = loginEmail.split("@");
@@ -89,7 +92,40 @@ public class DriveAnalysis {
 	public String driveAnalysisPage(@PathVariable("userId") String userId, Model model)
 			throws GeneralSecurityException, IOException, URISyntaxException {
 		System.out.println("UserId" + userId);
-		Optional<UserApp> user = userappRepo.findById(userId);
+		
+		String[] ids = userId.split("lg");
+		String templateId = ids[0];
+		String updateById = ids[1];
+		
+		
+		Optional<UserApp> meUser = userappRepo.findById(updateById);
+		String loginEmail = meUser.get().getEmail();
+		String[] domain = loginEmail.split("@");
+		Domain userDomain = domainRepositry.findByDomainName(domain[1]);
+		Company comp = userDomain.getCompany();
+		comp.getPackages();
+		model.addAttribute("servicesAcess", comp.getPackages().getServices());
+		model.addAttribute("package", comp.getPackages().getName());
+		model.addAttribute("userName", "" + meUser.get().getLastName() + " " + meUser.get().getFirstName());
+		model.addAttribute("image", "" + meUser.get().getImageUrl() + "?ln=california-layout");
+		model.addAttribute("userId", updateById);
+		
+		
+//		Services DisplayRoleAccessService=new Services();
+//		DisplayRoleAccessService.setBilling(Utilities.getRightsAcess(comp.getPackages().getServices().getBilling(),rolesAcesses.getBilling()));
+//		DisplayRoleAccessService.setSignature(Utilities.getRightsAcess(comp.getPackages().getServices().getSignature(),rolesAcesses.getSignature()));
+//		DisplayRoleAccessService.setEmailAnalysis(Utilities.getRightsAcess(comp.getPackages().getServices().getEmailAnalysis(),rolesAcesses.getEmailAnalysis()));
+//		DisplayRoleAccessService.setDriveAnalysis(Utilities.getRightsAcess(comp.getPackages().getServices().getDriveAnalysis(),rolesAcesses.getDriveAnalysis()));
+//		DisplayRoleAccessService.setCalenderApointment(Utilities.getRightsAcess(comp.getPackages().getServices().getCalenderApointment(),rolesAcesses.getCalenderApointment()));
+//		DisplayRoleAccessService.setHr(Utilities.getRightsAcess(comp.getPackages().getServices().getHr(),rolesAcesses.getHr()));
+//		DisplayRoleAccessService.setMaildelegation(Utilities.getRightsAcess(comp.getPackages().getServices().getMaildelegation(),rolesAcesses.getMaildelegation())); 
+//		DisplayRoleAccessService.setUserManegment(Utilities.getRightsAcess(comp.getPackages().getServices().getUserManegment(),rolesAcesses.getUserManegment()));
+//		
+//		model.addAttribute("servicesAcess",DisplayRoleAccessService);
+//		
+	
+		
+		Optional<UserApp> user = userappRepo.findById(templateId);
 		System.out.println("User------------" + user.get().getEmail());
 
 		driveServiceAccount = SercicesAccounts.getDriveService(user.get().getEmail());
@@ -152,9 +188,28 @@ public class DriveAnalysis {
 	public String DrivePermissions(@PathVariable("userId") String userId, Model model)
 			throws GeneralSecurityException, IOException, URISyntaxException {
 		System.out.println("UserId" + userId);
-		Optional<UserApp> user = userappRepo.findById(userId);
-		System.out.println("User------------" + user.get().getEmail());
-
+		
+		
+		String[] ids = userId.split("lg");
+		String templateId = ids[0];
+		String updateById = ids[1];
+		
+		
+		Optional<UserApp> meUser = userappRepo.findById(updateById);
+		String loginEmail = meUser.get().getEmail();
+		String[] domain = loginEmail.split("@");
+		Domain userDomain = domainRepositry.findByDomainName(domain[1]);
+		Company comp = userDomain.getCompany();
+		comp.getPackages();
+		model.addAttribute("servicesAcess", comp.getPackages().getServices());
+		model.addAttribute("package", comp.getPackages().getName());
+		model.addAttribute("userName", "" + meUser.get().getLastName() + " " + meUser.get().getFirstName());
+		model.addAttribute("image", "" + meUser.get().getImageUrl() + "?ln=california-layout");
+		model.addAttribute("userId", updateById);
+		
+		
+		Optional<UserApp> user = userappRepo.findById(templateId);
+		
 		driveServiceAccount = SercicesAccounts.getDriveService(user.get().getEmail());
 		FileList result = driveServiceAccount.files().list()
 				.setFields("nextPageToken, files(createdTime,id,name,size,permissions) ").execute();
@@ -206,11 +261,6 @@ public class DriveAnalysis {
 		model.addAttribute("mysharedfiles", mySharedDriveFilesList);
 		
 		
-		
-//		System.out.println("OWNER ====="+myDriveByRoleHashMap.get("owner").toString());
-//		
-//		System.out.println("WRITER ========== "+myDriveByRoleHashMap.get("writer").toString());
-//		
 		return "drivepermission";
 	}
 
@@ -250,11 +300,6 @@ public class DriveAnalysis {
 
 			List<DriveYearly> das = hashMap.get("2019");
 			List<DriveYearly> finalData = new ArrayList<DriveYearly>();
-//			finalData.add(new DriveYearly("2015", 1, 10l));
-//			finalData.add(new DriveYearly("2016", 1, 10l));
-//			finalData.add(new DriveYearly("2017", 1, 10l));
-//			finalData.add(new DriveYearly("2018", 1, 10l));
-//			finalData.add(new DriveYearly("2019", 1, 10l));
 
 			for (Entry<String, List<DriveYearly>> entry : hashMap.entrySet()) {
 				String key = entry.getKey();

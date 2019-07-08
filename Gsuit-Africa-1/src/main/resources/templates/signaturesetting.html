@@ -339,7 +339,7 @@
 															<span style="color: white;">Set As Current Signature</span></a>
 
 													</div>
-													<div class="ui-g-12 ui-md-12 ui-lg-4">
+													<div th:if="${SignatureTemplate.getIsDeletable()}" class="ui-g-12 ui-md-12 ui-lg-4">
 														<a class="ui-button ui-c  blue-btn" type="button"
 															th:href="@{/DeleteSignature/} + ${SignatureTemplate.getId()}+lg+${userId}" style="color: red;" > 
 															<span style="color: white;">Delete Template</span></a>

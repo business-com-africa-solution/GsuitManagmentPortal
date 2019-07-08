@@ -277,13 +277,6 @@ public class DashBoard {
 		}
 	}
 
-//	public Collection<? extends GrantedAuthority> getAuthorities() {
-//		List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
-//
-//		list.add(new SimpleGrantedAuthority("ADMIN"));
-//
-//		return list;
-//	}
 
 	@RequestMapping("DashBoard/{loginId}")
 	public String loginDashBoard(@PathVariable("loginId") String loginId, Model model,final HttpServletRequest request)
@@ -316,12 +309,11 @@ public class DashBoard {
 		DisplayRoleAccessService.setMaildelegation(Utilities.getRightsAcess(comp.getPackages().getServices().getMaildelegation(),rolesAcesses.getMaildelegation())); 
 		DisplayRoleAccessService.setUserManegment(Utilities.getRightsAcess(comp.getPackages().getServices().getUserManegment(),rolesAcesses.getUserManegment()));
 		
-		
-//		System.out.println("Comapany"+comp.getName());
-//		System.out.println("Domain"+userDomain.getDomainName());
-//		System.out.println("Package"+comp.getPackages().getName());
-//		System.out.println("Package"+comp.getPackages().getServices().toString());
-//		System.out.println("notifications--------"+notifications.size());
+		System.out.println("Comapany"+comp.getName());
+		System.out.println("Domain"+userDomain.getDomainName());
+		System.out.println("Package"+comp.getPackages().getName());
+		System.out.println("Package"+comp.getPackages().getServices().toString());
+		System.out.println("notifications--------"+notifications.size());
 			
 		model.addAttribute("notifications",notifications );
 		model.addAttribute("servicesAcess",DisplayRoleAccessService);

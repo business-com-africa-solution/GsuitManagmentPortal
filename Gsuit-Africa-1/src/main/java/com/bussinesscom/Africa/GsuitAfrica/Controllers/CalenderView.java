@@ -215,7 +215,6 @@ public class CalenderView {
             	calenderAppointment.setCompanyId(1);
             	calenderAppointmentRepository.saveAndFlush(calenderAppointment);
             	
-            	
             }
         }
         
