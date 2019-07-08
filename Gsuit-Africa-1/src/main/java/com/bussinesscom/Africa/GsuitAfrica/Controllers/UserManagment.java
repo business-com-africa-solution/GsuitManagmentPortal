@@ -120,7 +120,19 @@ public class UserManagment {
 		String[] ids = userId.split("lg");
 		String selectedUserId = ids[0];
 		String updateById = ids[1];
-		model.addAttribute("image", "/jMega avax.faces.resource/images/hands.png?ln=california-layout");
+		
+		Optional<UserApp> meUser = userrepo.findById(updateById);
+		String loginEmail = meUser.get().getEmail();
+		String[] domain = loginEmail.split("@");
+		Domain userDomain = domainRepositry.findByDomainName(domain[1]);
+		Company comp = userDomain.getCompany();
+		comp.getPackages();
+		model.addAttribute("servicesAcess", comp.getPackages().getServices());
+		model.addAttribute("package", comp.getPackages().getName());
+		model.addAttribute("userName", "" + meUser.get().getLastName() + " " + meUser.get().getFirstName());
+		model.addAttribute("image", "" + meUser.get().getImageUrl() + "?ln=california-layout");
+
+		
 		model.addAttribute("domain", "dk.businesscom.com");
 
 		for (int a = 0; a < users.size(); a++) {

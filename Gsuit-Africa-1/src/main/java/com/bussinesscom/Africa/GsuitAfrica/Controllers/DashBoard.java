@@ -59,6 +59,8 @@ import com.bussinesscom.Africa.GsuitAfrica.Repository.UserRoleRepository;
 import com.bussinesscom.Africa.GsuitAfrica.Repository.roleRepository;
 //import com.bussinesscom.Africa.GsuitAfrica.Security.AuthenticationManagers;
 import com.bussinesscom.Africa.GsuitAfrica.ServiceAccount.SercicesAccounts;
+import com.bussinesscom.Africa.GsuitAfrica.Utils.GuestRoles;
+import com.bussinesscom.Africa.GsuitAfrica.Utils.Utilities;
 import com.google.api.client.auth.oauth2.AuthorizationCodeRequestUrl;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.auth.oauth2.TokenResponse;
@@ -245,8 +247,7 @@ public class DashBoard {
 			
 			
 			
-			//			
-			
+			//				
 //			UsernamePasswordAuthenticationToken authReq = new UsernamePasswordAuthenticationToken(email, "");
 //			Authentication auth = authenticationManagers.authenticate(email,authReq);
 //			SecurityContext securityContext = SecurityContextHolder.getContext();
@@ -298,40 +299,29 @@ public class DashBoard {
 		Company comp=userDomain.getCompany();
 		comp.getPackages();
 		
-		RoleAccess rolesAcesses=role.get(0).getRole().getRoleAcess();
+		RoleAccess rolesAcesses=null;
+		try {
+			 rolesAcesses=role.get(0).getRole().getRoleAcess();
+		}catch(IndexOutOfBoundsException outofbounceExp){
+			 rolesAcesses=GuestRoles.getRoleAccessGuest(); 
+		}
+		
 		Services DisplayRoleAccessService=new Services();
+		DisplayRoleAccessService.setBilling(Utilities.getRightsAcess(comp.getPackages().getServices().getBilling(),rolesAcesses.getBilling()));
+		DisplayRoleAccessService.setSignature(Utilities.getRightsAcess(comp.getPackages().getServices().getSignature(),rolesAcesses.getSignature()));
+		DisplayRoleAccessService.setEmailAnalysis(Utilities.getRightsAcess(comp.getPackages().getServices().getEmailAnalysis(),rolesAcesses.getEmailAnalysis()));
+		DisplayRoleAccessService.setDriveAnalysis(Utilities.getRightsAcess(comp.getPackages().getServices().getDriveAnalysis(),rolesAcesses.getDriveAnalysis()));
+		DisplayRoleAccessService.setCalenderApointment(Utilities.getRightsAcess(comp.getPackages().getServices().getCalenderApointment(),rolesAcesses.getCalenderApointment()));
+		DisplayRoleAccessService.setHr(Utilities.getRightsAcess(comp.getPackages().getServices().getHr(),rolesAcesses.getHr()));
+		DisplayRoleAccessService.setMaildelegation(Utilities.getRightsAcess(comp.getPackages().getServices().getMaildelegation(),rolesAcesses.getMaildelegation())); 
+		DisplayRoleAccessService.setUserManegment(Utilities.getRightsAcess(comp.getPackages().getServices().getUserManegment(),rolesAcesses.getUserManegment()));
 		
 		
-		Boolean billing=rolesAcesses.getBilling().equals(comp.getPackages().getServices().getBilling());
-		DisplayRoleAccessService.setBilling(billing);
-		
-		Boolean signature=  rolesAcesses.getSignature().equals(comp.getPackages().getServices().getSignature());
-		DisplayRoleAccessService.setSignature(signature);
-		
-		Boolean  emailAnalysis=rolesAcesses.getEmailAnalysis().equals(comp.getPackages().getServices().getEmailAnalysis());
-		DisplayRoleAccessService.setEmailAnalysis(emailAnalysis);
-		
-		Boolean  driveAnalysis =rolesAcesses.getDriveAnalysis().equals(comp.getPackages().getServices().getDriveAnalysis());
-		DisplayRoleAccessService.setDriveAnalysis(driveAnalysis);
-		
-		Boolean  calenderApointment=rolesAcesses.getCalenderApointment().equals(comp.getPackages().getServices().getCalenderApointment());
-		DisplayRoleAccessService.setCalenderApointment(calenderApointment);
-		
-		Boolean  hr=rolesAcesses.getHr().equals(comp.getPackages().getServices().getHr());
-		DisplayRoleAccessService.setHr(hr);
-		
-		Boolean  maildelegation=rolesAcesses.getMaildelegation().equals(comp.getPackages().getServices().getMaildelegation());
-		DisplayRoleAccessService.setMaildelegation(maildelegation); 
-		
-		Boolean userManegment=  rolesAcesses.getUserManegment().equals(comp.getPackages().getServices().getUserManegment());
-		DisplayRoleAccessService.setUserManegment(userManegment);
-		
-		
-		System.out.println("Comapany"+comp.getName());
-		System.out.println("Domain"+userDomain.getDomainName());
-		System.out.println("Package"+comp.getPackages().getName());
-		System.out.println("Package"+comp.getPackages().getServices().toString());
-		System.out.println("notifications--------"+notifications.size());
+//		System.out.println("Comapany"+comp.getName());
+//		System.out.println("Domain"+userDomain.getDomainName());
+//		System.out.println("Package"+comp.getPackages().getName());
+//		System.out.println("Package"+comp.getPackages().getServices().toString());
+//		System.out.println("notifications--------"+notifications.size());
 			
 		model.addAttribute("notifications",notifications );
 		model.addAttribute("servicesAcess",DisplayRoleAccessService);
@@ -348,10 +338,18 @@ public class DashBoard {
 		Calendar myGoogleCalendarService;
 		ContactsService contactsService;
 
-		myGoogleGmailService = SercicesAccounts.getGmailService(loginEmail);
-		myGoogleDriveService = SercicesAccounts.getDriveService(loginEmail);
-		myGoogleCalendarService = SercicesAccounts.getCalenderService(loginEmail);
-		contactsService = SercicesAccounts.getconnect(loginEmail);
+		try {
+			myGoogleGmailService = SercicesAccounts.getGmailService(loginEmail);
+			myGoogleDriveService = SercicesAccounts.getDriveService(loginEmail);
+			myGoogleCalendarService = SercicesAccounts.getCalenderService(loginEmail);
+			contactsService = SercicesAccounts.getconnect(loginEmail);
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			
+			
+			return "dashboard";
+		}
 		
 //		Messages And Profile
 		Profile myProfile = myGoogleGmailService.users().getProfile(userId).execute();
