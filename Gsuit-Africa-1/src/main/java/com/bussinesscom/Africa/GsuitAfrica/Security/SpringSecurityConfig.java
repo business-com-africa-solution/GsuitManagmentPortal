@@ -37,7 +37,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Value("${spring.queries.roles-query}")
 	private String rolesQuery;
-	
+//	
 //	@Autowired
 //	private UserDetailsService userDetailsService;
 
@@ -117,6 +117,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 //	
 //	@Autowired
 //	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//		
 //		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
 //	}
 }

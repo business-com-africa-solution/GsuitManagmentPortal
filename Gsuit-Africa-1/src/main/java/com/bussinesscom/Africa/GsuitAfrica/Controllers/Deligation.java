@@ -100,8 +100,6 @@ public class Deligation {
 		
 		
 		
-		
-		
 		Optional<UserApp> user=userrepo.findById(myId[0]);		
 		String delegateEmail=user.get().getEmail();
 		String imageurl=user.get().getImageUrl();

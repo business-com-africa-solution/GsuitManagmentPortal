@@ -164,7 +164,6 @@ public class DashBoard {
 			
 		return new RedirectView(authorize());
 	}
-
 	@RequestMapping(value = "/login/BussnesComAfrica", method = RequestMethod.GET,params = "code")
 	public String oauth2Callback( @RequestParam(value = "code") String code,HttpServletRequest request, Model model) {
 
@@ -180,6 +179,7 @@ public class DashBoard {
 //
 ////			} else {
 			response = flow.newTokenRequest(code).setRedirectUri(redirectUri).execute();
+			
 			credential = flow.createAndStoreCredential(response, userId);
 
 //				staticLogin = true;
@@ -229,9 +229,7 @@ public class DashBoard {
 			String email = myGoogleGmail.users().getProfile("me").execute().getEmailAddress();
 
 			UserApp user=new UserApp();
-						
-			user.setId(userinfo.getId());
-			
+			user.setId(userinfo.getId());			
 			user.setEmail(email);
 			user.setFirstName(userinfo.getFamilyName());
 			user.setLastName(userinfo.getGivenName());
@@ -309,6 +307,9 @@ public class DashBoard {
 		DisplayRoleAccessService.setMaildelegation(Utilities.getRightsAcess(comp.getPackages().getServices().getMaildelegation(),rolesAcesses.getMaildelegation())); 
 		DisplayRoleAccessService.setUserManegment(Utilities.getRightsAcess(comp.getPackages().getServices().getUserManegment(),rolesAcesses.getUserManegment()));
 		
+		
+		
+		
 		System.out.println("Comapany"+comp.getName());
 		System.out.println("Domain"+userDomain.getDomainName());
 		System.out.println("Package"+comp.getPackages().getName());
@@ -373,7 +374,6 @@ public class DashBoard {
 				String[] emil = email.getAddress().split("@");
 				myContactList.add(new myContact(email.getAddress(), emil[0]));
 				System.out.print(" " + email.getAddress());
-
 				System.out.print("\n");
 			}
 		}
@@ -408,7 +408,7 @@ public class DashBoard {
 			flow = new GoogleAuthorizationCodeFlow.Builder(httpTransport, JSON_FACTORY, clientSecrets, permissions())
 					.build();
 		}
-		redirectUri=gmsUrlsRepository.findById(1).get().getUrl();
+		redirectUri=gmsUrlsRepository.findById(3).get().getUrl();
 		authorizationUrl = flow.newAuthorizationUrl().setRedirectUri(redirectUri);
 		return authorizationUrl.build();
 	}

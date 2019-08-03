@@ -66,9 +66,7 @@ public class SignatureSettings {
 
 		
 		
-		System.out.println("is deletable-----------------------" +signatureTemplatesList.get(0).getIsDeletable());
-		
-		
+		System.out.println("is deletable-----------------------" +signatureTemplatesList.get(0).getIsDeletable());	
 		model.addAttribute("mysignature", signatureTemplatesList);
 
 		model.addAttribute("Signature", new Signature());
@@ -141,7 +139,7 @@ public class SignatureSettings {
 
 		signaterRepo.saveAll(signatureTemplateUpdate);
 		}
-		return "redirect:/SignatureSetting/" + users.get().getId();
+		return "redirect:/SignatureSetting/" + updateById;
 		
 	}
 
